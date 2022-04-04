@@ -1,40 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { render } from "react-dom";
 import './index.css';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter } from "react-router-dom";
+import { bromideMainTheme } from "./themes/bromideThemes"
 
-const bromideTheme = createTheme({
-  palette: {
-    primary: {
-      main: "#D7EEF7",
-    },
-    secondary: {
-      main: "#6868ac"
-    },
-    error: {
-      main: "#e9435e"
-    },
-    warning: {
-      main: "#edc271"
-    },
-    info: {
-      main: "#85a0ac"
-    },
-    success: {
-      main: "#9BE0A3"
-    },
+const container = document.getElementById('app');
+// Create a root.
+const root = createRoot(container);
 
-  },
-});
+const bromideTheme = createTheme({bromideMainTheme})
 
-
-ReactDOM.render(
-  <React.StrictMode>
+// Initial render
+root.render(
+  <BrowserRouter>
     <ThemeProvider theme={bromideTheme}>
-    <App />
+      <App />
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </BrowserRouter>
 );
 

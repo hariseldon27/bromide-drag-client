@@ -25,6 +25,11 @@ const colorMode = createTheme({
   const mainBody = {
     maxWidth: "85%",
   }
+  
+  const headerStyle = {
+    maxHeight: "100px",
+    backgroundColor: 'secondary.main'
+  }
 
   return (
     <div>
@@ -32,10 +37,12 @@ const colorMode = createTheme({
       <CssBaseline />
       <Container>
           <Container maxWidth="sm">
-            <ModeSwitch isDarkMode={isDarkMode} onModeChange={handleModeChange}/>
+            <Container className="header" sx={headerStyle}>
+              <ModeSwitch isDarkMode={isDarkMode} onModeChange={handleModeChange}/>
+            </Container>
             <Box sx={mainBody}>
-            <Typography variant="h3">hello world</Typography>
-            <Button variant="outlined" color="secondary" >Good Bye </Button>
+              <Typography variant="h3">hello world</Typography>
+              <Button variant="outlined" color="secondary" >Good Bye </Button>
             </Box>
           </Container>
       </Container>

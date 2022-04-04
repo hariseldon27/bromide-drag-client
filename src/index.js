@@ -2,16 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const bromideTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#D7EEF7",
+    },
+    secondary: {
+      main: "#6868ac"
+    },
+    error: {
+      main: "#e9435e"
+    },
+    warning: {
+      main: "#edc271"
+    },
+    info: {
+      main: "#85a0ac"
+    },
+    success: {
+      main: "#9BE0A3"
+    },
+
+  },
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <ThemeProvider theme={bromideTheme}>
     <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -42,7 +42,7 @@ const headerStyle = {
             </Container>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>
-              <Button variant="outlined" color="secondary" >Good Bye </Button>
+              <Button variant="outlined" color="secondary" >Good Bye</Button>
             </Box>
           </Container>
       </Container>

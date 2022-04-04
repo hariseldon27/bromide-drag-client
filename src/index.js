@@ -4,8 +4,13 @@ import { render } from "react-dom";
 import './index.css';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { BrowserRouter } from "react-router-dom";
 import { bromideMainTheme } from "./themes/bromideThemes"
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import ModeSwitch from './components/ModeSwitch';
 
 const container = document.getElementById('app');
 // Create a root.
@@ -17,7 +22,9 @@ const bromideTheme = createTheme({bromideMainTheme})
 root.render(
   <BrowserRouter>
     <ThemeProvider theme={bromideTheme}>
-      <App />
+    <Routes>
+      <Route path="/" element={<App />} />
+    </Routes>
     </ThemeProvider>
   </BrowserRouter>
 );

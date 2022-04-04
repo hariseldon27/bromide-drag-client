@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 function App( ) {
 const [isDarkMode, setIsDarkMode] = useState(false)
 
-function handleModeChange(e) {
+function handleDarkModeChange(e) {
   setIsDarkMode(isDarkMode => isDarkMode = !isDarkMode)
 }
 
@@ -22,14 +22,14 @@ const colorMode = createTheme({
     },
   });
 
-  const mainBody = {
-    maxWidth: "85%",
-  }
+const mainBody = {
+  maxWidth: "85%",
+}
   
-  const headerStyle = {
-    maxHeight: "100px",
-    backgroundColor: 'secondary.main'
-  }
+const headerStyle = {
+  maxHeight: "100px",
+  backgroundColor: 'secondary.main'
+}
 
   return (
     <div>
@@ -38,7 +38,7 @@ const colorMode = createTheme({
       <Container>
           <Container maxWidth="sm">
             <Container className="header" sx={headerStyle}>
-              <ModeSwitch isDarkMode={isDarkMode} onModeChange={handleModeChange}/>
+              <ModeSwitch isDarkMode={isDarkMode} onModeChange={handleDarkModeChange}/>
             </Container>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>

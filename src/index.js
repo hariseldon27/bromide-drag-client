@@ -1,6 +1,5 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { render } from "react-dom";
 import './index.css';
 import App from './App';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -10,6 +9,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import store from "./store"
+import { Provider } from "react-redux"
 import ModeSwitch from './components/ModeSwitch';
 
 const container = document.getElementById('app');
@@ -20,6 +21,7 @@ const bromideTheme = createTheme({bromideMainTheme})
 
 // Initial render
 root.render(
+  <Provider store={store}>
   <BrowserRouter>
     <ThemeProvider theme={bromideTheme}>
     <Routes>
@@ -27,5 +29,6 @@ root.render(
     </Routes>
     </ThemeProvider>
   </BrowserRouter>
+  </Provider>
 );
 

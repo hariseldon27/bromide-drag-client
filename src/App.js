@@ -7,14 +7,18 @@ import ModeSwitch from './components/ModeSwitch';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import { useSelector } from "react-redux"
 
 
 function App( ) {
-const [isDarkMode, setIsDarkMode] = useState(false)
+// const [isDarkMode, setIsDarkMode] = useState(false)
+const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
 
-function handleDarkModeChange(e) {
-  setIsDarkMode(isDarkMode => isDarkMode = !isDarkMode)
-}
+// function handleDarkModeChange(e) {
+//   setIsDarkMode(isDarkMode => isDarkMode = !isDarkMode)
+// }
+
+
 
 const colorMode = createTheme({
     palette: {
@@ -38,7 +42,7 @@ const headerStyle = {
       <Container>
           <Container maxWidth="sm">
             <Container className="header" sx={headerStyle}>
-              <ModeSwitch isDarkMode={isDarkMode} onModeChange={handleDarkModeChange}/>
+              <ModeSwitch />
             </Container>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>

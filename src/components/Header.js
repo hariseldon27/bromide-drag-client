@@ -16,21 +16,17 @@ function Header() {
 
     
   const headerStyle = {
-    maxHeight: "100px",
-    backgroundColor: 'secondary.main'
+    height: "75px",
+    backgroundColor: isDarkMode ? "#666" : "#222",
+    padding: "5px"
   }
 
     return (
-    <Container>
-            <Container maxWidth="sm">
-              <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
-                <LogOut/>
-                  User: {currentUser.email}
-                <ModeSwitch />
-              </Stack>
-
-            </Container>
-        </Container>
+      <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
+        <LogOut/>
+          User: {currentUser.email}
+        <ModeSwitch />
+      </Stack>  
   )
 }
 

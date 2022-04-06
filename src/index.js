@@ -17,12 +17,22 @@ const container = document.getElementById('app');
 // Create a root.
 const root = createRoot(container);
 
-const bromideTheme = createTheme({bromideMainTheme})
+// const bromideTheme = createTheme({bromideMainTheme})
+// console.log(bromideTheme)
 
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#000000",
+    },
+  }
+});
+
+console.log(theme)
 // Initial render
 root.render(
   <Provider store={store}>
-    <ThemeProvider theme={bromideTheme}>
+    <ThemeProvider theme={theme}>
       <App/>
     </ThemeProvider>
   </Provider>

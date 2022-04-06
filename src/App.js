@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
 import ModeSwitch from './components/ModeSwitch';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -19,6 +20,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { bromideMainTheme } from "./themes/bromideThemes"
 
 
 function App( ) {
@@ -31,40 +33,24 @@ function toggleSignUpClick(){
 }
 
 
+
 const colorMode = createTheme({
     palette: {
       mode: isDarkMode ? 'light' : 'dark',
     },
   });
 
-// function AppInjet() {
-//   return (
-//     <Container>
-//             <Container maxWidth="sm">
-//               <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
-//                 <LogOut/>
-//                   User: {currentUser.email}
-//                 <ModeSwitch />
-//               </Stack>
-//               <Box sx={mainBody}>
-//                 <Typography variant="h3">hello world</Typography>
-//                 {isSignUpShowing ? <Login/> : <SignUp/> }
-//                 <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
-//               </Box>
-//             </Container>
-//         </Container>
-//   )
-// }
   return (
     <div>
     <BrowserRouter>
+      <CssBaseline />
       <ThemeProvider theme={colorMode} >
-        <CssBaseline />
-        <Header/>
-        <Routes>
-          <Route path="/" element={<HomePage/>}/>
-        </Routes>
-      </ThemeProvider>
+        
+          <Header/>
+          <Routes>
+            <Route path="/" element={<HomePage/>}/>
+          </Routes>
+        </ThemeProvider>
     </BrowserRouter>
   </div>
   )

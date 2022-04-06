@@ -9,15 +9,18 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useSelector } from "react-redux"
 import Login from "./components/Login"
+import SignUp from "./components/SignUp"
+import LogOut from './components/LogOut';
+import Stack from '@mui/material/Stack';
+
 
 function App( ) {
-// const [isDarkMode, setIsDarkMode] = useState(false)
 const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
+const [isSignUpShowing, setIsSignUpShowing] = useState(false)
 
-// function handleDarkModeChange(e) {
-//   setIsDarkMode(isDarkMode => isDarkMode = !isDarkMode)
-// }
-
+function toggleSignUpClick(){
+  setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)
+}
 
 
 const colorMode = createTheme({
@@ -41,12 +44,14 @@ const headerStyle = {
       <CssBaseline />
       <Container>
           <Container maxWidth="sm">
-            <Container className="header" sx={headerStyle}>
+            <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
+              <LogOut/>
               <ModeSwitch />
-            </Container>
+            </Stack>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>
-              <Login/>
+              {isSignUpShowing ? <Login/> : <SignUp/> }
+              <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
             </Box>
           </Container>
       </Container>

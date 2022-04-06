@@ -21,11 +21,76 @@ function Login() {
         setLoginFormData({
         ...loginFormData, 
         [name]: value})
+    }
 
+    // function handleSubmitLoginForm(e){
+    //     //make an action
+    //     const logMeIn = user => ({
+    //         type: 'users/setCurrentUser',
+    //         payload: currentUserLogIn
+    //     });
+        
+    //     // format form data to send
+    //     const userToLogIn = {
+    //         user: {
+    //             email: loginFormData.email,
+    //             password: loginFormData.password
+    //         }
+    //     }
+    //     // do the fetch with our user info from form
+    //     fetch('http://localhost:3000/users/sign_in', {
+    //     method: "POST",
+    //         headers: {
+    //         "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(userToLogIn),
+    //     })
+
+
+    //     const currentUserLogIn = {
+    //         email: loginFormData.email,
+    //         token: responseData.token
+    //     }
+
+
+    //     //take response data, send to redux state:
+    //     // email: loginFormData.email, 
+    //     // token: data.token
+
+    //     .then(response => response.json())
+    //     .then(data => logInUser(data))
+    // }
+
+  async function login() {
+
+        // format form data to send
+        const userToLogIn = {
+            user: {
+                email: loginFormData.email,
+                password: loginFormData.password
+            }
+        }
+        const response = await fetch('http://localhost:3000/users/sign_in', {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userToLogIn),
+        })
+        const newData = await response.json()
+        console.log(newData.token)
+        
     }
-    function handleSubmitLoginForm(e){
-        //send form data
+
+    
+
+
+    function logInUser(user){
+        console.log(user)
+        //send user response to state reducer
     }
+
+
   return (
     <Box>
         <Stack>
@@ -36,17 +101,18 @@ function Login() {
                 name="email"
                 onChange={handleLoginFormChange}
                 />
-                <Input id="login-password" 
+                <TextField id="login-password" 
                 type="password" 
                 placeholder="password" 
                 value={loginFormData.password} 
                 name="password"
                 onChange={handleLoginFormChange}
+                variant="standard"
                 />
                 <Button id="login-submit" 
                 type="submit" 
                 name="submit"
-                onClick={handleSubmitLoginForm}>Sign In</Button>
+                onClick={login}>Log In</Button>
                 Email: {loginFormData.email}
                 <hr/>
                 pw: {loginFormData.password}

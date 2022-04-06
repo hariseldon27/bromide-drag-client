@@ -2,13 +2,15 @@ import { createSlice } from "@reduxjs/toolkit"
 
 //slice
 const slice = createSlice( {
-    name: 'user',
+    name: 'currenUser',
     initialState: {
-        username: null,
+            email:"",
+            token: ""
     },
     reducers : {
-        increment: state => {
-             state.count += 1 
+        "users/setCurrentUser": state => {
+             state.email = payload.email,
+             state.token = payload.token
         }
     }
 } )

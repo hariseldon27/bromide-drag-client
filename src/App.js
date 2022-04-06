@@ -47,8 +47,8 @@ const headerStyle = {
           <Container maxWidth="sm">
             <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
               <LogOut/>
+                User: {currentUser.email}
               <ModeSwitch />
-              {currentUser.email}
             </Stack>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>

@@ -9,8 +9,9 @@ function LogOut() {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const loggedIn = useSelector(state => state.user.loggedIn)
-    console.log("logging out currentUser:", currentUser)
-    function handleLogOut(){
+    // console.log("logging out currentUser:", currentUser)
+    function handleLogOut(e){
+      e.preventDefault()
         //get token from state, send token to backend delete route
         // need to get currentUser into redux state
         dispatch(setCurrentUser({
@@ -18,8 +19,24 @@ function LogOut() {
             token: "",
             loggedIn: false
         }))
-        console.log("logged out currentUser:", currentUser)
+        revoke()
     }
+    // needs to fetch to destroy token
+    async function revoke(){
+
+      // const token = `Bearer ${currentUser.token}`
+      console.log(currentUser.token)
+      fetch('http://localhost:3000/users/sign_out', {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": currentUser.token
+        }
+      })
+      .then(r => r.json())
+      .then((data) => console.log("back from server", data))
+    }
+// console.log(currentUser.token)
   return (
     <Box>
         {loggedIn ? 

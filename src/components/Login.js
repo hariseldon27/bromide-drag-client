@@ -50,7 +50,7 @@ function Login(e) {
             token: authUser.token,
             loggedIn: true
         }))
-        console.log(authUser.token)
+        // console.log(authUser.token)
         resetForm()
     }
     

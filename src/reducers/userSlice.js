@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit"
 
 //slice
 const slice = createSlice( {
-    name: 'currenUser',
+    name: 'user',
     initialState: {
             email:"",
             token: ""
     },
     reducers : {
-        "users/setCurrentUser": state => {
-             state.email = payload.email,
-             state.token = payload.token
+        setCurrentUser: (state, action) => {
+             state.email = action.payload.email
+             state.token = action.payload.token
         }
     }
 } )
 
 // actions
-const { increment } = slice.actions
+const { setCurrentUser } = slice.actions
 
 // exports
-export { increment } 
+export { setCurrentUser } 
 export default slice.reducer

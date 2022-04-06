@@ -5,10 +5,12 @@ import { FormControl } from '@mui/material';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setCurrentUser } from "../reducers/userSlice"
 
 function Login() {
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state => state.user)
     const [loginFormData, setLoginFormData] = useState({
         email: "",
         password: ""
@@ -23,6 +25,7 @@ function Login() {
         [name]: value})
     }
 
+    console.log("curUser in state: ", currentUser)
     // function handleSubmitLoginForm(e){
     //     //make an action
     //     const logMeIn = user => ({
@@ -77,9 +80,14 @@ function Login() {
             },
             body: JSON.stringify(userToLogIn),
         })
-        const newData = await response.json()
-        console.log(newData.token)
-        
+
+        const authUser = await response.json()
+       
+        dispatch(setCurrentUser({
+            email: loginFormData.email,
+            token: authUser.token
+        }))
+        console.log(authUser.token)
     }
 
     

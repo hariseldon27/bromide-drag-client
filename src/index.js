@@ -28,7 +28,6 @@ const theme = createTheme({
   }
 });
 
-console.log(theme)
 // Initial render
 root.render(
   <Provider store={store}>

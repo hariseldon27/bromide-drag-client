@@ -12,6 +12,7 @@ function UserProfile() {
   return (
     <Box>
         <Container>
+          {currentUser.email}
             <UserDetails/>
             <UserGalleryList/>
         </Container>

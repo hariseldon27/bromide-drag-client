@@ -6,6 +6,7 @@ import LogOut from '../components/LogOut';
 import { useSelector } from "react-redux"
 import Stack from '@mui/material/Stack';
 import ModeSwitch from '../components/ModeSwitch';
+import { NavLink, Navigate } from "react-router-dom";
 
 
 function Header() {
@@ -18,14 +19,37 @@ function Header() {
   const headerStyle = {
     height: "75px",
     backgroundColor: isDarkMode ? "#666" : "#222",
-    padding: "5px"
+    padding: "5px",
+    textDecoration: "none"
+    
   }
 
+  let activeStyle = {
+    textDecoration: "none",
+    backgroundColor: "primary.main",
+    color: "#fff"
+  };
+
+  let activeClassName = "underline";
+  
     return (
       <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
         <LogOut/>
           User: {currentUser.email}
         <ModeSwitch />
+        <NavLink to="/" 
+        className="nav"
+        style={({ isActive }) =>
+              isActive ? activeStyle : undefined
+            }
+        >Home</NavLink>
+
+        <NavLink to="/profile" 
+        className="nav"
+        style={({ isActive }) =>
+        isActive ? activeStyle : undefined
+        }
+        >Profile</NavLink>
       </Stack>  
   )
 }

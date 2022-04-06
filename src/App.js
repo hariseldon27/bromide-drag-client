@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
-import ModeSwitch from './components/ModeSwitch';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -21,6 +19,7 @@ import {
   Route,
 } from "react-router-dom";
 import { bromideMainTheme } from "./themes/bromideThemes"
+import UserProfile from './components/userProfile/UserProfile';
 
 
 function App( ) {
@@ -48,7 +47,10 @@ const colorMode = createTheme({
         
           <Header/>
           <Routes>
-            <Route path="/" element={<HomePage/>}/>
+            <Route exact path="/" element={<HomePage/>}/>
+          </Routes>
+          <Routes>
+            <Route path="/profile" element={<UserProfile/>} />
           </Routes>
         </ThemeProvider>
     </BrowserRouter>

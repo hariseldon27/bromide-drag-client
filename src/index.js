@@ -22,16 +22,9 @@ const bromideTheme = createTheme({bromideMainTheme})
 // Initial render
 root.render(
   <Provider store={store}>
-  <BrowserRouter>
     <ThemeProvider theme={bromideTheme}>
-    <Routes>
-      <Route path="/" element={<App />} />
-    </Routes>
-    <Routes>
-      
-    </Routes>
+      <App/>
     </ThemeProvider>
-  </BrowserRouter>
   </Provider>
 );
 

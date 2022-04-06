@@ -12,6 +12,13 @@ import Login from "./components/Login"
 import SignUp from "./components/SignUp"
 import LogOut from './components/LogOut';
 import Stack from '@mui/material/Stack';
+import Header from './components/Header'
+import HomePage from './HomePage';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 
 function App( ) {
@@ -30,34 +37,35 @@ const colorMode = createTheme({
     },
   });
 
-const mainBody = {
-  maxWidth: "85%",
-}
-  
-const headerStyle = {
-  maxHeight: "100px",
-  backgroundColor: 'secondary.main'
-}
-
+// function AppInjet() {
+//   return (
+//     <Container>
+//             <Container maxWidth="sm">
+//               <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
+//                 <LogOut/>
+//                   User: {currentUser.email}
+//                 <ModeSwitch />
+//               </Stack>
+//               <Box sx={mainBody}>
+//                 <Typography variant="h3">hello world</Typography>
+//                 {isSignUpShowing ? <Login/> : <SignUp/> }
+//                 <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
+//               </Box>
+//             </Container>
+//         </Container>
+//   )
+// }
   return (
     <div>
-    <ThemeProvider theme={colorMode} >
-      <CssBaseline />
-      <Container>
-          <Container maxWidth="sm">
-            <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
-              <LogOut/>
-                User: {currentUser.email}
-              <ModeSwitch />
-            </Stack>
-            <Box sx={mainBody}>
-              <Typography variant="h3">hello world</Typography>
-              {isSignUpShowing ? <Login/> : <SignUp/> }
-              <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
-            </Box>
-          </Container>
-      </Container>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={colorMode} >
+        <CssBaseline />
+        <Header/>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   </div>
   )
   

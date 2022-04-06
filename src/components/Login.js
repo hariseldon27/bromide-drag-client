@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
 
-function Login() {
+function Login(e) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const [loginFormData, setLoginFormData] = useState({
@@ -26,46 +26,8 @@ function Login() {
     }
 
     console.log("curUser in state: ", currentUser)
-    // function handleSubmitLoginForm(e){
-    //     //make an action
-    //     const logMeIn = user => ({
-    //         type: 'users/setCurrentUser',
-    //         payload: currentUserLogIn
-    //     });
-        
-    //     // format form data to send
-    //     const userToLogIn = {
-    //         user: {
-    //             email: loginFormData.email,
-    //             password: loginFormData.password
-    //         }
-    //     }
-    //     // do the fetch with our user info from form
-    //     fetch('http://localhost:3000/users/sign_in', {
-    //     method: "POST",
-    //         headers: {
-    //         "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(userToLogIn),
-    //     })
-
-
-    //     const currentUserLogIn = {
-    //         email: loginFormData.email,
-    //         token: responseData.token
-    //     }
-
-
-    //     //take response data, send to redux state:
-    //     // email: loginFormData.email, 
-    //     // token: data.token
-
-    //     .then(response => response.json())
-    //     .then(data => logInUser(data))
-    // }
 
   async function login() {
-
         // format form data to send
         const userToLogIn = {
             user: {
@@ -85,24 +47,25 @@ function Login() {
        
         dispatch(setCurrentUser({
             email: loginFormData.email,
-            token: authUser.token
+            token: authUser.token,
+            loggedIn: true
         }))
         console.log(authUser.token)
+        resetForm()
     }
-
     
-
-
-    function logInUser(user){
-        console.log(user)
-        //send user response to state reducer
+    function resetForm(){
+        setLoginFormData({
+            ...loginFormData, 
+            email: "",
+            password: ""
+            })
     }
-
 
   return (
     <Box>
         <Stack>
-            <FormControl>
+            <FormControl id="login-form">
                 <Input id="login-email" 
                 placeholder="email" 
                 value={loginFormData.email} 
@@ -121,9 +84,11 @@ function Login() {
                 type="submit" 
                 name="submit"
                 onClick={login}>Log In</Button>
+                <hr/>
                 Email: {loginFormData.email}
                 <hr/>
                 pw: {loginFormData.password}
+                <hr/>
             </FormControl>
         </Stack>
     </Box>

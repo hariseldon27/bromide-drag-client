@@ -16,6 +16,7 @@ import Stack from '@mui/material/Stack';
 
 function App( ) {
 const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
+const currentUser = useSelector(state => state.user)
 const [isSignUpShowing, setIsSignUpShowing] = useState(false)
 
 function toggleSignUpClick(){
@@ -47,6 +48,7 @@ const headerStyle = {
             <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
               <LogOut/>
               <ModeSwitch />
+              {currentUser.email}
             </Stack>
             <Box sx={mainBody}>
               <Typography variant="h3">hello world</Typography>

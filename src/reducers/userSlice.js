@@ -5,12 +5,16 @@ const slice = createSlice( {
     name: 'user',
     initialState: {
             email:"",
-            token: ""
+            token: "",
+            loggedIn: false
     },
     reducers : {
+
         setCurrentUser: (state, action) => {
-             state.email = action.payload.email
-             state.token = action.payload.token
+            state.email = action.payload.email
+            state.token = action.payload.token
+            state.loggedIn = action.payload.loggedIn
+
         }
     }
 } )

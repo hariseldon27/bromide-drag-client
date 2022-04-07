@@ -12,7 +12,7 @@ function LogOut() {
     // console.log("logging out currentUser:", currentUser)
     function handleLogOut(e){
       e.preventDefault()
-        //get token from state, send token to backend delete route
+        // get token from state, send token to backend delete route
         // need to get currentUser into redux state
         dispatch(setCurrentUser({
             email: "",
@@ -23,15 +23,14 @@ function LogOut() {
     }
     // needs to fetch to destroy token
     async function revoke(){
-
       // const token = `Bearer ${currentUser.token}`
-      console.log(currentUser.token)
+    const currentToken = localStorage.getItem("token")
       fetch('http://localhost:3000/users/sign_out', {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": currentUser.token
-        }
+          "Authorization": `Bearer ${currentToken}`
+          }
       })
       .then(r => r.json())
       .then((data) => console.log("back from server", data))

@@ -8,7 +8,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import UserDetails from './UserDetails';
 import UserGalleryList from './UserGalleryList';
-import UserUpload from './UserUpload';
+import UserAvatarUpload from './UserAvatarUpload';
 
 function UserProfile() {
     const currentUser = useSelector(state => state.user)
@@ -42,7 +42,7 @@ function UserProfile() {
           </Grid>
           <Grid container item xs={4} >
             <Item><UserDetails/></Item>
-            <Item><UserUpload/></Item>
+            <Item><UserAvatarUpload/></Item>
           </Grid>
         </Grid>
     </Box>

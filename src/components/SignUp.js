@@ -28,25 +28,6 @@ function SignUp() {
 
     console.log("curUser in state: ", currentUser)
 
-    // function handleSubmitsignUpForm(e){
-    //     //send form data
-    //     const userToSignUp = {
-    //         user: {
-    //             email: signUpFormData.email,
-    //             password: signUpFormData.password
-    //         }
-    //     }
-    //     console.log(JSON.stringify(userToSignUp))
-    //     fetch('http://localhost:3000/users', {
-    //     method: "POST",
-    //         headers: {
-    //         "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(userToSignUp),
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => console.log(data))
-    // }
     async function handleSubmitSignUp(){
         const userToSignUp = {
             user: {
@@ -71,6 +52,7 @@ function SignUp() {
             token: authUser.token,
             loggedIn: true
         }))
+        localStorage.setItem("token", authUser.token)
         console.log(authUser.token)
         resetForm()
     }

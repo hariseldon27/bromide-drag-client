@@ -28,11 +28,6 @@ function App( ) {
   const dispatch = useDispatch()
   const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
   const currentUser = useSelector(state => state.user)
-  const [isSignUpShowing, setIsSignUpShowing] = useState(false)
-
-  function toggleSignUpClick(){
-    setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)
-  }
 
   // useEffect(() =>{
   //   async function fetchUser(){
@@ -75,7 +70,9 @@ function App( ) {
           dispatch(setCurrentUser({
             email: data.user.email,
             loggedIn: true,
-            avatar: `http://localhost:3000/${data.avatar}`
+            id: data.user.id,
+            avatar: data.avatar ? data.avatar : '',
+            token: currentToken
           }))
         })
 
@@ -98,7 +95,7 @@ const colorMode = createTheme({
             <Route exact path="/" element={<HomePage/>}/>
           </Routes>
           <Routes>
-            <Route path="/profile" element={<UserProfile/>} />
+            <Route exact path="/profile" element={<UserProfile/>} />
           </Routes>
         </ThemeProvider>
     </BrowserRouter>

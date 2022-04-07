@@ -11,40 +11,50 @@ import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux"
 
 
-function UserUpload() {
+function UserAvatarUpload() {
   const currentUser = useSelector(state => state.user)
-  const [profilePhoto, setProfilePhoto] = useState()
-  const [editProfPic, setEditProfPic] = useState(false)
+  const [avatarImageUpload, setAvatarImageUpload] = useState()
 
   
-//   function handleSubmit(e) {
-//     e.preventDefault()
-//     console.log(e.target.files)
-//     console.log("submit")
-// }
-
 function handleImageChange(e){
   console.log.apply("change")
-  setProfilePhoto(e.target.files[0]);
+  setAvatarImageUpload(e.target.files[0]);
 
 }
+console.log(currentUser)
 console.log(currentUser.avatar)
+console.log(avatarImageUpload)
 
 const handleSubmit = e => {
   e.preventDefault();
   const formData = new FormData()
-  formData.append("profile_photo", profilePhoto)
-  fetch(`/users/${currentUser.id}`, {
+  formData.append("avatar", avatarImageUpload)
+  fetch(`http://localhost:3000/profile-photo/${currentUser.id}`, {
     method: 'PATCH',
+    headers: {
+      "Authorization": `Bearer ${currentUser.token}`
+      },
     body: formData
   })
-  .then(res => res.json())
-  .then(data => {
-    setProfilePhoto(data.profile_photo.url)
-    console.log(data)
+  // .then(res => res.json())
+  .then(function(response) {
+    console.log(response);
+    console.log(response.body);
+    console.log(response.message);
+    console.log(response.errors);
+    console.log(response.json());
+
+    if (response.status >= 400) {
+        throw new Error("Bad response from server");
+    }
+
+})
+
+  // .then(data => {
+  //   // setAvatarImage(data.avatar.url)
+  //   console.log(data)
   
-  })
-  setEditProfPic(false)
+  // })
 }
 
 const Input = styled('input')({
@@ -77,4 +87,4 @@ const Input = styled('input')({
   )
 }
 
-export default UserUpload
+export default UserAvatarUpload

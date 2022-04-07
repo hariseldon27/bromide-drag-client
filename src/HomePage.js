@@ -27,7 +27,7 @@ function toggleSignUpClick(){
      
     <Box sx={mainBody}>
         <Typography variant="h3">hello world</Typography>
-        {isSignUpShowing ? <Login/> : <SignUp/> }
+        {isSignUpShowing ? <SignUp/> : <Login/> }
         <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
     </Box>
   )

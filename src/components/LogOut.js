@@ -34,6 +34,7 @@ function LogOut() {
       })
       .then(r => r.json())
       .then((data) => console.log("back from server", data))
+      localStorage.removeItem("token")
     }
 // console.log(currentUser.token)
   return (

@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const slice = createSlice( {
     name: 'user',
     initialState: {
+            id:"",
             email:"",
             token: "",
             avatar: "",
@@ -16,6 +17,7 @@ const slice = createSlice( {
             state.token = action.payload.token
             state.loggedIn = action.payload.loggedIn
             state.avatar = action.payload.avatar
+            state.id = action.payload.id
         }
     }
 } )

@@ -6,6 +6,7 @@ const slice = createSlice( {
     initialState: {
             email:"",
             token: "",
+            avatar: "",
             loggedIn: false
     },
     reducers : {
@@ -14,7 +15,7 @@ const slice = createSlice( {
             state.email = action.payload.email
             state.token = action.payload.token
             state.loggedIn = action.payload.loggedIn
-
+            state.avatar = action.payload.avatar
         }
     }
 } )

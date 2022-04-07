@@ -40,7 +40,7 @@ function UserProfile() {
           <Grid item xs={8}>
             <Item><UserGalleryList/></Item>
           </Grid>
-          <Grid item xs={4} spacing={2}>
+          <Grid container item xs={4} >
             <Item><UserDetails/></Item>
             <Item><UserUpload/></Item>
           </Grid>

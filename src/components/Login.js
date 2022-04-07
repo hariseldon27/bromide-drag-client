@@ -44,13 +44,15 @@ function Login(e) {
         })
 
         const authUser = await response.json()
-       
+       //send the new user to state
         dispatch(setCurrentUser({
             email: loginFormData.email,
             token: authUser.token,
             loggedIn: true
         }))
         // console.log(authUser.token)
+        //set the token in local storage
+        localStorage.setItem("token", authUser.token)
         resetForm()
     }
     

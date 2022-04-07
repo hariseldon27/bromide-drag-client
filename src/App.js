@@ -53,6 +53,7 @@ function App( ) {
 
   useEffect(()=>{
     const currentToken = localStorage.getItem("token")
+    
     console.log(currentToken)
 
     fetch('http://127.0.0.1:3000/member-data', {

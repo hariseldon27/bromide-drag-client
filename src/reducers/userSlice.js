@@ -7,7 +7,7 @@ const slice = createSlice( {
             id:"",
             email:"",
             token: "",
-            avatar: "",
+            avatar: "https://avatarairlines.com/wp-content/uploads/2020/05/Male-placeholder.jpeg",
             loggedIn: false
     },
     reducers : {
@@ -18,13 +18,16 @@ const slice = createSlice( {
             state.loggedIn = action.payload.loggedIn
             state.avatar = action.payload.avatar
             state.id = action.payload.id
+        },
+        setUserAvatar: (state, action) => {
+            state.avatar = action.payload.avatar
         }
     }
 } )
 
 // actions
-const { setCurrentUser } = slice.actions
+const { setCurrentUser, setUserAvatar } = slice.actions
 
 // exports
-export { setCurrentUser } 
+export { setCurrentUser, setUserAvatar } 
 export default slice.reducer

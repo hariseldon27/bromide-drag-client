@@ -9,18 +9,21 @@ import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux"
+import { setUserAvatar } from "../../reducers/userSlice"
+
 
 
 function UserAvatarUpload() {
+  const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const [avatarImageUpload, setAvatarImageUpload] = useState()
+  const [userError, setUserError] = useState(false)
 
   
 function handleImageChange(e){
-  console.log.apply("change")
   setAvatarImageUpload(e.target.files[0]);
-
 }
+
 console.log(currentUser)
 console.log(currentUser.avatar)
 console.log(avatarImageUpload)
@@ -36,53 +39,71 @@ const handleSubmit = e => {
       },
     body: formData
   })
-  // .then(res => res.json())
-  .then(function(response) {
-    console.log(response);
-    console.log(response.body);
-    console.log(response.message);
-    console.log(response.errors);
-    console.log(response.json());
-
-    if (response.status >= 400) {
-        throw new Error("Bad response from server");
+    // .then(res => res.json())
+  .then((response) => {
+    if (response.ok) { 
+     return response.json();
     }
+    return Promise.reject(response); 
+  })
+    // if resp.ok then we proceed to set onLogin
+    // reset the field text, and setUserError to false
+    .then((data) => { 
+      // console.log("came back as ", data); 
+      // console.log(data.user)
+      // console.log(data.avatar)
+      dispatch(setUserAvatar({
+        avatar: data.avatar
+    }))
+    })
+    // if there is an error then send the error info to a handler
+    .catch((error) => {
+      console.log(error)
+      renderUserError(error)
+    });
+  }
+  //this sets our user error - currently inactive - then logs an error
+  function renderUserError(error){
+    setUserError(true)
+    console.log('Oops... ', error.statusText)
+  }
 
-})
-
-  // .then(data => {
-  //   // setAvatarImage(data.avatar.url)
-  //   console.log(data)
-  
-  // })
-}
+  // plz refactor the uploader to be a drag and drop based on this: https://codepen.io/beljems/pen/LYNZYNy
 
 const Input = styled('input')({
-    display: 'none',
+    textAlign: "center"
   });
   return (
     <Box>
-        {/* <label htmlFor="user-file-upload">
-        <Input accept="image/*" 
-        id="user-file-upload" 
-        multiple type="file" 
-        onChange={handleUploadChange}
-        onSubmit={handleUploadClick}/>
-        <Button variant="contained" component="span">
-        Upload Profile Image
-        </Button>
-        </label>
-
-        <label htmlFor="icon-button-file">
-        <Input accept="image/*" id="icon-button-file" type="file" />
-        <IconButton color="primary" aria-label="upload picture" component="span">
-        <PhotoCamera />
-        </IconButton> */}
-      {/* </label> */}
+      <Stack>
+        <Typography component="h4">Add profile photo</Typography>
         <form onSubmit={handleSubmit} id='upload'>
-          <input type="file" accept="image/*" multiple={false} onChange={handleImageChange} /><br/>
-          <input type="submit" value="Submit"></input>
+          {/* <Input type="file" accept="image/*" multiple={false} onChange={handleImageChange} />
+          <Input type="submit" value="Submit"></Input> */}
+          <Button
+            variant="outlined"
+            component="label"
+          >
+          Choose File
+          <input
+            type="file"
+            hidden
+            accept="image/*" multiple={false} onChange={handleImageChange} 
+          />
+        </Button>
+          <Button
+            variant="outlined"
+            component="label"
+          >
+          Uploadify it
+          <input
+            type="submit"
+            value="Submit"
+            hidden
+          />
+        </Button>
         </form>
+      </Stack>
     </Box>
   )
 }

@@ -22,11 +22,11 @@ function UserDetails() {
     <Container sx={userDetailsStyle} id="user_details_panel">
         <Stack spacing={1.5}>
             <Typography variant="h4" component="p" align="center">User Details</Typography>
-            <img src={`http://localhost:3000/${currentUser.avatar}`}></img>
+            <img src={currentUser.avatar}></img>
             <Divider textAlign="right"><span style={{color: "red"}}>{currentUser.email}</span></Divider>
-            <Typography component="p" align="right"><b>Galleries:</b> 4</Typography>
-            <Typography component="p" align="right"><b>Followers:</b> 3</Typography>
-            <Typography component="p" align="right"><b>Following:</b> 2</Typography>
+            <Typography component="p" align="right"><b>Galleries:</b> </Typography>
+            <Typography component="p" align="right"><b>Followers:</b> </Typography>
+            <Typography component="p" align="right"><b>Following:</b> </Typography>
             <Button disabled variant="contained">Reset Password</Button>
             <Button disabled variant="contained">Delete Account</Button>
         </Stack>

@@ -17,11 +17,11 @@ function Header() {
 
     
   const headerStyle = {
-    height: "75px",
+    // height: "75px",
     backgroundColor: isDarkMode ? "#666" : "#222",
-    padding: "5px",
-    textDecoration: "none"
-    
+    // padding: "5px",
+    // textDecoration: "none",
+    // width: "100%"
   }
 
   let activeStyle = {
@@ -29,14 +29,14 @@ function Header() {
     backgroundColor: "primary.main",
     color: "#fff"
   };
-
-  let activeClassName = "underline";
   
     return (
       <Stack direction="row" spacing={2} className="header" sx={headerStyle}>
+        
         <LogOut/>
           User: {currentUser.email}
         <ModeSwitch />
+
         <NavLink to="/" 
         className="nav"
         style={({ isActive }) =>

@@ -7,10 +7,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from "react-redux"
-import Login from "./components/Login"
-import SignUp from "./components/SignUp"
-import LogOut from './components/LogOut';
-import Stack from '@mui/material/Stack';
 import Header from './components/Header'
 import HomePage from './HomePage';
 import {
@@ -21,6 +17,8 @@ import {
 import { bromideMainTheme } from "./themes/bromideThemes"
 import UserProfile from './components/userProfile/UserProfile';
 import { setCurrentUser } from "./reducers/userSlice"
+import Paper from '@mui/material/Paper';
+
 
 
 
@@ -54,7 +52,7 @@ function App( ) {
   useEffect(()=>{
     const currentToken = localStorage.getItem("token")
     
-    console.log(currentToken)
+    console.log("local storage token: ", currentToken)
 
     fetch('http://127.0.0.1:3000/member-data', {
             method: "GET",
@@ -79,28 +77,45 @@ function App( ) {
 
   }, [])
 console.log(currentUser)
-const colorMode = createTheme({
+const appMode = createTheme({
     palette: {
       mode: isDarkMode ? 'light' : 'dark',
     },
   });
 
+  
+const wrapperStyle = {
+  background: "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)",
+  minWidth: "100%",
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center"
+}
+const appPaper = {
+  padding: "2em"
+}
   return (
-    <div>
-    <BrowserRouter>
-      <CssBaseline />
-      <ThemeProvider theme={colorMode} >
-        
-          <Header/>
-          <Routes>
-            <Route exact path="/" element={<HomePage/>}/>
-          </Routes>
-          <Routes>
-            <Route exact path="/profile" element={<UserProfile/>} />
-          </Routes>
-        </ThemeProvider>
-    </BrowserRouter>
-  </div>
+    <div id="app">
+      <Container style={wrapperStyle} id="app-wrapper">
+        <BrowserRouter>
+          <CssBaseline />
+          <ThemeProvider theme={appMode} >
+            <Paper elevation={4}>
+            <Header/>
+            <Paper style={appPaper}>
+              <Routes>
+                <Route exact path="/" element={<HomePage/>}/>
+              </Routes>
+              <Routes>
+                <Route exact path="/profile" element={<UserProfile/>} />
+              </Routes>
+            </Paper>
+            </Paper>
+            </ThemeProvider>
+        </BrowserRouter>
+      </Container>
+    </div>
   )
   
 }

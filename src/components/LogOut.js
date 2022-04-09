@@ -7,7 +7,7 @@ import { setCurrentUser, loggedIn } from "../reducers/userSlice"
 
 function LogOut() {
     const dispatch = useDispatch()
-    const currentUser = useSelector(state => state.user)
+    // const currentUser = useSelector(state => state.user)
     const loggedIn = useSelector(state => state.user.loggedIn)
     // console.log("logging out currentUser:", currentUser)
     function handleLogOut(e){

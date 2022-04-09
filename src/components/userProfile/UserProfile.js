@@ -4,7 +4,6 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useDispatch, useSelector } from "react-redux"
-import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import UserDetails from './UserDetails';
 import UserGalleryList from './UserGalleryList';
@@ -14,20 +13,9 @@ function UserProfile() {
     const currentUser = useSelector(state => state.user)
 
     const mainContainerStyle = {
-      border: "black solid .5px",
-      padding: "3em",
-      display: "flex",
-      maxWidth: "60em",
-      marginTop: "5vh",
-      margin: "0 auto"
+
      }
-     const Item = styled(Paper)(({ theme }) => ({
-      backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-      ...theme.typography.body2,
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    }));
+
   return (
     <Box sx={{flexGrow: 1}}>
         <Grid 
@@ -37,12 +25,25 @@ function UserProfile() {
         justifyContent="center"
         alignItems="center"
         >
-          <Grid item xs={8}>
-            <Item><UserGalleryList/></Item>
+          <Grid container
+          xs={8}
+          >
+            <Paper>
+              <UserGalleryList/>
+              <UserGalleryList/>
+              <UserGalleryList/>
+            </Paper>
           </Grid>
-          <Grid container item xs={4} >
-            <Item><UserDetails/></Item>
-            <Item><UserAvatarUpload/></Item>
+          <Grid container 
+          xs={4}
+          direction="column"
+          gap={2}>
+            <Paper>
+              <UserDetails/>
+              </Paper>
+              <Paper>
+              <UserAvatarUpload/>
+            </Paper>
           </Grid>
         </Grid>
     </Box>

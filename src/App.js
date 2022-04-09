@@ -14,13 +14,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { bromideMainTheme } from "./themes/bromideTheme"
 import UserProfile from './components/userProfile/UserProfile';
 import { setCurrentUser } from "./reducers/userSlice"
 import Paper from '@mui/material/Paper';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 import Spinner from './components/Spinner';
+import GalleryBuilder from './components/galleryBuilder/GalleryBuilder'
 
 
 function App( ) {
@@ -111,6 +109,9 @@ const appPaper = {
                 </Routes>
                 <Routes>
                   <Route  path="/profile" element={<UserProfile/>} />
+                </Routes>
+                <Routes>
+                  <Route path="/gallery-builder" element={<GalleryBuilder/>} />
                 </Routes>
               </Paper>
             </Paper>

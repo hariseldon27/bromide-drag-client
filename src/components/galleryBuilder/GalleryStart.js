@@ -2,7 +2,10 @@ import React from 'react'
 
 function GalleryStart() {
   return (
-    <div>GalleryStart</div>
+    <div>
+        
+        
+    </div>
   )
 }
 

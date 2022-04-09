@@ -32,16 +32,16 @@ console.log("gallery step: ", step)
 
   function ToolBox() {
     switch (step) {
-      case "start":
-        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
-        break;
+      // case "start":
+      //   return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+      //   break;
       case "fill":
         return <GalleryFill step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
         break;
       case "end":
         console.log("end")
         break;
-        default: 
+      default: 
         return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
     }
   }

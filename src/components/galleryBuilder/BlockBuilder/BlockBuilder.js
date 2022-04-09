@@ -1,8 +1,90 @@
-import React from 'react'
+import React, {useState} from 'react'
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Input from '@mui/material/Input';
 
 function BlockBuilder() {
+
+  const [newBlock, setNewBlock] = useState ({
+    // does this need gallery id or image?
+    text: "text",
+    bgColor: "bg color",
+    fontColor: "font color",
+    width: "width",
+    textAlign: "text align",
+    font: "font",
+  })
+
+
+  function handleFormChange(e){
+    const name = e.target.name;
+    let value = e.target.value;
+    setNewBlock({...newBlock, [name]: value})
+  }
   return (
-    <div>BlockBuilder</div>
+  
+
+<Box sx={{flexGrow: 1}}>
+        <Grid container
+        gap={2}
+        direction="row"
+        justifyContent="space-around"
+        alignItems="stretch">
+        <Grid item sm={3}>
+
+              <TextField id="new-block-text" 
+                label="block text"
+                value={newBlock.text} 
+                name="text"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+
+        </Grid> 
+        <Grid item xs={3}>
+              <TextField id="new-block-bgcolor" 
+                label="hex code only"
+                value={newBlock.bgColor} 
+                name="bgColor"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
+
+        <Grid item xs={3}>
+              <TextField id="new-block-bgcolor" 
+                label="hex code only"
+                value={newBlock.fontColor} 
+                name="fontColor"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
+        <Grid item xs={3}>
+              <TextField id="new-block-width" 
+                label="sm md full"
+                value={newBlock.width} 
+                name="width"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
+        <Grid item xs={3}>
+              <TextField id="new-block-bgcolor" 
+                label="right left center"
+                value={newBlock.textAlign} 
+                name="textAlign"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
+      </Grid>
+
+    </Box>
+  
   )
 }
 

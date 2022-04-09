@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useDispatch, useSelector } from "react-redux"
 
 
 import GalleryStart from './GalleryStart'
@@ -12,18 +13,13 @@ import Typography from '@mui/material/Typography';
 
 function GalleryBuilder() {
 
-  const [step, setStep] = useState({})
-  const [newGalleryEstablish, setNewGalleryEstablish] = useState({
-    gallery_name: "new gallery", 
-    image: "",
-    description: "",
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+  const [userError, setUserError] = useState(false)
 
-  })
-  function handleGalleryStartChange(e) {
-    const name = e.target.name;
-    let value = e.target.value;
-    setNewGalleryEstablish({...newGalleryEstablish, [name]: value})
-  }
+  const [step, setStep] = useState("start")
+
+console.log("gallery step: ", step)
 
   //  ok - we need to keep track of where we are in the process...
   //  GalleryStart => gets gallery name and featured_image for 
@@ -34,12 +30,26 @@ function GalleryBuilder() {
   //  move to GalleryFill with ID returned from database
   //  GalleryFill has BlockBuilder and CodaCapper
 
+  function ToolBox() {
+    switch (step) {
+      case "start":
+        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        break;
+      case "fill":
+        return <GalleryFill step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        break;
+      case "end":
+        console.log("end")
+        break;
+        default: 
+        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+    }
+  }
   return (
     <Paper elevation={24}>
     
       <Typography variant="h6" component="h1">Mk Gal mk1</Typography>
-
-      <GalleryStart onGalleryStartChange={handleGalleryStartChange} newGalleryEstablish={newGalleryEstablish}/>
+      <ToolBox/>
 
     </Paper>
   )

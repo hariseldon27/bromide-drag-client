@@ -84,7 +84,8 @@ const appMode = createTheme({
 
   
 const wrapperStyle = {
-  background: "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)",
+  background: isDarkMode ? "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)" : "linear-gradient(25deg, #2A2B2B 70%, #C28686 290%)",
+  // background: "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)",
   minWidth: "100%",
   minHeight: "100vh",
   display: "flex",

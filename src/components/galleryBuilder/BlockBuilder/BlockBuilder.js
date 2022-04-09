@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
+import ImageUploadButton from '../../ImageUploadButton';
 
 function BlockBuilder() {
 
@@ -19,11 +20,21 @@ function BlockBuilder() {
     type: "image"
   })
 
-
+useEffect(() => {
+  console.log(Object.entries(newBlock))
+}, [newBlock])
   function handleFormChange(e){
     const name = e.target.name;
     let value = e.target.value;
     setNewBlock({...newBlock, [name]: value})
+  }
+
+  function handleSubmit(e){
+    console.log("submit")
+  }
+
+  function handleImageAdd(file){
+    console.log(file)
   }
   return (
   
@@ -97,6 +108,20 @@ function BlockBuilder() {
                 onChange={handleFormChange}
                 variant="standard"
               />
+        </Grid>
+        <Grid container
+        gap={2}
+        direction="row"
+        justifyContent="space-around"
+        alignItems="stretch">
+
+          <Grid item sm={6}>
+            <ImageUploadButton onImageChange={handleImageAdd} />
+          </Grid>
+          <Grid item xs={3}>
+          <Button onClick={handleSubmit}>Add Block</Button>
+
+          </Grid>
         </Grid>
       </Grid>
 

@@ -18,14 +18,16 @@ import { bromideMainTheme } from "./themes/bromideThemes"
 import UserProfile from './components/userProfile/UserProfile';
 import { setCurrentUser } from "./reducers/userSlice"
 import Paper from '@mui/material/Paper';
-
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Spinner from './components/Spinner';
 
 
 function App( ) {
   const dispatch = useDispatch()
   const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
   const currentUser = useSelector(state => state.user)
+  const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
 
   // useEffect(() =>{
   //   async function fetchUser(){
@@ -47,7 +49,6 @@ function App( ) {
   // }
   // fetchUser()
   // }, [])
-
 
   useEffect(()=>{
     const currentToken = localStorage.getItem("token")
@@ -102,15 +103,16 @@ const appPaper = {
           <CssBaseline />
           <ThemeProvider theme={appMode} >
             <Paper elevation={4}>
-            <Header/>
-            <Paper style={appPaper}>
-              <Routes>
-                <Route exact path="/" element={<HomePage/>}/>
-              </Routes>
-              <Routes>
-                <Route exact path="/profile" element={<UserProfile/>} />
-              </Routes>
-            </Paper>
+              <Spinner/>
+              <Header/>
+              <Paper style={appPaper}>
+                <Routes>
+                  <Route  path="/" element={<HomePage/>}/>
+                </Routes>
+                <Routes>
+                  <Route  path="/profile" element={<UserProfile/>} />
+                </Routes>
+              </Paper>
             </Paper>
             </ThemeProvider>
         </BrowserRouter>

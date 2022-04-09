@@ -26,6 +26,8 @@ function toggleSignUpClick(){
 const homeComponents = {
   padding: "1em"
 }
+
+const homeElevation = 0
   return (
      
     <Box sx={{flexGrow: 1}}>
@@ -34,18 +36,20 @@ const homeComponents = {
       direction="row"
       justifyContent="center">
         <Grid item xs={12}>
-          <Paper style={homeComponents}><Typography variant="h4" component="h1">bromide drag</Typography></Paper>
+          <Paper style={homeComponents} elevation={homeElevation}>
+            <Typography variant="h4" component="h1">bromide drag</Typography>
+            </Paper>
         </Grid>
         <Grid container
         spacing={1}
         direction="row">
           <Grid item xs={8}>
-            <Paper style={homeComponents}>
+            <Paper style={homeComponents} elevation={homeElevation}>
               <HomeFeatures/>
             </Paper>
           </Grid>
           <Grid item xs={4}>
-            <Paper style={homeComponents}>
+            <Paper style={homeComponents} elevation={homeElevation}>
               {isSignUpShowing ? <SignUp/> : <Login/> }
               <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
             </Paper>

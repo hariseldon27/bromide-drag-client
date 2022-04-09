@@ -1,8 +1,22 @@
 import React from 'react'
+import { useSelector, useDispatch } from "react-redux"
+import { showSpinner } from '../../reducers/spinnerSlice'
+import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
+
+import Spinner from '../../components/Spinner';
 
 function HomeFeatures() {
-  return (
-    <div>HomeFeatures</div>
+    const dispatch = useDispatch()
+    const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
+    const handleSpinnerToggle = () => {
+        dispatch(showSpinner())
+    }
+    console.log(isSpinnerShowing)
+    return (
+    <div>
+        
+    </div>
   )
 }
 

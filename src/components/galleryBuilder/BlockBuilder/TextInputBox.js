@@ -2,24 +2,23 @@ import React, { useState } from 'react'
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Box from '@mui/material/Box';
 
-function TextInputBox() {
+function TextInputBox( { bChange, bVal } ) {
 
-  // send textInput up to editor through cb func
-  const [textInput, setTextInput] = useState("")
+// hi friend! I take two props:
+// bChange and bVal - just like a regular textbox
+// but I'm weird and scalable
+// use bChange for the onChange handler
+// use bVal for the value handlers on controlled forms
 
-  function handleTextInputChange(e){
-    setTextInput(...textInput, e.target.value)
-  }
   return (
     <Box>
       <TextareaAutosize
         aria-label="empty textarea"
         placeholder="Empty"
         style={{ width: 200 }}
-        onChange={handleTextInputChange}
-        value="textInput"
+        onChange={bChange}
+        value={bVal}
       />
-      {textInput}
     </Box>
   );
 }

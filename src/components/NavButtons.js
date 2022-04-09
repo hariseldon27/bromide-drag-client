@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, Navigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+
 
 
 
@@ -10,23 +12,32 @@ function NavButtons() {
     backgroundColor: "primary.main",
     color: "#fff"
   };
-  
-  
+  const inActiveStyle = {
+    textDecoration: "none",
+    color: "#000000"
+
+  }
+
   return (
     <div>
       <NavLink to="/" 
         className="nav"
         style={({ isActive }) =>
-              isActive ? activeStyle : undefined
-            }
-        >Home</NavLink>
-
-        <NavLink to="/profile" 
+              isActive ? activeStyle : inActiveStyle
+            } >
+        <Button variant="outline">
+            Home
+        </Button>
+      </NavLink>
+      <NavLink to="/profile" 
         className="nav"
         style={({ isActive }) =>
-        isActive ? activeStyle : undefined
-        }
-        >Profile</NavLink>
+        isActive ? activeStyle : inActiveStyle
+        } >
+        <Button variant="outline">
+            Profile
+        </Button>
+      </NavLink>
     </div>
   )
 }

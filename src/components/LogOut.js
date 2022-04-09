@@ -40,9 +40,9 @@ function LogOut() {
   return (
     <Box>
         {loggedIn ? 
-        <Button variant="outline-dark" onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
+        <Button variant="outline" onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
         :
-        <Button variant="outline-dark" disabled onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
+        <Button variant="outline" disabled onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
         }
     </Box>
   )

@@ -6,8 +6,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import ImageUploadButton from '../../ImageUploadButton';
+import { useDispatch, useSelector } from "react-redux"
 
-function BlockBuilder() {
+function BlockBuilder( { userError, setUserError } ) {
+  const [blockImage, setBlockImage] = useState("")
 
   const [newBlock, setNewBlock] = useState ({
     // does this need gallery id or image?
@@ -20,22 +22,69 @@ function BlockBuilder() {
     type: "image"
   })
 
-useEffect(() => {
-  console.log(Object.entries(newBlock))
-}, [newBlock])
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+
+  useEffect(() => {
+    console.log(Object.entries(newBlock))
+  }, [newBlock])
   function handleFormChange(e){
     const name = e.target.name;
     let value = e.target.value;
     setNewBlock({...newBlock, [name]: value})
   }
 
-  function handleSubmit(e){
-    console.log("submit")
-  }
 
   function handleImageAdd(file){
-    console.log(file)
+    setBlockImage(file)
   }
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const formData = new FormData()
+    formData.append("text", newBlock.text)
+    formData.append("bgColor", newBlock.bgColor)
+    formData.append("fontColor", newBlock.fontColor)
+    formData.append("width", newBlock.width)
+    formData.append("textAlign", newBlock.textAlign)
+    formData.append("font", newBlock.font)
+    formData.append("type", newBlock.type)
+    formData.append("image", blockImage)
+    fetch(`http://localhost:3000/new-photo/${currentUser.id}`, {
+      method: 'POST',
+      headers: {
+        "Authorization": `Bearer ${currentUser.token}`
+        },
+      body: formData
+    })
+      // .then(res => res.json())
+    .then((response) => {
+      if (response.ok) { 
+       return response.json();
+      }
+      return Promise.reject(response); 
+    })
+      // if resp.ok then we proceed to set onLogin
+      // reset the field text, and setUserError to false
+      .then((data) => { 
+        // console.log("came back as ", data); 
+        // console.log(data.user)
+        // console.log(data.avatar)
+      //   dispatch(setUserAvatar({
+      //     avatar: data.avatar
+      // }))
+      })
+      // if there is an error then send the error info to a handler
+      .catch((error) => {
+        console.log(error)
+        renderUserError(error)
+      });
+    }
+    //this sets our user error - currently inactive - then logs an error
+    function renderUserError(error){
+      setUserError(true)
+      console.log('Oops... ', error.statusText)
+    }
   return (
   
 
@@ -45,6 +94,17 @@ useEffect(() => {
         direction="row"
         justifyContent="space-around"
         alignItems="stretch">
+            <Grid item xs={3}>
+              <TextField id="new-block-type" 
+                label="block type"
+                helperText="img, text, imgText"
+                required
+                value={newBlock.type} 
+                name="type"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
         <Grid item sm={3}>
 
               <TextField id="new-block-text" 
@@ -98,28 +158,19 @@ useEffect(() => {
                 variant="standard"
               />
         </Grid>
-        <Grid item xs={3}>
-              <TextField id="new-block-bgcolor" 
-                label="block type"
-                helperText="img, text, imgText"
-                required
-                value={newBlock.type} 
-                name="type"
-                onChange={handleFormChange}
-                variant="standard"
-              />
-        </Grid>
+
+
         <Grid container
         gap={2}
         direction="row"
         justifyContent="space-around"
         alignItems="stretch">
 
-          <Grid item sm={6}>
+          <Grid item sm={4}>
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
-          <Grid item xs={3}>
-          <Button onClick={handleSubmit}>Add Block</Button>
+          <Grid item xs={1}>
+          <Button variant="contained" onClick={handleSubmit}>Add Block to Gallery</Button>
 
           </Grid>
         </Grid>

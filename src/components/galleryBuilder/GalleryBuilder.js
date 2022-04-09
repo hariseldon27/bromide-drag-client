@@ -49,7 +49,7 @@ console.log("gallery step: ", step)
     <Paper elevation={24}>
     
       <Typography variant="h6" component="h1">Mk Gal mk1</Typography>
-      <ToolBox/>
+      <ToolBox />
 
     </Paper>
   )

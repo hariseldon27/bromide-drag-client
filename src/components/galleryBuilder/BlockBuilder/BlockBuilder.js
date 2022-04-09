@@ -10,12 +10,13 @@ function BlockBuilder() {
 
   const [newBlock, setNewBlock] = useState ({
     // does this need gallery id or image?
-    text: "text",
-    bgColor: "bg color",
-    fontColor: "font color",
-    width: "width",
-    textAlign: "text align",
-    font: "font",
+    text: "Enter block text",
+    bgColor: "none",
+    fontColor: "#ffffff",
+    width: "full",
+    textAlign: "right",
+    font: "default",
+    type: "image"
   })
 
 
@@ -36,6 +37,7 @@ function BlockBuilder() {
         <Grid item sm={3}>
 
               <TextField id="new-block-text" 
+                helperText="optional"
                 label="block text"
                 value={newBlock.text} 
                 name="text"
@@ -46,7 +48,8 @@ function BlockBuilder() {
         </Grid> 
         <Grid item xs={3}>
               <TextField id="new-block-bgcolor" 
-                label="hex code only"
+                helperText="hex code plz"
+                label="bgColor"
                 value={newBlock.bgColor} 
                 name="bgColor"
                 onChange={handleFormChange}
@@ -55,8 +58,9 @@ function BlockBuilder() {
         </Grid>
 
         <Grid item xs={3}>
-              <TextField id="new-block-bgcolor" 
-                label="hex code only"
+              <TextField id="new-block-fontcolor" 
+                label="fontColor"
+                helperText="hex code plz"
                 value={newBlock.fontColor} 
                 name="fontColor"
                 onChange={handleFormChange}
@@ -65,7 +69,8 @@ function BlockBuilder() {
         </Grid>
         <Grid item xs={3}>
               <TextField id="new-block-width" 
-                label="sm md full"
+                label="block width"
+                helperText="sm md full"
                 value={newBlock.width} 
                 name="width"
                 onChange={handleFormChange}
@@ -74,9 +79,21 @@ function BlockBuilder() {
         </Grid>
         <Grid item xs={3}>
               <TextField id="new-block-bgcolor" 
-                label="right left center"
+                label="bgcolor"
+                helperText="hex code plz"
                 value={newBlock.textAlign} 
                 name="textAlign"
+                onChange={handleFormChange}
+                variant="standard"
+              />
+        </Grid>
+        <Grid item xs={3}>
+              <TextField id="new-block-bgcolor" 
+                label="block type"
+                helperText="img, text, imgText"
+                required
+                value={newBlock.type} 
+                name="type"
                 onChange={handleFormChange}
                 variant="standard"
               />

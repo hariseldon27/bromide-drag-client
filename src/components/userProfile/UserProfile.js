@@ -25,7 +25,7 @@ function UserProfile() {
         justifyContent="center"
         alignItems="center"
         >
-          <Grid container
+          <Grid item
           xs={8}
           >
             <Paper>
@@ -34,9 +34,8 @@ function UserProfile() {
               <UserGalleryList/>
             </Paper>
           </Grid>
-          <Grid container 
+          <Grid item 
           xs={4}
-          direction="column"
           gap={2}>
             <Paper>
               <UserDetails/>

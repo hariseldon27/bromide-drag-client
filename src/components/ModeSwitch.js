@@ -1,10 +1,12 @@
 import React from 'react'
-import Switch from '@mui/material/Switch';
+import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { toggleDarkMode } from "../reducers/themeToggleSlice"
+import LightIcon from '@mui/icons-material/Light';
+import LightOutlinedIcon from '@mui/icons-material/LightOutlined';
 
 function ModeSwitch( { onModeChange } ) {
   const dispatch = useDispatch()
@@ -13,11 +15,15 @@ function ModeSwitch( { onModeChange } ) {
   function handleDarkmodeToggle() {
     dispatch(toggleDarkMode())
   }
-  console.log(isDarkMode)
+  // console.log(isDarkMode)
+  
+
+  
   return (
     <Box>
-        <Typography variant="p">switch to {isDarkMode? "dark mode" : "light mode"}</Typography>
-        <Switch size="small" onChange={handleDarkmodeToggle}/>
+        <Button onClick={handleDarkmodeToggle} variant='outline'>
+        {isDarkMode? <LightIcon sx={{ color: "pink" }}/> : <LightOutlinedIcon sx={{ color: "pink" }}/>}
+        </Button>
     </Box>
   )
 }

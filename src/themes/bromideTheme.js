@@ -1,6 +1,4 @@
-import { createTheme } from '@mui/material/styles';
-
-export const bromideMainTheme = createTheme({
+const bromideMainTheme = {
   palette: {
     primary: {
       main: '#d7eef7',
@@ -19,6 +17,6 @@ export const bromideMainTheme = createTheme({
     },
     success: {
       main: '#9be0a3',
-    },
-  },
-})
+    }
+  }
+}

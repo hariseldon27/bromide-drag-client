@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser, loggedIn } from "../reducers/userSlice"
-
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 
 function LogOut() {
     const dispatch = useDispatch()
@@ -40,9 +40,9 @@ function LogOut() {
   return (
     <Box>
         {loggedIn ? 
-        <Button variant="outline" onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
+        <Button variant="outline" onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "pink" }} /></Button>
         :
-        <Button variant="outline" disabled onClick={handleLogOut} id="logout-button" name="logout">Log Out</Button>
+        <Button variant="outline" disabled onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "grey" }} /></Button>
         }
     </Box>
   )

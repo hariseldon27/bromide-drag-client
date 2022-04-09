@@ -14,7 +14,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { bromideMainTheme } from "./themes/bromideThemes"
+import { bromideMainTheme } from "./themes/bromideTheme"
 import UserProfile from './components/userProfile/UserProfile';
 import { setCurrentUser } from "./reducers/userSlice"
 import Paper from '@mui/material/Paper';
@@ -64,7 +64,7 @@ function App( ) {
         })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           // console.log(data.message)
           // console.log(data.user)
           dispatch(setCurrentUser({
@@ -77,7 +77,7 @@ function App( ) {
         })
 
   }, [])
-console.log(currentUser)
+// console.log(currentUser)
 const appMode = createTheme({
     palette: {
       mode: isDarkMode ? 'light' : 'dark',
@@ -102,7 +102,7 @@ const appPaper = {
         <BrowserRouter>
           <CssBaseline />
           <ThemeProvider theme={appMode} >
-            <Paper elevation={4}>
+            <Paper elevation={24}>
               <Spinner/>
               <Header/>
               <Paper style={appPaper}>

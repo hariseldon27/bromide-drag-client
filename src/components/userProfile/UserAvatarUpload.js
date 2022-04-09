@@ -24,9 +24,9 @@ function handleImageChange(e){
   setAvatarImageUpload(e.target.files[0]);
 }
 
-console.log(currentUser)
-console.log(currentUser.avatar)
-console.log(avatarImageUpload)
+// console.log(currentUser)
+// console.log(currentUser.avatar)
+// console.log(avatarImageUpload)
 
 const handleSubmit = e => {
   e.preventDefault();

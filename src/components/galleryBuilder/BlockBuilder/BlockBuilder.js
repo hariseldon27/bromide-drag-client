@@ -25,9 +25,10 @@ function BlockBuilder( { userError, setUserError } ) {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
 
-  useEffect(() => {
-    console.log(Object.entries(newBlock))
-  }, [newBlock])
+  // useEffect(() => {
+  //   console.log(Object.entries(newBlock))
+  // }, [newBlock])
+  
   function handleFormChange(e){
     const name = e.target.name;
     let value = e.target.value;

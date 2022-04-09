@@ -19,6 +19,7 @@ import { setCurrentUser } from "./reducers/userSlice"
 import Paper from '@mui/material/Paper';
 import Spinner from './components/Spinner';
 import GalleryBuilder from './components/galleryBuilder/GalleryBuilder'
+import GalleryPresentation from './components/galleryPresentation/GalleryPresentation'
 
 
 function App( ) {
@@ -109,10 +110,13 @@ const appPaper = {
                   <Route  path="/" element={<HomePage/>}/>
                 </Routes>
                 <Routes>
-                  <Route  path="/profile" element={<UserProfile/>} />
+                  <Route path="/profile" element={<UserProfile/>} />
                 </Routes>
                 <Routes>
                   <Route path="/gallery-builder" element={<GalleryBuilder/>} />
+                </Routes>
+                <Routes>
+                  <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
                 </Routes>
               </Paper>
             </Paper>

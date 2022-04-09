@@ -19,6 +19,10 @@ function GalleryFill( {setStep} ) {
     e.preventDefault()
     setStep("start")
   }
+  function handleManage(e){
+    e.preventDefault()
+    setStep("manage")
+  }
 
   return (
     <Box>
@@ -44,6 +48,7 @@ function GalleryFill( {setStep} ) {
     </Box>
 
       <Button onClick={ handleBack }>back</Button>
+      <Button onClick={ handleManage }>manage</Button>
     </Box>
   )
 }

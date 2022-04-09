@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 
 function NavButtons() {
 
@@ -54,6 +55,15 @@ function NavButtons() {
         } >
         <Button variant="outline">
           <CollectionsOutlinedIcon />
+        </Button>
+      </NavLink>
+      <NavLink to="/gallery-presentation" 
+        className="nav"
+        style={({ isActive }) =>
+        isActive ? activeStyle : inActiveStyle
+        } >
+        <Button variant="outline">
+          <PlayCircleFilledWhiteOutlinedIcon />
         </Button>
       </NavLink>
       </Stack>

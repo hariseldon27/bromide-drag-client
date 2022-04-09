@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux"
 import GalleryStart from './GalleryStart'
 import GalleryFill from './GalleryFill'
 import GalleryDescribe from './GalleryDescribe'
+import GalleryManage from './GalleryManage'
 
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
+import dummyData from './dummyData.json'
 
 
 function GalleryBuilder() {
@@ -16,8 +18,10 @@ function GalleryBuilder() {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const [userError, setUserError] = useState(false)
-
   const [step, setStep] = useState("start")
+
+  
+console.log(dummyData)
 
 console.log("gallery step: ", step)
 
@@ -32,11 +36,14 @@ console.log("gallery step: ", step)
 
   function ToolBox() {
     switch (step) {
-      // case "start":
-      //   return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
-      //   break;
+      case "start":
+        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        break;
       case "fill":
         return <GalleryFill step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        break;
+      case "manage":
+        return <GalleryManage step={step} setStep={setStep} userError={userError} setUserError={setUserError} />
         break;
       case "end":
         console.log("end")
@@ -46,9 +53,9 @@ console.log("gallery step: ", step)
     }
   }
   return (
-    <Paper elevation={24}>
+    <Paper elevation={1}>
     
-      <Typography variant="h6" component="h1">Mk Gal mk1</Typography>
+      {/* <Typography variant="h6" component="h1">Mk Gal mk1</Typography> */}
       <ToolBox />
 
     </Paper>

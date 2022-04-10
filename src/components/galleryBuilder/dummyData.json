@@ -1,58 +1,18 @@
-{
-    "gallery": {
+[
+    {
         "id": "1",
         "title": "Breakfast at Midnight",
         "description": "A weird and wooly trip to Saugus leads to the strangest supper survived.",
         "published": "false",
-        "published_on": null,
-        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/jonathan-potter-tintype-072317_jpotter_pdx.jpg",
-        "blocks": {
-            "block": [
-            {
-                "block_id": 1,
-                "id": 1,
-                "type":"image",
-                "gallery_id": 1,
-                "text": "",
-                "bgColor": "",
-                "fontColor": "",
-                "font": "",
-                "width": "",
-                "textAlign": "",
-                "image_src": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california12-color-horiz-23.jpg",
-                "imageWidth": "1280",
-                "imageHeight": "720"
-            },
-            {
-                "block_id": 1,
-                "id": 1,
-                "type": "imgText",
-                "gallery_id": 1,
-                "text": "Hello World!",
-                "bgColor": "",
-                "fontColor": "#ffffff",
-                "font": "",
-                "width": "",
-                "textAlign": "",
-                "image_src": "https://mrjpfiles.s3.us-west-2.amazonaws.com/stilllife-bw-horiz-67.jpg",
-                "imageWidth": "1280",
-                "imageHeight": "720"
-            },
-            {
-                "block_id": 1,
-                "id": 1,
-                "type": "text",
-                "gallery_id": 1,
-                "text": "Hello World!",
-                "bgColor": "#ED649B",
-                "fontColor": "#3B8FA1",
-                "font": "",
-                "width": "",
-                "textAlign": "",
-                "image_src": "",
-                "imageWidth": "1280",
-                "imageHeight": "720"
-            }
-        ]}
+        "published_on": "1999-12-31",
+        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/jonathan-potter-tintype-072317_jpotter_pdx.jpg"
+    },
+    {
+        "id": "2",
+        "title": "Dinner for Breakfast",
+        "description": "Walking through the canyons to the sea, inspired by Catherine Opie",
+        "published": "false",
+        "published_on": "1998-12-31",
+        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california12-color-horiz-23.jpg"
     }
-}
+]

@@ -21,15 +21,12 @@ const heroImgStyle = {
 }
 
   return (
-    <Paper>
-        <Chip label={currentUser.email} />
-        <img style={heroImgStyle}  className="hero-image" src={featured_image}/>   
-        {/* <Typography variant="h2" > {title} </Typography> */}
+    <Box>
+        <img className="hero-image" style={heroImgStyle} src={featured_image}/>   
         <Divider>
             <Chip label={title} />
         </Divider>
-
-    </Paper>
+    </Box>
   )
 }
 

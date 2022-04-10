@@ -8,7 +8,7 @@ import Input from '@mui/material/Input';
 import ImageUploadButton from '../../ImageUploadButton';
 import { useDispatch, useSelector } from "react-redux"
 
-function BlockBuilder( { userError, setUserError } ) {
+function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
   const [blockImage, setBlockImage] = useState("")
 
   const [newBlock, setNewBlock] = useState ({
@@ -38,6 +38,10 @@ function BlockBuilder( { userError, setUserError } ) {
 
   function handleImageAdd(file){
     setBlockImage(file)
+  }
+
+  function handleSubmitFake(e) {
+    
   }
 
   const handleSubmit = e => {
@@ -175,7 +179,7 @@ function BlockBuilder( { userError, setUserError } ) {
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
           <Grid item xs={1}>
-          <Button variant="contained" onClick={handleSubmit}>Add Block to Gallery</Button>
+          <Button variant="contained" onClick={handleSubmitFake}>Add Block to Gallery</Button>
 
           </Grid>
         </Grid>

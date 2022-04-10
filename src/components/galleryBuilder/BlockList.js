@@ -12,7 +12,7 @@ import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentati
 //fake dataset for dev
 import dummyDataBlocks from './dummyDataBlocks.json'
 
-function BlockList() {
+function BlockList( { step, setStep } ) {
   const [blockListInEdit, setBlockListInEdit] = useState([])
   const [blockBuilderShowing, setBlockBuilderShowing] = useState(false)
   

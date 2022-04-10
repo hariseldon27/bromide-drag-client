@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 
-function GalleryManage() {
+function GalleryManage( { step, setStep, userError, setUserError } ) {
 
   
 
@@ -16,7 +16,7 @@ function GalleryManage() {
         justifyContent="space-around"
         alignItems="stretch">
           <Grid item sm={3}>
-              <BlockList />
+              <BlockList step={step} setStep={setStep}/>
           </Grid>
         </Grid>
     </Box>

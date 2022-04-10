@@ -52,10 +52,10 @@ console.log("gallery step: ", step)
         return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
     }
   }
+  //single item in return that is swapped out based on what 'step' we are in in the process
   return (
     <Paper elevation={1}>
     
-      {/* <Typography variant="h6" component="h1">Mk Gal mk1</Typography> */}
       <ToolBox />
 
     </Paper>

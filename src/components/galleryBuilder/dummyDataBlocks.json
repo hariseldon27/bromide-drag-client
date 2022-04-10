@@ -18,7 +18,7 @@
             {
                 "block_id": 2,
                 "id": 101,
-                "type": "imgText",
+                "type": "imageText",
                 "gallery_id": 1,
                 "text": "Hello World!",
                 "bgColor": "",

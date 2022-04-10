@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import ImageTextBlock from './blockRenderers/ImageTextBlock';
+import ImageBlock from './blockRenderers/ImageBlock';
+import TextBlock from './blockRenderers/TextBlock';
 
-function BlockCard( block ) {
-    console.log(block.block)
+function BlockCard( { block } ) {
     const {
         bgColor,
         block_id,
@@ -18,7 +20,8 @@ function BlockCard( block ) {
         text,
         textAlign,
         type,
-        width } = block.block
+        width } = block
+        console.log(type)
 
     const blockImgStyle = {
         width: "100%"
@@ -28,15 +31,22 @@ function BlockCard( block ) {
     // start with getting text and image, then settings
 
     function BlockRender() {
-        return (
-            <>
-                <img src={image_src} style={blockImgStyle} />
-                <Typography variant="body2">{imageHeight}</Typography>
-            </>
-        )
+            switch (type) {
+              case "image":
+                return <ImageBlock block={block}/>
+                break;
+              case "text":
+                return <TextBlock block={block}/>
+                break;
+              case "imageText":
+                return <ImageTextBlock block={block} />
+                break;
+              default: 
+                return "thanks"
+            }
     }
   return (
-    <Box>
+    <Box sx={{width: "100%"}}>
             <BlockRender />
     </Box>
   )

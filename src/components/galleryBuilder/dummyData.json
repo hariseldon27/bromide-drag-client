@@ -5,7 +5,9 @@
         "description": "A weird and wooly trip to Saugus leads to the strangest supper survived.",
         "published": "false",
         "published_on": "1999-12-31",
-        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/jonathan-potter-tintype-072317_jpotter_pdx.jpg"
+        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/jonathan-potter-tintype-072317_jpotter_pdx.jpg",
+        "coda": "learn more at http://awesomeface.com/radnet"
+
     },
     {
         "id": "2",
@@ -13,6 +15,7 @@
         "description": "Walking through the canyons to the sea, inspired by Catherine Opie",
         "published": "false",
         "published_on": "1998-12-31",
-        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california12-color-horiz-23.jpg"
+        "featured_image": "https://mrjpfiles.s3.us-west-2.amazonaws.com/california12-color-horiz-23.jpg",
+        "coda": "thanks friends!"
     }
 ]

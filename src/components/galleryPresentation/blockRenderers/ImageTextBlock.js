@@ -23,13 +23,14 @@ function ImageTextBlock( {block} ) {
 
 const imageTextBlockStyle = {
     width: "auto",
-    minHeight: "90vh",
+    height: "90vh",
     display: "block",
     textAlign: "center",
     position: "relative",
     backgroundImage: `url(${image_src})`,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
+    backgroundPosition: "center"
 }
 
 const imageStyle = {

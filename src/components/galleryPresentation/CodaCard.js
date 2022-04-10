@@ -4,21 +4,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 
-function TextBlock( { block } ) {
-    const {
-        bgColor,
-        block_id,
-        font,
-        fontColor,
-        gallery_id,
-        id,
-        imageHeight,
-        imageWidth,
-        image_src,
-        text,
-        textAlign,
-        type,
-        width } = block
+function CodaCard( { galleryDetails } ) {
+    const { coda, otherProps } = galleryDetails
 
     const textItemStyle = {
         background: "#000",
@@ -36,11 +23,11 @@ function TextBlock( { block } ) {
     alignItems="center"
     >
         <Grid style={textItemStyle} item xs={6}>
-            <Typography variant="body1" style={textTextStyle}>{text}</Typography>
+            <Typography variant="body1" style={textTextStyle}>{coda}</Typography>
         </Grid>
     </Grid>
     
   )
 }
 
-export default TextBlock
+export default CodaCard

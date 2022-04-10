@@ -29,18 +29,10 @@ const imageTextBlockStyle = {
     position: "relative",
     backgroundImage: `url(${image_src})`,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
+    backgroundPosition: "center"
 }
 
-const imageStyle = {
-    width: "100%"
-}
-const textStyle= {
-    width: "80%",
-    position: "relative",
-    top: "20px",
-    margin: "0 auto"
-}
 
   return (
     <Box style={imageTextBlockStyle}>

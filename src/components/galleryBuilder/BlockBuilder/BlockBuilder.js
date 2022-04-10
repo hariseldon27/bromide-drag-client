@@ -126,6 +126,7 @@ function BlockBuilder( { userError, setUserError } ) {
                 name="bgColor"
                 onChange={handleFormChange}
                 variant="standard"
+                disabled
               />
         </Grid>
 
@@ -137,6 +138,7 @@ function BlockBuilder( { userError, setUserError } ) {
                 name="fontColor"
                 onChange={handleFormChange}
                 variant="standard"
+                disabled
               />
         </Grid>
         <Grid item xs={3}>
@@ -147,16 +149,18 @@ function BlockBuilder( { userError, setUserError } ) {
                 name="width"
                 onChange={handleFormChange}
                 variant="standard"
+                disabled
               />
         </Grid>
         <Grid item xs={3}>
-              <TextField id="new-block-bgcolor" 
+              <TextField id="new-block-textalign" 
                 label="bgcolor"
-                helperText="hex code plz"
+                helperText="left right center"
                 value={newBlock.textAlign} 
                 name="textAlign"
                 onChange={handleFormChange}
                 variant="standard"
+                disabled
               />
         </Grid>
 

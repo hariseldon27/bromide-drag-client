@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Backdrop from '@mui/material/Backdrop';
 import GalleryShow from './GalleryShow';
 
 import GalleryListing from './GalleryListing';
@@ -30,7 +29,6 @@ function GalleryPresentation() {
     const galToShow = galleryList.filter(gallery => gallery.id == e.target.name)
     // console.log(galToShow)
     setGalleryToShow(galToShow)
-
   }
 
   useEffect(() => {

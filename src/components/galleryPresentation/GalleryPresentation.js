@@ -32,8 +32,16 @@ function GalleryPresentation() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:3000/')
-    setGalleryList(dummyData)
+    const currentToken = localStorage.getItem("token")
+    fetch('http://localhost:3000/user-galleries', {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${currentToken}`
+      }
+    })
+    .then(r => r.json())
+    .then((data) => setGalleryList(data))
+    // setGalleryList(data)
   }, [])
 
   console.log("is open", open)

@@ -7,14 +7,15 @@ import Paper from '@mui/material/Paper';
 import CodaCard from './CodaCard';
 
 
-function GalleryCombinator( { blocks, galleryDetails } ) {
+function GalleryCombinator( { galleryToShow } ) {
+  console.log(galleryToShow)
   return (
     <Box sx={{width: "100%"}}>
         <Paper >
-            <HeroBlock galleryDetails={galleryDetails} /> 
-            <DescriptionBlock description={galleryDetails.description} /> 
-            <BlockShow blocks={blocks}/>
-            <CodaCard galleryDetails={galleryDetails}/>
+            <HeroBlock galleryDetails={galleryToShow} /> 
+            <DescriptionBlock description={galleryToShow.description} /> 
+            <BlockShow blocks={galleryToShow.blocks}/>
+            <CodaCard galleryDetails={galleryToShow}/>
         </Paper>
     </Box>
   )

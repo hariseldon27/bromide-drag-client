@@ -25,6 +25,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
 
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
+  const gallery = useSelector(state => state.gallery)
 
   // useEffect(() => {
   //   console.log(Object.entries(newBlock))
@@ -56,7 +57,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
     formData.append("font", newBlock.font)
     formData.append("type", newBlock.type)
     formData.append("image", blockImage)
-    fetch(`http://localhost:3000/new-photo/${currentUser.id}`, {
+    fetch(`http://localhost:3000/new-block/${gallery.id}`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
@@ -73,12 +74,9 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
       // if resp.ok then we proceed to set onLogin
       // reset the field text, and setUserError to false
       .then((data) => { 
-        // console.log("came back as ", data); 
-        // console.log(data.user)
-        // console.log(data.avatar)
-      //   dispatch(setUserAvatar({
-      //     avatar: data.avatar
-      // }))
+        console.log("came back as ", data); 
+
+
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {

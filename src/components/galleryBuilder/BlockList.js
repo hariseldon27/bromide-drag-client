@@ -8,6 +8,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import BlockBuilder from './BlockBuilder/BlockBuilder';
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
+import { useDispatch, useSelector } from "react-redux"
+
 
 //fake dataset for dev
 import dummyDataBlocks from './dummyDataBlocks.json'
@@ -15,12 +17,20 @@ import dummyDataBlocks from './dummyDataBlocks.json'
 function BlockList( {  } ) {
   const [blockListInEdit, setBlockListInEdit] = useState([])
   const [blockBuilderShowing, setBlockBuilderShowing] = useState(false)
-  
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+  const galleryInEdit = useSelector(state => state.galleryInEdit)
+  console.log(galleryInEdit)
   //this is just for dev 
-  useEffect(() => {
-    setBlockListInEdit(dummyDataBlocks)
-  }, [])
+  // useEffect(() => {
+  //   setBlockListInEdit(dummyDataBlocks)
+  // }, [])
  //
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/)
+  //   setBlockListInEdit()
+  // }, [])
+
 
  function handleAddNewBlock() {
    console.log("click")
@@ -53,7 +63,6 @@ function BlockList( {  } ) {
     <Stack 
     spacing={2} 
     style={blockListStyle}
-    container
     direction="column"
     justifyContent="center"
     alignItems="center"

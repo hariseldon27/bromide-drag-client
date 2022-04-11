@@ -13,7 +13,7 @@ function GalleryStart( { userError, setUserError  } ) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const gallery = useSelector(state => state.gallery)
-
+// console.log("state gallery", gallery)
     const [newGalleryEstablish, setNewGalleryEstablish] = useState({
         title: "new gallery", 
         description: "description",
@@ -32,32 +32,36 @@ function GalleryStart( { userError, setUserError  } ) {
         if (e instanceof File) {
           setFeaturedImage( e )
         } else {
-          console.log("string")
+          // console.log("string")
           const name = e.target.name;
           let value = e.target.value;
           setNewGalleryEstablish({...newGalleryEstablish, [name]: value})
         }
       }
 
-      //fake handle submit
-      const fakeHandleSubmit = e => {
-          e.preventDefault()
-          console.log('submitfake')
-          // setStep("fill")
-          //send the new gallery to state
-        dispatch(setGalleryInEdit({
-          title: newGalleryEstablish.title,
-          description: newGalleryEstablish.description
-        }))
-        dispatch(setStep("fill"))
-      }
+      // //fake handle submit
+      // const fakeHandleSubmit = e => {
+      //     e.preventDefault()
+      //     console.log('submitfake')
+      //     // setStep("fill")
+      //     //send the new gallery to state
+      //   dispatch(setGalleryInEdit({
+      //     title: newGalleryEstablish.title,
+      //     description: newGalleryEstablish.description
+      //   }))
+      //   dispatch(setStep("fill"))
+      // }
   // create new record in db 
+
   const handleSubmit = e => {
     e.preventDefault();
+    console.log("clicked submit new gal to db")
     const formData = new FormData()
-    formData.append(newGalleryEstablish)
-    formData.append("featuredImage", featuredImage)
-    fetch(`http://localhost:3000/new-gallery/${currentUser.id}`, {
+      if (featuredImage) formData.append("featured_image", featuredImage)
+    formData.append("title", newGalleryEstablish.title)
+    formData.append("description", newGalleryEstablish.description)
+    // featuredImage ? formData.append("featured_image", featuredImage) : null
+    fetch(`http://localhost:3000/new-gallery/`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
@@ -71,20 +75,25 @@ function GalleryStart( { userError, setUserError  } ) {
       }
       return Promise.reject(response); 
     })
-      // if resp.ok then we proceed to set onLogin
+      // if resp.ok then we proceed
       // reset the field text, and setUserError to false
       .then((data) => { 
         console.log("new gal came back as ", data); 
-        // console.log(data.user)
-        // console.log(data.avatar)
-      //   dispatch(setUserAvatar({
-      //     avatar: data.avatar
-      // }))
+        console.log("desc: ", data.description)
+        console.log("title: ", data.title)
+        console.log("id: ", data.id)
+        dispatch(setGalleryInEdit({
+          title: data.title,
+          description: data.description,
+          id: data.id
+        }))
+        dispatch(setStep("fill"))
+        
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {
-        // console.log(error)
-        renderUserError(error)
+        console.log(error)
+        // renderUserError(error)
       });
     }
     //this sets our user error - currently inactive - then logs an error
@@ -123,7 +132,7 @@ function GalleryStart( { userError, setUserError  } ) {
                 variant="outlined" 
                 color="secondary"
                 component="label"
-                onClick={fakeHandleSubmit}>
+                onClick={handleSubmit}>
                     Start it
                 {/* <input
                 type="submit"

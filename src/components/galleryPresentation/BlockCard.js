@@ -19,9 +19,9 @@ function BlockCard( { block } ) {
         image_src,
         text,
         textAlign,
-        type,
+        block_type,
         width } = block
-        console.log(type)
+        console.log(block_type)
 
     const blockImgStyle = {
         width: "100%"
@@ -31,7 +31,7 @@ function BlockCard( { block } ) {
     // start with getting text and image, then settings
 
     function BlockRender() {
-            switch (type) {
+            switch (block_type) {
               case "image":
                 return <ImageBlock block={block}/>
                 break;

@@ -23,10 +23,8 @@ function GalleryShow( { open, setOpen, galleryToShow } ) {
     };
     
     // console.log(dummyDataBlocks)
-
     useEffect(() => {
-        fetch('dummyDataBlocks')
-        .then(setBlocks(dummyDataBlocks))
+        setBlocks(galleryToShow[0].blocks)
     }, [])
 
     // console.log(blocks)
@@ -36,6 +34,7 @@ function GalleryShow( { open, setOpen, galleryToShow } ) {
     // 2) blocks (we need 3 templates?  or maybe just styled by props)
     // 3) coda (is this just a secret block type that only we can select?)
 // console.log(galleryToShow[0].title)
+
 const galleryBackdrop = {
     zIndex: (theme) => theme.zIndex.drawer + 1,
     overflow:"scroll",
@@ -53,13 +52,13 @@ function RenderGalleries(){
             <Box sx={galleryBackdrop}
             onClick={handleClose}
             >
-                <GalleryCombinator blocks={blocks} galleryDetails={galleryDetails}/>
+                <GalleryCombinator galleryToShow={galleryToShow[0]} />
             </Box>          
         </>
     )
 }
 
-    const galleryDetails = galleryToShow[0]
+    // const galleryDetails = galleryToShow[0]
   return (
     <>
         {open ? <RenderGalleries /> : null } 

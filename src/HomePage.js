@@ -51,7 +51,7 @@ const homeElevation = 0
           <Grid item xs={4}>
             <Paper style={homeComponents} elevation={homeElevation}>
               {isSignUpShowing ? <SignUp/> : <Login/> }
-              <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Sign up instead" : "Log in instead"}</Button>
+              <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
             </Paper>
           </Grid>
         </Grid>

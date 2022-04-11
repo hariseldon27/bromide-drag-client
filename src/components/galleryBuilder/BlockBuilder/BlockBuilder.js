@@ -48,16 +48,18 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log("clicked add block")
     const formData = new FormData()
+    formData.append("gallery_id", gallery.id)
+    if (blockImage) formData.append("image", blockImage)
     formData.append("text", newBlock.text)
-    formData.append("bgColor", newBlock.bgColor)
-    formData.append("fontColor", newBlock.fontColor)
+    formData.append("bg_color", newBlock.bgColor)
+    formData.append("font_color", newBlock.fontColor)
     formData.append("width", newBlock.width)
-    formData.append("textAlign", newBlock.textAlign)
+    formData.append("text_align", newBlock.textAlign)
     formData.append("font", newBlock.font)
-    formData.append("type", newBlock.type)
-    formData.append("image", blockImage)
-    fetch(`http://localhost:3000/new-block/${gallery.id}`, {
+    formData.append("block_type", newBlock.type)
+    fetch(`http://localhost:3000/new-block/`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
@@ -75,6 +77,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
       // reset the field text, and setUserError to false
       .then((data) => { 
         console.log("came back as ", data); 
+        dispatch(setStep("manage"))
 
 
       })
@@ -86,7 +89,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
     }
     //this sets our user error - currently inactive - then logs an error
     function renderUserError(error){
-      setUserError(true)
+      // setUserError(true)
       console.log('Oops... ', error.statusText)
     }
   return (
@@ -178,7 +181,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
           <Grid item xs={1}>
-          <Button variant="contained" onClick={handleSubmitFake}>Add Block to Gallery</Button>
+          <Button variant="contained" onClick={handleSubmit}>Add Block to Gallery</Button>
 
           </Grid>
         </Grid>

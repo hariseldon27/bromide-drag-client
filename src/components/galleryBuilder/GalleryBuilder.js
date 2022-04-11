@@ -24,6 +24,7 @@ function GalleryBuilder() {
 
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
+  const gallery = useSelector(state => state.gallery)
   const [userError, setUserError] = useState(false)
   const step = useSelector( state => state.gallery.step )
   
@@ -34,7 +35,7 @@ console.log("gallery step: ", step)
 function handleChangeStep(e){
   dispatch(setStep(e.target.name))
 }
-
+console.log(gallery)
 function Crummy(){
   return (
     <Stack 

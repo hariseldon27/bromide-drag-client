@@ -32,6 +32,7 @@ function GalleryPresentation() {
   }
 
   useEffect(() => {
+    fetch('http://localhost:3000/')
     setGalleryList(dummyData)
   }, [])
 

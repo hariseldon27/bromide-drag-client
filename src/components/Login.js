@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { FormControl } from '@mui/material';
@@ -11,6 +12,8 @@ import { setCurrentUser } from "../reducers/userSlice"
 function Login(e) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
+    const navigate = useNavigate();
+
     const [loginFormData, setLoginFormData] = useState({
         email: "",
         password: ""
@@ -50,13 +53,22 @@ function Login(e) {
             email: loginFormData.email,
             token: authUser.token,
             loggedIn: true,
-            id: authUser.id
+            id: authUser.id,
+            avatar: authUser.avatar
         }))
         // console.log(authUser.token)
         //set the token in local storage
         localStorage.setItem("token", authUser.token)
         resetForm()
     }
+    // useEffect(() => {
+    //     console.log(currentUser.loggedIn)
+    //     if (currentUser.loggedIn) {
+    //         navigate('/profile')
+    //     }
+    // })        
+ 
+
     
     function resetForm(){
         setLoginFormData({

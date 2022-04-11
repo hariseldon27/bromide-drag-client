@@ -44,7 +44,7 @@ function Crummy(){
     spacing={2}
     className="header" 
     >
-      <Typography variant="overline">live data will be not like these yet:</Typography>
+      <Typography variant="overline">live data won't like these to change yet:</Typography>
       <Button onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
       <Button onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>
       <Button onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >manage</Button>

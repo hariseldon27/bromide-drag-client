@@ -7,10 +7,12 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import FeaturedImageUpload from './FeaturedImageUpload';
 import { useDispatch, useSelector } from "react-redux"
+import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 
-function GalleryStart( { userError, setUserError, step, setStep  } ) {
+function GalleryStart( { userError, setUserError  } ) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
+    const gallery = useSelector(state => state.gallery)
 
     const [newGalleryEstablish, setNewGalleryEstablish] = useState({
         title: "new gallery", 
@@ -41,7 +43,13 @@ function GalleryStart( { userError, setUserError, step, setStep  } ) {
       const fakeHandleSubmit = e => {
           e.preventDefault()
           console.log('submitfake')
-          setStep("fill")
+          // setStep("fill")
+          //send the new gallery to state
+        dispatch(setGalleryInEdit({
+          title: newGalleryEstablish.title,
+          description: newGalleryEstablish.description
+        }))
+        dispatch(setStep("fill"))
       }
   // create new record in db 
   const handleSubmit = e => {

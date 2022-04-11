@@ -12,16 +12,19 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 
 import { useDispatch, useSelector } from "react-redux"
+import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import BlockBuilder from './BlockBuilder/BlockBuilder';
-function GalleryFill( {setStep} ) {
+function GalleryFill( ) {
+
+  const dispatch = useDispatch()
 
   function handleBack(e){
     e.preventDefault()
-    setStep("start")
+    dispatch(setStep("start"))
   }
   function handleManage(e){
     e.preventDefault()
-    setStep("manage")
+    dispatch(setStep("manage"))
   }
 
   return (
@@ -37,7 +40,7 @@ function GalleryFill( {setStep} ) {
 
         </Grid> 
         <Grid item lg={6}>
-            <BlockBuilder />
+            <BlockBuilder  />
         </Grid>
 
         <Grid item sm={3}>

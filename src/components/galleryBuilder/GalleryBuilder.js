@@ -9,8 +9,15 @@ import GalleryManage from './GalleryManage'
 
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+
+
 
 import dummyData from './dummyData.json'
+import GalleryFinish from './GalleryFinish'
+import { setStep } from '../../reducers/gallerySlice'
 
 
 function GalleryBuilder() {
@@ -18,13 +25,33 @@ function GalleryBuilder() {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const [userError, setUserError] = useState(false)
-  const [step, setStep] = useState("start")
-
+  const step = useSelector( state => state.gallery.step )
   
-console.log(dummyData)
+// console.log(dummyData)
 
 console.log("gallery step: ", step)
 
+function handleChangeStep(e){
+  dispatch(setStep(e.target.name))
+}
+
+function Crummy(){
+  return (
+    <Stack 
+    direction="row"
+    justifyContent="flex-end"
+    alignItems="center"
+    spacing={2}
+    className="header" 
+    >
+      <Typography variant="overline">live data will be not like these yet:</Typography>
+      <Button onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
+      <Button onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>
+      <Button onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >manage</Button>
+      <Button onClick={handleChangeStep} name="finish" variant={step === "finish" ? "outlined" : null} >finish</Button>
+    </Stack>
+  );
+}
   //  ok - we need to keep track of where we are in the process...
   //  GalleryStart => gets gallery name and featured_image for 
   //  new_gallery = {name:, featured_image:} 
@@ -37,25 +64,25 @@ console.log("gallery step: ", step)
   function ToolBox() {
     switch (step) {
       case "start":
-        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        return <GalleryStart   userError={userError} setUserError={setUserError}/>
         break;
       case "fill":
-        return <GalleryFill step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        return <GalleryFill  userError={userError} setUserError={setUserError}/>
         break;
       case "manage":
-        return <GalleryManage step={step} setStep={setStep} userError={userError} setUserError={setUserError} />
+        return <GalleryManage  userError={userError} setUserError={setUserError} />
         break;
-      case "end":
-        console.log("end")
+      case "finish":
+        return <GalleryFinish  userError={userError} setUserError={setUserError} />
         break;
       default: 
-        return <GalleryStart step={step} setStep={setStep} userError={userError} setUserError={setUserError}/>
+        return <GalleryStart  userError={userError} setUserError={setUserError}/>
     }
   }
   //single item in return that is swapped out based on what 'step' we are in in the process
   return (
     <Paper elevation={1}>
-    
+      <Crummy />
       <ToolBox />
 
     </Paper>

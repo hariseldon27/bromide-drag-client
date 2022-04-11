@@ -12,7 +12,7 @@ import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentati
 //fake dataset for dev
 import dummyDataBlocks from './dummyDataBlocks.json'
 
-function BlockList( { step, setStep } ) {
+function BlockList( {  } ) {
   const [blockListInEdit, setBlockListInEdit] = useState([])
   const [blockBuilderShowing, setBlockBuilderShowing] = useState(false)
   
@@ -35,6 +35,8 @@ function BlockList( { step, setStep } ) {
   width: "100%",
   minWidth: "250px"
  }
+
+//  Need to keep "current gallery in edit" in state?  or drill it down from top?
  function BlockBuilderInset() {
       return (
         <Box>
@@ -61,7 +63,6 @@ function BlockList( { step, setStep } ) {
         <Button onClick={handleAddNewBlock}>Add Block</Button>
         
         {blockBuilderShowing ? <BlockBuilderInset /> : null }
-        <Button onClick={handleAddNewBlock}>Add Coda and Finish</Button>
     </Stack>
 
   )

@@ -2,11 +2,17 @@ import React from 'react'
 import BlockList from './BlockList'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
+import { useDispatch, useSelector } from "react-redux"
 
 
-function GalleryManage( { step, setStep, userError, setUserError } ) {
+function GalleryManage( { userError, setUserError } ) {
+  const dispatch = useDispatch()
 
-  
+  function handleFinish(){
+    dispatch(setStep("finish"))
+  }
 
   return (
       <Box sx={{flexGrow: 1}}>
@@ -16,7 +22,9 @@ function GalleryManage( { step, setStep, userError, setUserError } ) {
         justifyContent="space-around"
         alignItems="stretch">
           <Grid item sm={3}>
-              <BlockList step={step} setStep={setStep}/>
+              <BlockList />
+              <Button onClick={handleFinish}>Add Coda and Finish</Button>
+
           </Grid>
         </Grid>
     </Box>

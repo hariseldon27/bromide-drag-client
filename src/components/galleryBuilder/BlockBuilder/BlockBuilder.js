@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import ImageUploadButton from '../../ImageUploadButton';
+import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 
 function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
@@ -41,7 +42,7 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
   }
 
   function handleSubmitFake(e) {
-    
+    dispatch(setStep("manage"))
   }
 
   const handleSubmit = e => {

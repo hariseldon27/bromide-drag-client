@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import BlockBuilder from './BlockBuilder/BlockBuilder';
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
 import { useDispatch, useSelector } from "react-redux"
+import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
+
 
 
 //fake dataset for dev
@@ -19,17 +21,25 @@ function BlockList( {  } ) {
   const [blockBuilderShowing, setBlockBuilderShowing] = useState(false)
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
-  const galleryInEdit = useSelector(state => state.galleryInEdit)
-  console.log(galleryInEdit)
-  //this is just for dev 
-  // useEffect(() => {
-  //   setBlockListInEdit(dummyDataBlocks)
-  // }, [])
+  const gallery = useSelector(state => state.gallery)
+  const step = useSelector(state => state.step)
+  console.log(gallery)
+
  //
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/)
-  //   setBlockListInEdit()
-  // }, [])
+  
+  useEffect(() => {
+    fetch(`http://localhost:3000/gallery/${gallery.id}`,{
+      method: 'GET',
+      headers: {
+        "Authorization": `Bearer ${currentUser.token}`
+        }
+    })
+    .then((r) => r.json())
+    .then((d) => {
+      console.log(`this is the whole gal:`, d)
+      setBlockListInEdit(d.blocks)
+    }) 
+  }, [])
 
 
  function handleAddNewBlock() {
@@ -58,7 +68,7 @@ function BlockList( {  } ) {
 
  
 
- const blockListCards = blockListInEdit.map(block => <BlockListCard block={block} /> )
+ const blockListCards = gallery.id === 1 ? null : blockListInEdit.map(block => <BlockListCard block={block} /> )
   return (
     <Stack 
     spacing={2} 

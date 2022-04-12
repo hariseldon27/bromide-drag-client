@@ -4,10 +4,11 @@ import { createSlice } from "@reduxjs/toolkit"
 const slice = createSlice( {
     name: 'gallery',
     initialState: {
-            id:"",
+            id: 1,
             title: "",
             description: "",
-            step: "start"
+            step: "start",
+            blocks: [1,2,3,4]
     },
     reducers : {
 
@@ -18,6 +19,7 @@ const slice = createSlice( {
             state.title = action.payload.title
             state.description = action.payload.description
             state.id = action.payload.id
+            state.blocks = action.payload.blocks
         }
     }
 } )

@@ -38,6 +38,7 @@ function handleChangeStep(e){
 console.log(gallery)
 function Crummy(){
   return (
+    
     <Stack 
     direction="row"
     justifyContent="flex-end"
@@ -45,7 +46,7 @@ function Crummy(){
     spacing={2}
     className="header" 
     >
-      <Typography variant="overline">live data won't like these to change yet:</Typography>
+      <Typography variant="overline">gallery id: {gallery.id} title: {gallery.title}</Typography>
       <Button onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
       <Button onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>
       <Button onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >manage</Button>

@@ -11,10 +11,10 @@ import Paper from '@mui/material/Paper';
 function BlockListCard( { block } ) {
     console.log(block)
     const {
-        bgColor,
+        bg_color,
         block_id,
         font,
-        fontColor,
+        font_color,
         gallery_id,
         id,
         imageHeight,

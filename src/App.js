@@ -20,6 +20,7 @@ import Paper from '@mui/material/Paper';
 import Spinner from './components/Spinner';
 import GalleryBuilder from './components/galleryBuilder/GalleryBuilder'
 import GalleryPresentation from './components/galleryPresentation/GalleryPresentation'
+import { showSpinner } from './reducers/spinnerSlice'
 
 
 function App( ) {
@@ -50,6 +51,8 @@ function App( ) {
   // }, [])
 
   useEffect(()=>{
+    dispatch(showSpinner());
+
     const currentToken = localStorage.getItem("token")
     
     console.log("local storage token: ", currentToken)
@@ -73,6 +76,8 @@ function App( ) {
             avatar: data.avatar ? data.avatar : '',
             token: currentToken
           }))
+          dispatch(showSpinner());
+
         })
 
   }, [])

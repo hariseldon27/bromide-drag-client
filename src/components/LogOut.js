@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser, loggedIn } from "../reducers/userSlice"
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 
+//   import { showSpinner } from '../../reducers/spinnerSlice'
+
 function LogOut() {
     const dispatch = useDispatch()
     // const currentUser = useSelector(state => state.user)
@@ -35,6 +37,7 @@ function LogOut() {
       .then(r => r.json())
       .then((data) => console.log("back from server", data))
       localStorage.removeItem("token")
+
     }
 // console.log(currentUser.token)
   return (

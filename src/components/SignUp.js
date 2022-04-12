@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
+import { showSpinner } from "../reducers/spinnerSlice"
 
 function SignUp() {
     const dispatch = useDispatch()
@@ -29,6 +30,8 @@ function SignUp() {
     console.log("curUser in state: ", currentUser)
 
     async function handleSubmitSignUp(){
+        dispatch(showSpinner());
+
         const userToSignUp = {
             user: {
                 email: signUpFormData.email,
@@ -55,6 +58,8 @@ function SignUp() {
         localStorage.setItem("token", authUser.token)
         console.log(authUser.token)
         resetForm()
+        dispatch(showSpinner());
+        
     }
     
     function resetForm(){

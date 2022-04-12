@@ -6,6 +6,7 @@ import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 function NavButtons() {
 
@@ -54,7 +55,7 @@ function NavButtons() {
         isActive ? activeStyle : inActiveStyle
         } >
         <Button variant="outline">
-          <CollectionsOutlinedIcon />
+          <AddPhotoAlternateIcon />
         </Button>
       </NavLink>
       <NavLink to="/gallery-presentation" 

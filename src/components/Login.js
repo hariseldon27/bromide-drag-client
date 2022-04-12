@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
+import { showSpinner } from "../reducers/spinnerSlice"
 
 function Login(e) {
     const dispatch = useDispatch()
@@ -31,6 +32,8 @@ function Login(e) {
     console.log("curUser in state: ", currentUser)
 
   async function login() {
+        dispatch(showSpinner());
+
         // format form data to send
         const userToLogIn = {
             user: {
@@ -60,13 +63,9 @@ function Login(e) {
         //set the token in local storage
         localStorage.setItem("token", authUser.token)
         resetForm()
-    }
-    // useEffect(() => {
-    //     console.log(currentUser.loggedIn)
-    //     if (currentUser.loggedIn) {
-    //         navigate('/profile')
-    //     }
-    // })        
+        dispatch(showSpinner());
+
+    }  
  
 
     

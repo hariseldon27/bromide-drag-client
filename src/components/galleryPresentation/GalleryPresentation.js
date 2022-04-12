@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux"
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+
 import GalleryShow from './GalleryShow';
-
 import GalleryListing from './GalleryListing';
-
-import dummyData from '../galleryBuilder/dummyData.json'
+import { showSpinner } from '../../reducers/spinnerSlice'
 
 function GalleryPresentation() {
   const [open, setOpen] = useState(false);
   const [galleryList, setGalleryList] = useState([])
   const [galleryToShow, setGalleryToShow] = useState([{}])
   const [blocksToShow, setBlocksToShow] = useState([])
+  const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
+  const dispatch = useDispatch()
+  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -21,6 +26,7 @@ function GalleryPresentation() {
     setOpen(!open);
   };
   const handleGalleryPlay = (e) => {
+
     handleToggle()
     // console.log(e.target.name)
     // take the id of the targeted gallery
@@ -34,6 +40,8 @@ function GalleryPresentation() {
 
   const currentToken = localStorage.getItem("token")
   useEffect(() => {
+    dispatch(showSpinner());
+
     fetch('http://localhost:3000/user-galleries', {
       method: "GET",
       headers: {
@@ -44,11 +52,14 @@ function GalleryPresentation() {
     .then((data) => {
       // console.log(data)
       setGalleryList(data)
+      dispatch(showSpinner());
+
     })
   }, [])
 
   function fetchBlocksToShow(e){
     // console.log(e.target.name)
+    dispatch(showSpinner());
     const gallery_id = e.target.name
     fetch(`http://localhost:3000/gallery/${gallery_id}/blocks`, {
       method: "GET",
@@ -58,6 +69,7 @@ function GalleryPresentation() {
     })
     .then(r => r.json())
     .then((data) => setBlocksToShow(data))
+    dispatch(showSpinner())
     
   }
 

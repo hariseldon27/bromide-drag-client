@@ -10,7 +10,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { styled } from '@mui/material/styles';
 import { useDispatch, useSelector } from "react-redux"
 import { setUserAvatar } from "../../reducers/userSlice"
-
+import { showSpinner } from "../../reducers/spinnerSlice"
 
 
 function UserAvatarUpload() {
@@ -29,6 +29,7 @@ function handleImageChange(e){
 // console.log(avatarImageUpload)
 
 const handleSubmit = e => {
+  dispatch(showSpinner());
   e.preventDefault();
   const formData = new FormData()
   formData.append("avatar", avatarImageUpload)
@@ -55,6 +56,8 @@ const handleSubmit = e => {
       dispatch(setUserAvatar({
         avatar: data.avatar
     }))
+    dispatch(showSpinner());
+
     })
     // if there is an error then send the error info to a handler
     .catch((error) => {
@@ -66,6 +69,8 @@ const handleSubmit = e => {
   function renderUserError(error){
     setUserError(true)
     console.log('Oops... ', error.statusText)
+    dispatch(showSpinner());
+
   }
 
   // plz refactor the uploader to be a drag and drop based on this: https://codepen.io/beljems/pen/LYNZYNy

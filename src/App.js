@@ -21,6 +21,8 @@ import Spinner from './components/Spinner';
 import GalleryBuilder from './components/galleryBuilder/GalleryBuilder'
 import GalleryPresentation from './components/galleryPresentation/GalleryPresentation'
 import { showSpinner } from './reducers/spinnerSlice'
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
 function App( ) {
@@ -28,6 +30,12 @@ function App( ) {
   const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
   const currentUser = useSelector(state => state.user)
   const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
+  const [error, setError] = useState("")
+  const [showError, setShowError] = useState(false)
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   // useEffect(() =>{
   //   async function fetchUser(){
@@ -64,7 +72,11 @@ function App( ) {
             "Authorization": `Bearer ${currentToken}`
             }
         })
-        .then((response) => response.json())
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response)})
         .then((data) => {
           // console.log(data)
           // console.log(data.message)
@@ -77,18 +89,32 @@ function App( ) {
             token: currentToken
           }))
           dispatch(showSpinner());
-
         })
-
+        .catch((error) => {
+          console.log(error)
+          renderUserError(error)
+          dispatch(showSpinner())
+        })
   }, [])
+
+function renderUserError(error) {
+  console.log("error render", error)
+  setError(error)
+  setShowError(true)
+}
 // console.log(currentUser)
 const appMode = createTheme({
     palette: {
       mode: isDarkMode ? 'light' : 'dark',
     },
   });
+  const handleClose = (e, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setShowError(false);
+  } 
 
-  
 const wrapperStyle = {
   background: isDarkMode ? "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)" : "linear-gradient(25deg, #2A2B2B 70%, #C28686 290%)",
   // background: "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)",
@@ -101,6 +127,7 @@ const wrapperStyle = {
 const appPaper = {
   padding: "2em"
 }
+
   return (
     <div id="app">
       <Container style={wrapperStyle} id="app-wrapper">
@@ -123,6 +150,15 @@ const appPaper = {
                 <Routes>
                   <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
                 </Routes>
+                <Snackbar
+                open={showError}
+                autoHideDuration={2000}
+                onClose={handleClose}
+                
+                // message={error}
+                >
+                  <Alert severity="error">Oops {error.statusText}</Alert>
+                  </Snackbar>
               </Paper>
             </Paper>
             </ThemeProvider>

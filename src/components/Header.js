@@ -32,7 +32,6 @@ function Header() {
       sx={headerStyle}>
         <NavButtons/>
         <LogOut/>
-          {/* <Typography variant="p">User: {currentUser.email}</Typography> */}
         <ModeSwitch />
 
         

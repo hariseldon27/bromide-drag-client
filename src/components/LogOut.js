@@ -3,12 +3,14 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser, loggedIn } from "../reducers/userSlice"
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined'
+import { useNavigate } from 'react-router-dom'
 
 //   import { showSpinner } from '../../reducers/spinnerSlice'
 
 function LogOut() {
     const dispatch = useDispatch()
+    let navigate = useNavigate()
     // const currentUser = useSelector(state => state.user)
     const loggedIn = useSelector(state => state.user.loggedIn)
     // console.log("logging out currentUser:", currentUser)
@@ -35,18 +37,30 @@ function LogOut() {
           }
       })
       .then(r => r.json())
-      .then((data) => console.log("back from server", data))
-      localStorage.removeItem("token")
+      .then((data) => {
+        // console.log("you should have been navvd")
+        console.log("back from server", data)
+        localStorage.removeItem("token")
+        moveMe()
+      })
+    }
 
+    function moveMe(){
+      navigate("./", {replace: true})
     }
 // console.log(currentUser.token)
+    const logOutIconStyle = {
+      color: loggedIn ? "pink" : "grey"
+    }  
+
   return (
     <Box>
-        {loggedIn ? 
+      <Button variant="outline" disabled={!loggedIn} onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon style={logOutIconStyle} /></Button>
+        {/* {loggedIn ? 
         <Button variant="outline" onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "pink" }} /></Button>
         :
         <Button variant="outline" disabled onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "grey" }} /></Button>
-        }
+        } */}
     </Box>
   )
 }

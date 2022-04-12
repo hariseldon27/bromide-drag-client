@@ -7,20 +7,42 @@ import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { useDispatch, useSelector } from "react-redux"
+import { setStep } from "../reducers/gallerySlice"
 
 function NavButtons() {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+  console.log(currentUser.loggedIn)
 
   let activeStyle = {
     textDecoration: "none",
     backgroundColor: "primary.main",
     color: "lightblue",
-    border: "solid 1px lightblue"
+    border: "solid 1px lightblue",
+    pointerEvents: currentUser.loggedIn ? "auto" : "none"
   };
   const inActiveStyle = {
     textDecoration: "none",
-    color: "pink"
-
+    color: "pink",
+    pointerEvents: currentUser.loggedIn ? "auto" : "none"
   }
+  let homeActiveStyle = {
+    textDecoration: "none",
+    backgroundColor: "primary.main",
+    color: "lightblue",
+    border: "solid 1px lightblue",
+  };
+  const homeInActiveStyle = {
+    textDecoration: "none",
+    color: "pink",
+  }
+
+  function handleNewGalClick(){
+    dispatch(setStep("start"))
+  }
+
+
 
   return (
     <div>
@@ -30,11 +52,12 @@ function NavButtons() {
       alignItems="center"
       spacing={2}
       className="header" 
+      id="navStack"
       >
       <NavLink to="/" 
         className="nav"
         style={({ isActive }) =>
-              isActive ? activeStyle : inActiveStyle
+              isActive ? homeActiveStyle : homeInActiveStyle
             } >
         <Button variant="outline">
             <BalconyOutlinedIcon/>
@@ -45,16 +68,16 @@ function NavButtons() {
         style={({ isActive }) =>
         isActive ? activeStyle : inActiveStyle
         } >
-        <Button variant="outline">
+        <Button disabled={!currentUser.loggedIn} variant="outline">
             <AccountBoxOutlinedIcon/>
         </Button>
       </NavLink>
-      <NavLink to="/gallery-builder" 
+      <NavLink to={ "/gallery-builder" }
         className="nav"
         style={({ isActive }) =>
         isActive ? activeStyle : inActiveStyle
         } >
-        <Button variant="outline">
+        <Button onClick={handleNewGalClick} disabled={!currentUser.loggedIn} variant="outline">
           <AddPhotoAlternateIcon />
         </Button>
       </NavLink>
@@ -63,7 +86,7 @@ function NavButtons() {
         style={({ isActive }) =>
         isActive ? activeStyle : inActiveStyle
         } >
-        <Button variant="outline">
+        <Button disabled={!currentUser.loggedIn} variant="outline">
           <PlayCircleFilledWhiteOutlinedIcon />
         </Button>
       </NavLink>

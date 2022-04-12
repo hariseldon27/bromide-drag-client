@@ -4,11 +4,11 @@ import { createSlice } from "@reduxjs/toolkit"
 const slice = createSlice( {
     name: 'gallery',
     initialState: {
-            id: 1,
+            id: 0,
             title: "",
             description: "",
             step: "start",
-            blocks: [1,2,3,4],
+            blocks: [],
             featured_image_url: "",
             published: false,
             published_on: ""

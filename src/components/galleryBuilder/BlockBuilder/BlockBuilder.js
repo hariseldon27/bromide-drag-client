@@ -9,6 +9,8 @@ import ImageUploadButton from '../../ImageUploadButton';
 import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 
+import { showSpinner } from '../../../reducers/spinnerSlice'
+
 function BlockBuilder( { userError, setUserError, setRefresh } ) {
   const [blockImage, setBlockImage] = useState("")
 
@@ -47,6 +49,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
   }
 
   const handleSubmit = e => {
+    dispatch(showSpinner())
     e.preventDefault();
     console.log("clicked add block")
     const formData = new FormData()
@@ -78,6 +81,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
       .then((data) => { 
         console.log("block came back as ", data); 
         dispatch(setStep("manage"))
+        dispatch(showSpinner())
         
 
       })
@@ -104,7 +108,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
             <Grid item xs={3}>
               <TextField id="new-block-type" 
                 label="block type"
-                helperText="img, text, imgText"
+                helperText="image, text, imgText"
                 required
                 value={newBlock.type} 
                 name="type"

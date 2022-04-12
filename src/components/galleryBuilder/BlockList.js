@@ -28,7 +28,8 @@ function BlockList( {  } ) {
  //
   
   useEffect(() => {
-    fetch(`http://localhost:3000/gallery/${gallery.id}`,{
+    // debugger
+    fetch(`http://localhost:3000/gallery/${gallery.id}/blocks`,{
       method: 'GET',
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
@@ -36,8 +37,9 @@ function BlockList( {  } ) {
     })
     .then((r) => r.json())
     .then((d) => {
-      console.log(`this is the whole gal:`, d)
-      setBlockListInEdit(d.blocks)
+      console.log(`fetch r:`, d)
+      // debugger
+      setBlockListInEdit(d)
     }) 
   }, [])
 

@@ -19,9 +19,9 @@ function BlockListCard( { block } ) {
         id,
         imageHeight,
         imageWidth,
-        image_src,
+        image_url,
         text,
-        textAlign,
+        text_align,
         type,
         width } = block
         console.log(type)
@@ -46,9 +46,9 @@ function BlockListCard( { block } ) {
                 <Grid item xs={2}>
                     <Typography variant="body2"><strong>Type:</strong> {type}</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                {/* <Grid item xs={3}>
                     <Typography variant="body2"><strong>block_id:</strong> {block_id}</Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={3}>
                     <Typography variant="body2"><strong>id:</strong> {id}</Typography>
                 </Grid>
@@ -59,7 +59,7 @@ function BlockListCard( { block } ) {
         <CardMedia
           component="img"
           sx={{ width: 151 }}
-          image={image_src ? image_src : placeholderImage}
+          image={image_url ? image_url : placeholderImage}
           alt={text}
         />
       </Card>

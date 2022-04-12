@@ -51,10 +51,10 @@ function Crummy(){
     >
       <img style={tinyImgStyle} src={gallery.featured_image_url} />
       <Typography variant="overline">gallery id: {gallery.id} title: {gallery.title}</Typography>
-      <Button onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
-      <Button onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>
-      <Button onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >manage</Button>
-      <Button onClick={handleChangeStep} name="finish" variant={step === "finish" ? "outlined" : null} >finish</Button>
+      <Button disabled onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
+      <Button disabled  onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>
+      <Button disabled onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >manage</Button>
+      <Button disabled onClick={handleChangeStep} name="finish" variant={step === "finish" ? "outlined" : null} >finish</Button>
     </Stack>
   );
 }

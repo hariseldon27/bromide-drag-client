@@ -10,10 +10,13 @@ import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 
 import { showSpinner } from '../../../reducers/spinnerSlice'
+import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import OpenInFullIcon from '@mui/icons-material/OpenInFull';
+
 
 function BlockBuilder( { userError, setUserError, setRefresh } ) {
   const [blockImage, setBlockImage] = useState("")
-
+  const [compactMode, setCompactMode] = useState(true)
   const [newBlock, setNewBlock] = useState ({
     // does this need gallery id or image?
     text: "Enter block text",
@@ -96,6 +99,13 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
       // setUserError(true)
       console.log('Oops... ', error.statusText)
     }
+
+    function handleCompactModeToggle(){
+      setCompactMode(compactMode => compactMode = !compactMode)
+    }
+    const compactComponent = {
+      display: compactMode ? 'none' : 'block'
+    }
   return (
   
 
@@ -105,7 +115,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
         direction="row"
         justifyContent="space-around"
         alignItems="stretch">
-            <Grid item xs={3}>
+            <Grid  item xs={3}>
               <TextField id="new-block-type" 
                 label="block type"
                 helperText="image, text, imgText"
@@ -128,7 +138,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
               />
 
         </Grid> 
-        <Grid item xs={3}>
+        <Grid style={compactComponent} item xs={3}>
               <TextField id="new-block-bgcolor" 
                 helperText="hex code plz"
                 label="bgColor"
@@ -140,7 +150,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
               />
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid style={compactComponent} item xs={3}>
               <TextField id="new-block-fontcolor" 
                 label="fontColor"
                 helperText="hex code plz"
@@ -151,7 +161,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
                 disabled
               />
         </Grid>
-        <Grid item xs={3}>
+        <Grid style={compactComponent} item xs={3}>
               <TextField id="new-block-width" 
                 label="block width"
                 helperText="sm md full"
@@ -162,9 +172,9 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
                 disabled
               />
         </Grid>
-        <Grid item xs={3}>
+        <Grid style={compactComponent} item xs={3}>
               <TextField id="new-block-textalign" 
-                label="bgcolor"
+                label="text align"
                 helperText="left right center"
                 value={newBlock.textAlign} 
                 name="textAlign"
@@ -173,6 +183,9 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
                 disabled
               />
         </Grid>
+        <Button sx={{color: "pink", backgroundColor: "darkgrey"}} 
+        onClick={handleCompactModeToggle} 
+        >{compactMode ?  <OpenInFullIcon/> : <CloseFullscreenIcon/>} </Button>
 
 
         <Grid container

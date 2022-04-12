@@ -21,7 +21,7 @@ function GalleryManage( { userError, setUserError } ) {
         direction="row"
         justifyContent="space-around"
         alignItems="stretch">
-          <Grid item sm={3}>
+          <Grid item sm={8}>
               <BlockList />
               <Button onClick={handleFinish}>Add Coda and Finish</Button>
 

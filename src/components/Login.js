@@ -63,10 +63,15 @@ function Login(e) {
         //set the token in local storage
         localStorage.setItem("token", authUser.token)
         resetForm()
+        moveMe()
         dispatch(showSpinner());
 
     }  
  
+
+    function moveMe(){
+        navigate("/profile", {replace: true})
+    }
 
     
     function resetForm(){
@@ -99,11 +104,6 @@ function Login(e) {
                 type="submit" 
                 name="submit"
                 onClick={login}>Log In</Button>
-                <hr/>
-                Email: {loginFormData.email}
-                <hr/>
-                pw: {loginFormData.password}
-                <hr/>
             </FormControl>
         </Stack>
     </Box>

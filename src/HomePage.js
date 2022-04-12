@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -18,14 +18,17 @@ import HomeFeatures from './components/homepage/HomeFeatures';
 
 function HomePage() {
 const [isSignUpShowing, setIsSignUpShowing] = useState(false)
+const currentUser = useSelector(state => state.user)
 
 function toggleSignUpClick(){
     setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)
   }
 
 const homeComponents = {
-  padding: "1em"
+  padding: "1em",
+  // backgroundColor: "pink"
 }
+
 
 const homeElevation = 0
   return (
@@ -37,23 +40,26 @@ const homeElevation = 0
       justifyContent="center">
         <Grid item xs={12}>
           <Paper style={homeComponents} elevation={homeElevation}>
-            <Typography variant="h4" component="h1">bromide drag</Typography>
+            <Typography variant="overline" component="h1">welcome to bromide drag</Typography>
             </Paper>
         </Grid>
         <Grid container
         spacing={1}
-        direction="row">
-          <Grid item xs={8}>
+        direction="row"
+        justifyContent="center">
+          {/* <Grid item xs={8}>
             <Paper style={homeComponents} elevation={homeElevation}>
               <HomeFeatures/>
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={4}>
             <Paper style={homeComponents} elevation={homeElevation}>
+              {currentUser.loggedIn ? "You're already logged in! - log out first" : "You need to login" }
               {isSignUpShowing ? <SignUp/> : <Login/> }
               <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
             </Paper>
           </Grid>
+          
         </Grid>
       </Grid>
     </Box>

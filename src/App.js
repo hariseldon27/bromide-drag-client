@@ -139,9 +139,6 @@ const appPaper = {
               <Header/>
               <Paper style={appPaper}>
                 <Routes>
-                  <Route  path="/" element={<HomePage/>}/>
-                </Routes>
-                <Routes>
                   <Route path="/profile" element={<UserProfile/>} />
                 </Routes>
                 <Routes>
@@ -150,15 +147,17 @@ const appPaper = {
                 <Routes>
                   <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
                 </Routes>
+                <Routes>
+                  <Route  path="/" element={<HomePage/>}/>
+                </Routes>
+
                 <Snackbar
                 open={showError}
                 autoHideDuration={2000}
                 onClose={handleClose}
-                
-                // message={error}
                 >
                   <Alert severity="error">Oops {error.statusText}</Alert>
-                  </Snackbar>
+                </Snackbar>
               </Paper>
             </Paper>
             </ThemeProvider>

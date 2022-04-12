@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux"
 import { showSpinner } from '../../reducers/spinnerSlice'
+import Box from '@mui/material/Box';
+
 import Switch from '@mui/material/Switch';
 import Button from '@mui/material/Button';
 
@@ -14,9 +16,9 @@ function HomeFeatures() {
     }
     console.log(isSpinnerShowing)
     return (
-    <div>
+    <Box>
         
-    </div>
+    </Box>
   )
 }
 

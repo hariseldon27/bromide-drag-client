@@ -95,11 +95,6 @@ function SignUp() {
                 variant="contained"
                 color="secondary"
                 onClick={handleSubmitSignUp}>Sign Up</Button>
-                <hr/>
-                Email: {signUpFormData.email}
-                <hr/>
-                pw: {signUpFormData.password}
-                <hr/>
             </FormControl>
         </Stack>
     </Box>

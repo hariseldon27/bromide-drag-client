@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 
 function HeroBlock( { galleryDetails } ) {
-    const { title, published_on, featured_image, other_props } = galleryDetails
+    const { title, published_on, featured_image_url, other_props } = galleryDetails
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     // console.log(featured_image)
@@ -22,7 +22,7 @@ const heroImgStyle = {
 
   return (
     <Box>
-        <img className="hero-image" style={heroImgStyle} src={featured_image}/>   
+        <img className="hero-image" style={heroImgStyle} src={featured_image_url}/>   
         <Divider>
             <Chip label={title} />
         </Divider>

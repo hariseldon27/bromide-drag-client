@@ -12,7 +12,7 @@ import dummyDataBlocks from '../galleryBuilder/dummyDataBlocks.json'
 import BlockShow from './BlockShow';
 import GalleryCombinator from './GalleryCombinator';
 
-function GalleryShow( { open, setOpen, galleryToShow } ) {
+function GalleryShow( { open, setOpen, galleryToShow, blocksToShow } ) {
     const [blocks, setBlocks] = useState([])
     
     const handleClose = () => {
@@ -22,10 +22,10 @@ function GalleryShow( { open, setOpen, galleryToShow } ) {
         setOpen(!open);
     };
     
-    // console.log(dummyDataBlocks)
-    useEffect(() => {
-        setBlocks(galleryToShow[0].blocks)
-    }, [])
+    // console.log()
+    // useEffect(() => {
+    //     setBlocks(blocksToShow)
+    // }, [])
 
     // console.log(blocks)
     //this is the holder for the actual gallery show elements
@@ -33,7 +33,7 @@ function GalleryShow( { open, setOpen, galleryToShow } ) {
     // 1) hero block - featured image, title, author
     // 2) blocks (we need 3 templates?  or maybe just styled by props)
     // 3) coda (is this just a secret block type that only we can select?)
-// console.log(galleryToShow[0].title)
+    // console.log(galleryToShow[0].title)
 
 const galleryBackdrop = {
     zIndex: (theme) => theme.zIndex.drawer + 1,
@@ -52,7 +52,7 @@ function RenderGalleries(){
             <Box sx={galleryBackdrop}
             onClick={handleClose}
             >
-                <GalleryCombinator galleryToShow={galleryToShow[0]} />
+                <GalleryCombinator blocksToShow={blocksToShow} galleryToShow={galleryToShow[0]} />
             </Box>          
         </>
     )
@@ -63,7 +63,7 @@ function RenderGalleries(){
     <>
         {open ? <RenderGalleries /> : null } 
 
-      <Button onClick={handleToggle}>Show backdrop</Button>
+      {/* <Button onClick={handleToggle}>Show backdrop</Button> */}
     </>
   )
 }

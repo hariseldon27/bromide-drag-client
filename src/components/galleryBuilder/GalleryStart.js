@@ -33,22 +33,24 @@ function GalleryStart( { userError, setUserError  } ) {
         }
       }
 
+      console.log(featuredImage)
   // create new record in db 
 
   const handleSubmit = e => {
     e.preventDefault();
     console.log("clicked submit new gal to db")
     const formData = new FormData()
-      if (featuredImage) formData.append("featured_image", featuredImage)
+    formData.append("featured_image", featuredImage)
     formData.append("title", newGalleryEstablish.title)
     formData.append("description", newGalleryEstablish.description)
+    formData.append("published", false)
     // featuredImage ? formData.append("featured_image", featuredImage) : null
     fetch(`http://localhost:3000/new-gallery/`, {
       method: 'POST',
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
         },
-      body: {formData}
+      body: formData
     })
       // .then(res => res.json())
     .then((response) => {
@@ -67,7 +69,9 @@ function GalleryStart( { userError, setUserError  } ) {
         dispatch(setGalleryInEdit({
           title: data.title,
           description: data.description,
-          id: data.id
+          id: data.id,
+          featured_image_url: data.featured_image_url,
+          published: false
         }))
         dispatch(setStep("fill"))
         

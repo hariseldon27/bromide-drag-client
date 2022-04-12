@@ -37,6 +37,9 @@ function handleChangeStep(e){
 }
 console.log(gallery)
 function Crummy(){
+  const tinyImgStyle = {
+    width: "75px"
+  }
   return (
     
     <Stack 
@@ -46,6 +49,7 @@ function Crummy(){
     spacing={2}
     className="header" 
     >
+      <img style={tinyImgStyle} src={gallery.featured_image_url} />
       <Typography variant="overline">gallery id: {gallery.id} title: {gallery.title}</Typography>
       <Button onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start</Button>
       <Button onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >fill</Button>

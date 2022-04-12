@@ -8,7 +8,10 @@ const slice = createSlice( {
             title: "",
             description: "",
             step: "start",
-            blocks: [1,2,3,4]
+            blocks: [1,2,3,4],
+            featured_image_url: "",
+            published: false,
+            published_on: ""
     },
     reducers : {
 
@@ -20,6 +23,9 @@ const slice = createSlice( {
             state.description = action.payload.description
             state.id = action.payload.id
             state.blocks = action.payload.blocks
+            state.featured_image_url = action.payload.featured_image_url
+            state.published = action.payload.published
+            state.published_on = action.payload.published_on
         }
     }
 } )

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 
 function ImageBlock( {block} ) {
-    console.log(block)
+    // console.log(block)
     const {
       block_type,
       bg_color,
@@ -20,7 +20,7 @@ function ImageBlock( {block} ) {
       text_align,
       type,
       width } = block
-// console.log(image_src)
+// console.log(block)
 
 const imageTextBlockStyle = {
     width: "auto",

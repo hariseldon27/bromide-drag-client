@@ -10,12 +10,14 @@ import Button from '@mui/material/Button';
 
 
 function GalleryListCard( { gallery, onGalleryPlay } ) {
-    const { description, title, id, featured_image  } = gallery
-    // console.log(description)
+    const { description, title, id, featured_image_url  } = gallery
+    // console.log(gallery)
     const handlePlayClick = (e) => {
         // console.log(e.target)
         onGalleryPlay(e)
     }
+    const placeholderImage = "https://blog.greendot.org/wp-content/uploads/sites/13/2021/09/placeholder-image.png"
+
   return (
     
     <Card sx={{ display: 'flex' }}>
@@ -37,7 +39,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
       <CardMedia
         component="img"
         sx={{ width: 151 }}
-        image={featured_image}
+        image={featured_image_url ? featured_image_url : placeholderImage}
         alt={title}
       />
     </Card>

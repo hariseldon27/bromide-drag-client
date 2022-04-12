@@ -13,7 +13,7 @@ function GalleryPresentation() {
   const [open, setOpen] = useState(false);
   const [galleryList, setGalleryList] = useState([])
   const [galleryToShow, setGalleryToShow] = useState([{}])
-
+  const [blocksToShow, setBlocksToShow] = useState([])
   const handleClose = () => {
     setOpen(false);
   };
@@ -22,17 +22,18 @@ function GalleryPresentation() {
   };
   const handleGalleryPlay = (e) => {
     handleToggle()
-    console.log(e.target.name)
+    // console.log(e.target.name)
     // take the id of the targeted gallery
     // set just that gallery in state
     // send that whole gallery to the GalleryShow
     const galToShow = galleryList.filter(gallery => gallery.id == e.target.name)
     // console.log(galToShow)
+    fetchBlocksToShow(e)
     setGalleryToShow(galToShow)
   }
 
+  const currentToken = localStorage.getItem("token")
   useEffect(() => {
-    const currentToken = localStorage.getItem("token")
     fetch('http://localhost:3000/user-galleries', {
       method: "GET",
       headers: {
@@ -40,18 +41,34 @@ function GalleryPresentation() {
       }
     })
     .then(r => r.json())
-    .then((data) => console.log(data))
-    // setGalleryList(data)
+    .then((data) => {
+      // console.log(data)
+      setGalleryList(data)
+    })
   }, [])
 
-  console.log("is open", open)
+  function fetchBlocksToShow(e){
+    // console.log(e.target.name)
+    const gallery_id = e.target.name
+    fetch(`http://localhost:3000/gallery/${gallery_id}/blocks`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${currentToken}`
+      }
+    })
+    .then(r => r.json())
+    .then((data) => setBlocksToShow(data))
+    
+  }
+
+  // console.log("is open", open)
 
   return (
     
     <div>
 
       <GalleryListing galleryList={galleryList} onGalleryPlay={handleGalleryPlay}/>
-      <GalleryShow open={open} setOpen={setOpen} galleryToShow={galleryToShow}/>
+      <GalleryShow open={open} setOpen={setOpen} blocksToShow={blocksToShow} galleryToShow={galleryToShow}/>
     </div>
   )
 }

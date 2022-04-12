@@ -105,6 +105,8 @@ function Login(e) {
                 avatar: authUser.avatar
             }))
             dispatch(showSpinner())
+            localStorage.setItem("token", authUser.token)
+            resetForm()
             moveMe()
         })
         .catch((error) => {

@@ -34,8 +34,8 @@ Be sure to go grab the server here: https://github.com/hariseldon27/bromide-drag
 
 >The waiting spinner mostly works - if it ever gets stuck and you think it should be done - just click it away lol...
 
-### Straight Up Errors:
->There is a 401 unauthorized when you register a new user with a non-valid email address this is obv due to auth and no validation ... so, sign up with an email address plz
+<!-- ### Straight Up Errors:
+>There is a 401 unauthorized when you register a new user with a non-valid email address this is obv due to auth and no validation ... so, sign up with an email address plz -->
 
 
 ### What's still to come?

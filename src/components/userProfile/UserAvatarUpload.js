@@ -73,6 +73,19 @@ const handleSubmit = e => {
 
   }
 
+  function FileNameDisplay() {
+    if (avatarImageUpload) {
+        let displayText = avatarImageUpload.name
+        if (avatarImageUpload.length > 13) {
+            const str = displayText.substring(0,13)
+            return str + "..."
+        } else if (avatarImageUpload) {
+            return displayText
+        }
+    } else {
+        return "Choose File"
+    }
+}
   // plz refactor the uploader to be a drag and drop based on this: https://codepen.io/beljems/pen/LYNZYNy
 
 const Input = styled('input')({
@@ -83,13 +96,11 @@ const Input = styled('input')({
       <Stack>
         <Typography component="h4">Add profile photo</Typography>
         <form onSubmit={handleSubmit} id='upload'>
-          {/* <Input type="file" accept="image/*" multiple={false} onChange={handleImageChange} />
-          <Input type="submit" value="Submit"></Input> */}
           <Button
             variant="outlined"
             component="label"
           >
-          Choose File
+          <FileNameDisplay/>
           <input
             type="file"
             hidden

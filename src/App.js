@@ -103,11 +103,12 @@ function renderUserError(error) {
   setShowError(true)
 }
 // console.log(currentUser)
-const appMode = createTheme({
-    palette: {
-      mode: isDarkMode ? 'light' : 'dark',
-    },
-  });
+  const appMode = createTheme({
+      palette: {
+        mode: isDarkMode ? 'light' : 'dark',
+      },
+    });
+    
   const handleClose = (e, reason) => {
     if (reason === 'clickaway') {
       return;

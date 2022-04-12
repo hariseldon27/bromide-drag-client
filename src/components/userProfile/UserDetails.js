@@ -20,7 +20,7 @@ function UserDetails() {
 
   return (
     <Container sx={userDetailsStyle} id="user_details_panel">
-        <Stack spacing={1.5}>
+        <Stack spacing={1}>
             <Typography variant="h4" component="p" align="center">User Details</Typography>
             <img src={currentUser.avatar}></img>
             <Divider textAlign="right"><span style={{color: "red"}}>{currentUser.email}</span></Divider>

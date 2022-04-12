@@ -20,7 +20,7 @@ function UserProfile() {
   return (
     <Box sx={{flexGrow: 1}}>
         <Grid 
-        container spacing={1} 
+        container spacing={2} 
         style={mainContainerStyle}
         direction="row"
         justifyContent="center"
@@ -33,7 +33,8 @@ function UserProfile() {
               <GalleryPresentation />
             </Paper>
           </Grid>
-          <Grid item 
+
+          <Grid container 
           xs={4}
           gap={2}>
             <Paper>
@@ -43,6 +44,7 @@ function UserProfile() {
               <UserAvatarUpload/>
             </Paper>
           </Grid>
+
         </Grid>
     </Box>
   )

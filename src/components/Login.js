@@ -9,11 +9,18 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
 import { showSpinner } from "../reducers/spinnerSlice"
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Login(e) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const navigate = useNavigate();
+    const [showError, setShowError] = useState(false)
+
+    const Alert = React.forwardRef(function Alert(props, ref) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+      });
 
     const [loginFormData, setLoginFormData] = useState({
         email: "",
@@ -29,7 +36,7 @@ function Login(e) {
         [name]: value})
     }
 
-    console.log("curUser in state: ", currentUser)
+    // console.log("curUser in state: ", currentUser)
 
   async function login() {
         dispatch(showSpinner());
@@ -49,7 +56,9 @@ function Login(e) {
             body: JSON.stringify(userToLogIn),
         })
 
-        const authUser = await response.json()
+        
+        const authUser = await response.json() 
+        
         console.log(authUser)
        //send the new user to state
         dispatch(setCurrentUser({
@@ -59,7 +68,6 @@ function Login(e) {
             id: authUser.id,
             avatar: authUser.avatar
         }))
-        // console.log(authUser.token)
         //set the token in local storage
         localStorage.setItem("token", authUser.token)
         resetForm()
@@ -81,6 +89,11 @@ function Login(e) {
             password: ""
             })
     }
+
+    function renderUserError(error) {
+        console.log("error render", error)
+        setShowError(true)
+      }
 
   return (
     <Box>

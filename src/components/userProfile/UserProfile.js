@@ -33,16 +33,16 @@ function UserProfile() {
               <GalleryPresentation />
             </Paper>
           </Grid>
-
-          <Grid container 
-          xs={4}
-          gap={2}>
-            <Paper>
-              <UserDetails/>
-              </Paper>
+          <Grid item xs={4}>
+            <Grid container 
+            gap={2}>
               <Paper>
-              <UserAvatarUpload/>
-            </Paper>
+                <UserDetails/>
+                </Paper>
+                <Paper>
+                <UserAvatarUpload/>
+              </Paper>
+            </Grid>
           </Grid>
 
         </Grid>

@@ -94,7 +94,7 @@ const Input = styled('input')({
   return (
     <Box>
       <Stack>
-        <Typography component="h4">Add profile photo</Typography>
+        <Typography variant="overline" component="h4">Add profile photo</Typography>
         <form onSubmit={handleSubmit} id='upload'>
           <Button
             variant="outlined"

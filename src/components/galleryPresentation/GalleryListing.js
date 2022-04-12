@@ -10,11 +10,11 @@ function GalleryListing( { galleryList, onGalleryPlay } ) {
   const now = new Date().toUTCString()
   const publishedGalleries = galleryList.filter(gallery => gallery.published_on < now)
   const cards = publishedGalleries.map(gallery => <GalleryListCard key={gallery.id} gallery={gallery} onGalleryPlay={onGalleryPlay}/>)
-
+  const title = publishedGalleries.length > 0 ? "Galleries" : "You don't have any galleries yet, click the plus above and make one!"
 // console.log(galleryList)
   return (
     <div>
-      <Typography variant="h5" component="h1" >Galleries</Typography>
+      <Typography variant="overline" component="h1" >{title}</Typography>
         <Stack gap={2}>
           {cards}
         </Stack>

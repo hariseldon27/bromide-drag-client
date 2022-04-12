@@ -9,7 +9,7 @@ import ImageUploadButton from '../../ImageUploadButton';
 import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 
-function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
+function BlockBuilder( { userError, setUserError, setRefresh } ) {
   const [blockImage, setBlockImage] = useState("")
 
   const [newBlock, setNewBlock] = useState ({
@@ -76,9 +76,9 @@ function BlockBuilder( { userError, setUserError, galleryAssociaton } ) {
       // if resp.ok then we proceed to set onLogin
       // reset the field text, and setUserError to false
       .then((data) => { 
-        console.log("came back as ", data); 
+        console.log("block came back as ", data); 
         dispatch(setStep("manage"))
-
+        
 
       })
       // if there is an error then send the error info to a handler

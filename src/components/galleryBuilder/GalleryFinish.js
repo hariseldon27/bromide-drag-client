@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -8,16 +8,40 @@ import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from "react-redux"
 
 function GalleryFinish() {
+  const [coda, setCoda] = useState("")
+  const dispatch = useDispatch()
+  const currentUser = useSelector(state => state.user)
+  const gallery = useSelector(state => state.gallery)
 
-    function handleFinishClick(){
-        console.log("clickfini")
+  function handleFinishClick(){
+    const publishData = {
+      published: true,
+      published_on: new Date().toUTCString(),
+      coda: coda
     }
+    console.log("clickfini")
+    fetch(`http://127.0.0.1:3000/gallery/${gallery.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${currentUser.token}`
+        },
+        body: JSON.stringify(publishData),
+        })
+        .then(r => r.json())
+        .then(d => console.log(d))
+      }
+
+  function handleCodaChange(e){
+    setCoda(e.target.value)
+  }
 
   return (
-    <Box sx={{mx: "auto"}}>
-        <Paper >
-            <TextField variant="standard"/>
-            <Button onClick={handleFinishClick}><SaveOutlinedIcon/></Button>
+    <Box sx={{margin: "0 auto"}}>
+        <Paper style={{margin: "0 auto", textAlign: "center"}} >
+            <TextField helperText="last words?" label="add a coda" onChange={handleCodaChange} variant="standard" name="coda"/>
+            <Button onClick={handleFinishClick}>publish...<SaveOutlinedIcon/></Button>
+            
         </Paper>
     </Box>
   )

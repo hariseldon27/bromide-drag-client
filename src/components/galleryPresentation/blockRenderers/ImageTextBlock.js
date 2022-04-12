@@ -6,17 +6,18 @@ import Typography from '@mui/material/Typography';
 function ImageTextBlock( {block} ) {
     console.log(block)
     const {
-        bgColor,
+        block_type,
+        bg_color,
         block_id,
         font,
-        fontColor,
+        font_color,
         gallery_id,
         id,
         imageHeight,
         imageWidth,
-        image_src,
+        image_url,
         text,
-        textAlign,
+        text_align,
         type,
         width } = block
 // console.log(image_src)
@@ -27,7 +28,7 @@ const imageTextBlockStyle = {
     display: "block",
     textAlign: "center",
     position: "relative",
-    backgroundImage: `url(${image_src})`,
+    backgroundImage: `url(${image_url})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center"

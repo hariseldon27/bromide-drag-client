@@ -7,20 +7,21 @@ import ImageBlock from './blockRenderers/ImageBlock';
 import TextBlock from './blockRenderers/TextBlock';
 
 function BlockCard( { block } ) {
-    const {
-        bgColor,
-        block_id,
-        font,
-        fontColor,
-        gallery_id,
-        id,
-        imageHeight,
-        imageWidth,
-        image_src,
-        text,
-        textAlign,
-        block_type,
-        width } = block
+  const {
+    block_type,
+    bg_color,
+    block_id,
+    font,
+    font_color,
+    gallery_id,
+    id,
+    imageHeight,
+    imageWidth,
+    image_url,
+    text,
+    text_align,
+    type,
+    width } = block
         console.log(block_type)
 
     const blockImgStyle = {

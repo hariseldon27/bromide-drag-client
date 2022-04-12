@@ -21,12 +21,6 @@ function GalleryStart( { userError, setUserError  } ) {
       const [featuredImage, setFeaturedImage] = useState()
   
 
-      //show the gallery being built when it changes
-    //   useEffect(() => {
-    //     console.log(newGalleryEstablish)
-    //     console.log(featuredImage)
-    //   }, [newGalleryEstablish, featuredImage])
-   
     function handleGalleryStartChange(e) {
         // console.log( e )
         if (e instanceof File) {
@@ -39,18 +33,6 @@ function GalleryStart( { userError, setUserError  } ) {
         }
       }
 
-      // //fake handle submit
-      // const fakeHandleSubmit = e => {
-      //     e.preventDefault()
-      //     console.log('submitfake')
-      //     // setStep("fill")
-      //     //send the new gallery to state
-      //   dispatch(setGalleryInEdit({
-      //     title: newGalleryEstablish.title,
-      //     description: newGalleryEstablish.description
-      //   }))
-      //   dispatch(setStep("fill"))
-      // }
   // create new record in db 
 
   const handleSubmit = e => {
@@ -66,7 +48,7 @@ function GalleryStart( { userError, setUserError  } ) {
       headers: {
         "Authorization": `Bearer ${currentUser.token}`
         },
-      body: formData
+      body: {formData}
     })
       // .then(res => res.json())
     .then((response) => {

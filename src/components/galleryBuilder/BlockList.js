@@ -43,6 +43,20 @@ function BlockList( {  } ) {
     }) 
   }, [])
 
+  function handleRefresh(){
+    fetch(`http://localhost:3000/gallery/${gallery.id}/blocks`,{
+      method: 'GET',
+      headers: {
+        "Authorization": `Bearer ${currentUser.token}`
+        }
+    })
+    .then((r) => r.json())
+    .then((d) => {
+      console.log(`fetch r:`, d)
+      // debugger
+      setBlockListInEdit(d)
+    }) 
+  }
 
  function handleAddNewBlock() {
    console.log("click")
@@ -79,7 +93,8 @@ function BlockList( {  } ) {
     justifyContent="center"
     alignItems="center"
   >
-      <Typography variant="h4" component="h3">your gallery so far</Typography>
+      <Button id="refresh" onClick={handleRefresh}>refresh</Button>
+      <Typography variant="body1" component="h3">your gallery so far</Typography>
         {blockListCards}
         <Button onClick={handleAddNewBlock}>Add Block</Button>
         

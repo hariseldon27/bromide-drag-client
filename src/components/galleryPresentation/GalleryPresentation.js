@@ -40,7 +40,7 @@ function GalleryPresentation() {
       }
     })
     .then(r => r.json())
-    .then((data) => setGalleryList(data))
+    .then((data) => console.log(data))
     // setGalleryList(data)
   }, [])
 

@@ -6,17 +6,18 @@ import Grid from '@mui/material/Grid';
 
 function TextBlock( { block } ) {
     const {
-        bgColor,
+        block_type,
+        bg_color,
         block_id,
         font,
-        fontColor,
+        font_color,
         gallery_id,
         id,
         imageHeight,
         imageWidth,
-        image_src,
+        image_url,
         text,
-        textAlign,
+        text_align,
         type,
         width } = block
 

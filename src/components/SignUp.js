@@ -9,9 +9,12 @@ import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
 import { showSpinner } from "../reducers/spinnerSlice"
+import { useNavigate } from 'react-router-dom'
+
 
 function SignUp() {
     const dispatch = useDispatch()
+    const navigate = useNavigate();
     const currentUser = useSelector(state => state.user)
     const [signUpFormData, setSignUpFormData] = useState({
         email: "",
@@ -58,8 +61,13 @@ function SignUp() {
         localStorage.setItem("token", authUser.token)
         console.log(authUser.token)
         resetForm()
+        moveMe()
+
         dispatch(showSpinner());
         
+    }
+    function moveMe(){
+        navigate("/profile", {replace: true})
     }
     
     function resetForm(){

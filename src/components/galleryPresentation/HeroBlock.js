@@ -17,15 +17,27 @@ function HeroBlock( { galleryDetails } ) {
     const currentUser = useSelector(state => state.user)
     // console.log(featured_image)
 const heroImgStyle = {
-    width: "100%"
+    width: "100%",
+    padding: 0,
+    margin: 0,
+    display: "block",
+    textAlign: "center"
+,}
+const dividerStyle ={
+  position: "relative",
+  backgroundColor: "#444",
+  color: "#fff",
+  padding: 0,
+  margin: 0
+
 }
 
   return (
     <Box>
-        <img className="hero-image" style={heroImgStyle} src={featured_image_url}/>   
-        <Divider>
-            <Chip label={title} />
-        </Divider>
+        <Box style={heroImgStyle}>
+          <img className="hero-image" style={heroImgStyle} src={featured_image_url}/>
+          <Typography variant="overline" sx={{fontSize: "2em"}}>{title}</Typography>
+        </Box>
     </Box>
   )
 }

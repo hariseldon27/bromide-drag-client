@@ -2,19 +2,20 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 
 function DescriptionBlock( { description } ) {
     // console.log(description)
 
     const descriptionItemStyle = {
-        background: "#000",
         padding: "15px",
-        color: "white"
     }
     const descriptionTextStyle = {
-        
+      padding: "15px",
+      backgroundColor: "rgba(200,200,200,.7)"
     }
+
   return (
     <Grid
     container
@@ -22,8 +23,10 @@ function DescriptionBlock( { description } ) {
     justifyContent="center"
     alignItems="center"
     >
-        <Grid style={descriptionItemStyle} item xs={6}>
+        <Grid  item xs={6}>
+          <Paper elevation={8} sx={{padding: "0em", margin: "1em" }}>
             <Typography variant="body1" style={descriptionTextStyle}>{description}</Typography>
+          </Paper>
         </Grid>
     </Grid>
     

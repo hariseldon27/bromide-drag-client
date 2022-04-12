@@ -22,9 +22,9 @@ function BlockListCard( { block } ) {
         image_url,
         text,
         text_align,
-        type,
+        block_type,
         width } = block
-        console.log(type)
+        console.log(block_type)
 
     const blockImgStyle = {
         width: "100%",
@@ -44,7 +44,7 @@ function BlockListCard( { block } ) {
         <Card sx={{ display: 'flex' }}>
             <Grid container sx={{padding: "5px", outline: "solid black 4px"}} spacing={2} columns={2}>
                 <Grid item xs={2}>
-                    <Typography variant="body2"><strong>Type:</strong> {type}</Typography>
+                    <Typography variant="body2"><strong>Type:</strong> {block_type}</Typography>
                 </Grid>
                 {/* <Grid item xs={3}>
                     <Typography variant="body2"><strong>block_id:</strong> {block_id}</Typography>
@@ -53,7 +53,7 @@ function BlockListCard( { block } ) {
                     <Typography variant="body2"><strong>id:</strong> {id}</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                    <Typography variant="body2"><strong>Text:</strong> {text}</Typography>
+                    <Typography variant="body2"><strong>Text:</strong> {text ? text : "empty"}</Typography>
                 </Grid>
             </Grid>
         <CardMedia

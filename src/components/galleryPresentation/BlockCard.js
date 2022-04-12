@@ -48,7 +48,7 @@ function BlockCard( { block } ) {
     }
   return (
     <Box sx={{width: "100%"}}>
-            <BlockRender />
+            <BlockRender key={block.id}/>
     </Box>
   )
 }

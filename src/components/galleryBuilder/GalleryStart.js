@@ -33,7 +33,7 @@ function GalleryStart( { userError, setUserError  } ) {
         }
       }
 
-      console.log(featuredImage)
+      // console.log(featuredImage)
   // create new record in db 
 
   const handleSubmit = e => {

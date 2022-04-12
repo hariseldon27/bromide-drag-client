@@ -22,18 +22,11 @@ function GalleryShow( { open, setOpen, galleryToShow, blocksToShow } ) {
         setOpen(!open);
     };
     
-    // console.log()
-    // useEffect(() => {
-    //     setBlocks(blocksToShow)
-    // }, [])
-
-    // console.log(blocks)
     //this is the holder for the actual gallery show elements
     // elements will be:
     // 1) hero block - featured image, title, author
     // 2) blocks (we need 3 templates?  or maybe just styled by props)
     // 3) coda (is this just a secret block type that only we can select?)
-    // console.log(galleryToShow[0].title)
 
 const galleryBackdrop = {
     zIndex: (theme) => theme.zIndex.drawer + 1,

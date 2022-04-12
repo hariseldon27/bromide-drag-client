@@ -2,6 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 
 
 function TextBlock( { block } ) {
@@ -22,12 +23,20 @@ function TextBlock( { block } ) {
         width } = block
 
     const textItemStyle = {
-        background: "#000",
         padding: "15px",
-        color: "white"
+        backgroundColor: "rgba(200,200,200,.7)"
     }
     const textTextStyle = {
         
+    }
+
+    let randomColor = Math.floor(Math.random()*16777215).toString(16)
+    // console.log(randomColor)
+    const imageTextBlockStyle = {
+        height: "70vh",
+        textAlign: "center",
+        position: "relative",
+        backgroundColor: `#${randomColor}`,
     }
   return (
     <Grid
@@ -35,9 +44,12 @@ function TextBlock( { block } ) {
     direction="row"
     justifyContent="center"
     alignItems="center"
+    style={imageTextBlockStyle}
     >
-        <Grid style={textItemStyle} item xs={6}>
-            <Typography variant="body1" style={textTextStyle}>{text}</Typography>
+        <Grid  item xs={6}>
+            <Paper elevation={4}>
+                <Typography variant="overline" style={textItemStyle}>{text}</Typography>
+            </Paper>
         </Grid>
     </Grid>
     

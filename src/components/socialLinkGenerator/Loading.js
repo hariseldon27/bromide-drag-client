@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 function Loading() {
   return (
-    <Typography variant="body1" class="loading">Loading</Typography>
+    <Typography variant="body1" className="loading">Loading</Typography>
   )
 }
 

@@ -40,11 +40,12 @@ function GalleryStart( { userError, setUserError  } ) {
     e.preventDefault();
     console.log("clicked submit new gal to db")
     const formData = new FormData()
-    formData.append("featured_image", featuredImage)
+    if (featuredImage) formData.append("featured_image", featuredImage)
     formData.append("title", newGalleryEstablish.title)
     formData.append("description", newGalleryEstablish.description)
     formData.append("published", false)
     // featuredImage ? formData.append("featured_image", featuredImage) : null
+    // console.log("token", currentUser.token)
     fetch(`http://localhost:3000/new-gallery/`, {
       method: 'POST',
       headers: {
@@ -79,7 +80,7 @@ function GalleryStart( { userError, setUserError  } ) {
       // if there is an error then send the error info to a handler
       .catch((error) => {
         console.log(error)
-        // renderUserError(error)
+        renderUserError(error)
       });
     }
     //this sets our user error - currently inactive - then logs an error

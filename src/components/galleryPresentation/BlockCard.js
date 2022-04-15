@@ -34,20 +34,20 @@ function BlockCard( { block } ) {
     function BlockRender() {
             switch (block_type) {
               case "image":
-                return <ImageBlock block={block}/>
+                return <ImageBlock key={block.id} block={block}/>
                 break;
               case "text":
-                return <TextBlock block={block}/>
+                return <TextBlock key={block.id} block={block}/>
                 break;
               case "imageText":
-                return <ImageTextBlock block={block} />
+                return <ImageTextBlock key={block.id} block={block} />
                 break;
               default: 
                 return "thanks"
             }
     }
   return (
-    <Box sx={{width: "100%"}}>
+    <Box key={block.id} sx={{width: "100%"}}>
             <BlockRender key={block.id}/>
     </Box>
   )

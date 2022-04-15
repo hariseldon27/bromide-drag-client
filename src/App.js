@@ -13,6 +13,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  useMatch
 } from "react-router-dom";
 import UserProfile from './components/userProfile/UserProfile';
 import { setCurrentUser } from "./reducers/userSlice"
@@ -23,7 +24,9 @@ import GalleryPresentation from './components/galleryPresentation/GalleryPresent
 import { showSpinner } from './reducers/spinnerSlice'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-
+// import GalleryShow from './components/galleryPresentation/GalleryShow';
+import ShareViewer from './components/ShareViewer';
+import NotFound from './components/NotFound';
 
 function App( ) {
   const dispatch = useDispatch()
@@ -128,7 +131,8 @@ const wrapperStyle = {
 const appPaper = {
   padding: "2em"
 }
-
+// const match = useMatch()
+// console.log(match)
   return (
     <div id="app">
       <Container style={wrapperStyle} id="app-wrapper">
@@ -140,6 +144,12 @@ const appPaper = {
               <Header/>
               <Paper style={appPaper}>
                 <Routes>
+                  <Route  path="/" element={<HomePage/>}/>
+                </Routes>
+                <Routes>
+                  <Route path="/share/:id" element={<ShareViewer />}/>
+                </Routes>
+                <Routes>
                   <Route path="/profile" element={<UserProfile/>} />
                 </Routes>
                 <Routes>
@@ -148,9 +158,9 @@ const appPaper = {
                 <Routes>
                   <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
                 </Routes>
-                <Routes>
-                  <Route  path="/" element={<HomePage/>}/>
-                </Routes>
+                {/* <Routes>
+                  <Route path="*" element={<NotFound />} />
+                </Routes> */}
 
                 <Snackbar
                 open={showError}

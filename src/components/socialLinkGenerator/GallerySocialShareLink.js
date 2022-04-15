@@ -16,7 +16,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   const [isShareable, setIsShareable] = useState(false)
   
   useEffect(() => {
-    setNewShareLink(share_url || `http://localhost:3000/share/${makeRandomStr()}`)
+    setNewShareLink(share_url || `http://localhost:3006/share/${makeRandomStr()}`)
     setIsShareable((isShareable) => share_url ? true : false)
   },[])
 console.log("newShareLink global", newShareLink)
@@ -30,7 +30,7 @@ console.log("newShareLink global", newShareLink)
     console.log("click")
     setShowLoading(true)
     // const linkString = randoLink
-    // setTimeout(() => {setShowLoading(false)}, 2000)
+    setTimeout(() => {setShowLoading(false)}, 2000)
 
     updateGallery(gallery_id)
   }
@@ -58,7 +58,7 @@ console.log("newShareLink global", newShareLink)
         .then(r => r.json())
         .then(d => {
           setIsShareable(true)
-          setShowLoading(false)
+          setTimeout(() => {setShowLoading(false)}, 1500)
           // setNewShareLink(`http://localhost:3000/share/${d.share_url}`)
 
           console.log("gallery data back", d)
@@ -68,13 +68,17 @@ console.log("newShareLink global", newShareLink)
 
   function ShareableReturn(){
     return (
-      <><Typography variant="body1">{newShareLink}</Typography> <FileCopyIcon/></>
+      <><Typography variant="body1">{newShareLink}</Typography> </>
     )
   }
   function GetLinkReturn(){
     return (
       <><Button onClick={handleGenerateClick}>Get Sharable Link</Button></>
     )
+  }
+
+  function LinkOrGenerateButton(){
+    return isShareable ? <ShareableReturn /> : <GetLinkReturn />
   }
 
   // pasting the genreate code in here because I'm too lazy to crete a custom constructor hook
@@ -101,9 +105,9 @@ console.log("newShareLink global", newShareLink)
   // after click on generate button set state to "generating"
   // third state is "newly_sharable" ?? 
   return (
-    <Box>
-      <ShareIcon/> {showLoading ? <Loading/> : null }
-      {isShareable ? <ShareableReturn /> : <GetLinkReturn />}
+    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }} >
+      <ShareIcon/> {showLoading ? <Loading/> : <LinkOrGenerateButton /> }
+      
 
     </Box>
   )

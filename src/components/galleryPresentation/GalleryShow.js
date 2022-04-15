@@ -21,7 +21,6 @@ function GalleryShow( { open, setOpen, galleryToShow, blocksToShow } ) {
     const handleToggle = () => {
         setOpen(!open);
     };
-    
     //this is the holder for the actual gallery show elements
     // elements will be:
     // 1) hero block - featured image, title, author

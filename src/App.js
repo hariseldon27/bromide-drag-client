@@ -145,23 +145,12 @@ const appPaper = {
               <Paper style={appPaper}>
                 <Routes>
                   <Route  path="/" element={<HomePage/>}/>
-                </Routes>
-                <Routes>
                   <Route path="/share/:id" element={<ShareViewer />}/>
-                </Routes>
-                <Routes>
                   <Route path="/profile" element={<UserProfile/>} />
-                </Routes>
-                <Routes>
                   <Route path="/gallery-builder" element={<GalleryBuilder/>} />
-                </Routes>
-                <Routes>
                   <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
-                </Routes>
-                {/* <Routes>
                   <Route path="*" element={<NotFound />} />
-                </Routes> */}
-
+                </Routes>
                 <Snackbar
                 open={showError}
                 autoHideDuration={2000}

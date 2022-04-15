@@ -9,10 +9,14 @@ import FeaturedImageUpload from './FeaturedImageUpload';
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 
+import { showSpinner } from '../../reducers/spinnerSlice'
+
 function GalleryStart( { userError, setUserError  } ) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const gallery = useSelector(state => state.gallery)
+    const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
+
 // console.log("state gallery", gallery)
     const [newGalleryEstablish, setNewGalleryEstablish] = useState({
         title: "new gallery", 
@@ -38,6 +42,7 @@ function GalleryStart( { userError, setUserError  } ) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    dispatch(showSpinner());
     console.log("clicked submit new gal to db")
     const formData = new FormData()
     if (featuredImage) formData.append("featured_image", featuredImage)
@@ -75,7 +80,8 @@ function GalleryStart( { userError, setUserError  } ) {
           published: false
         }))
         dispatch(setStep("fill"))
-        
+        dispatch(showSpinner());
+
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {

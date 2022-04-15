@@ -6,6 +6,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import Typography from '@mui/material/Typography';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import Chance from 'chance'
+import Collapse from '@mui/material/Collapse';
+import Grid from '@mui/material/Grid';
+
 
 import RandomLinkStringGenerator from './RandomLinkStringGenerator'
  
@@ -14,30 +17,27 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   const [showLoading, setShowLoading] = useState(false)
   const [newShareLink, setNewShareLink] = useState("")
   const [isShareable, setIsShareable] = useState(false)
+  const [showShare, setShowShare] = useState(false)
   
   useEffect(() => {
     setNewShareLink(share_url || `http://localhost:3006/share/${makeRandomStr()}`)
     setIsShareable((isShareable) => share_url ? true : false)
   },[])
-console.log("newShareLink global", newShareLink)
  
+  function handleShowShare(){
+    setShowShare((showShare) => !showShare)
+  }
   function handleGenerateClick(e){
     // click on button and it creates a string with random string generator
     // write the string to the DB as the "share_url" with URL prefixed already
     // when OK comes back from DB, use confirmed received URL as that displayed 
     // have the card show either "Generate Link" or the link to copy if no link
     // exists in the DB
-    console.log("click")
     setShowLoading(true)
-    // const linkString = randoLink
     setTimeout(() => {setShowLoading(false)}, 2000)
 
     updateGallery(gallery_id)
   }
-  // function handleStringReturn(string){
-  //   console.log(string)
-  //     setNewShareLink(`http://localhost:3000/share/${string}`)
-  // }
 
   const currentToken = localStorage.getItem("token")
 
@@ -59,16 +59,13 @@ console.log("newShareLink global", newShareLink)
         .then(d => {
           setIsShareable(true)
           setTimeout(() => {setShowLoading(false)}, 1500)
-          // setNewShareLink(`http://localhost:3000/share/${d.share_url}`)
-
-          console.log("gallery data back", d)
         })
   }
 
 
   function ShareableReturn(){
     return (
-      <><Typography variant="body1">{newShareLink}</Typography> </>
+      <><Typography variant="overline">{newShareLink}</Typography> </>
     )
   }
   function GetLinkReturn(){
@@ -81,6 +78,12 @@ console.log("newShareLink global", newShareLink)
     return isShareable ? <ShareableReturn /> : <GetLinkReturn />
   }
 
+  function LoadingOrLinkGen(){
+    return <Box sx={{ display: 'flex', alignItems: 'center', pr: 1, }}>{showLoading ? <Loading/> : <LinkOrGenerateButton /> } </Box>
+
+  }
+
+
   // pasting the genreate code in here because I'm too lazy to crete a custom constructor hook
   const generators = [chance.syllable(),chance.animal(),chance.city(),chance.coin(),chance.word(),chance.cc_type(),chance.weekday(),chance.company(),chance.suffix()]
     function makeRandomStr(){
@@ -92,8 +95,12 @@ console.log("newShareLink global", newShareLink)
         }
         // smash strings together, remove characters and spaces, limit to 20, and return it
         const string = randomStrArr.join("").replace(/\s/g, '').replace(/[^a-z0-9]/gi, '').substring(0, 20);
-        // stringReturn(string)
         return string
+    }
+
+    const shareIconStyle = {
+      color: 'pink',
+      
     }
 
   // three states to switch beteen: 
@@ -105,11 +112,22 @@ console.log("newShareLink global", newShareLink)
   // after click on generate button set state to "generating"
   // third state is "newly_sharable" ?? 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }} >
-      <ShareIcon/> {showLoading ? <Loading/> : <LinkOrGenerateButton /> }
-      
-
-    </Box>
+  <Box sx={{flexGrow: 1}}>
+        <Grid container
+        gap={2}
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="center">
+          <Grid item >
+            <Collapse in={showShare} >
+              <LoadingOrLinkGen /> 
+            </Collapse>
+          </Grid>
+          <Grid item >
+            <Button onClick={handleShowShare}><ShareIcon className="shareIcon" style={shareIconStyle} fontSize='small'/></Button>
+          </Grid>
+    </Grid>
+  </Box>
   )
 }
 

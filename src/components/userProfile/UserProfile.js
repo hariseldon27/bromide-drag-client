@@ -24,24 +24,27 @@ function UserProfile() {
         style={mainContainerStyle}
         direction="row"
         justifyContent="center"
-        alignItems="center"
         >
-          <Grid item
-          xs={8}
-          >
+          <Grid item xs={12} sm={8}>
             <Paper>
               <GalleryPresentation />
             </Paper>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={8}>
             <Grid container 
+            direction="row"
+            justifyContent="center"
             gap={2}>
-              <Paper>
-                <UserDetails/>
-                </Paper>
+              <Grid item >
                 <Paper>
-                <UserAvatarUpload/>
-              </Paper>
+                  <UserDetails/>
+                </Paper>
+              </Grid>
+              <Grid item >
+                <Paper>
+                  <UserAvatarUpload/>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
 

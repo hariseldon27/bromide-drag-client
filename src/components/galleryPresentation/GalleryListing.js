@@ -10,7 +10,8 @@ function GalleryListing( { galleryList, onGalleryPlay } ) {
   const now = new Date().toUTCString()
   const publishedGalleries = galleryList.filter(gallery => gallery.published_on < now)
   const cards = publishedGalleries.map(gallery => <GalleryListCard key={gallery.id} gallery={gallery} onGalleryPlay={onGalleryPlay}/>)
-  const title = publishedGalleries.length > 0 ? "Galleries" : "You don't have any galleries yet, click the plus above and make one!"
+  const galleryCount = publishedGalleries.length
+  const title = publishedGalleries.length > 0 ? `Your Galleries, total: ${galleryCount}` : "You don't have any galleries yet, click the plus above and make one!"
 // console.log(galleryList)
   return (
     <div>

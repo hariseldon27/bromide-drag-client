@@ -93,34 +93,40 @@ const Input = styled('input')({
     textAlign: "center"
   });
   return (
-    <Box>
-      <Stack>
-        <Typography variant="overline" component="h4">Add profile photo</Typography>
-        <form onSubmit={handleSubmit} id='upload'>
-          <Button
-            variant="outlined"
-            component="label"
-          >
-          <FileNameDisplay/>
-          <input
-            type="file"
-            hidden
-            accept="image/*" multiple={false} onChange={handleImageChange} 
-          />
-        </Button>
-          <Button
-            variant="outlined"
-            component="label"
-          >
-          Uploadify it
-          <input
-            type="submit"
-            value="Submit"
-            hidden
-          />
-        </Button>
-        </form>
-      </Stack>
+    <Box sx={{padding: '.7em'}}>
+      <Grid container
+        direction="column"
+        justifyContent="center">
+        <Grid item>
+          <Typography variant="overline" component="h4">Add profile photo</Typography>
+        </Grid>
+        <Grid item>
+          <form onSubmit={handleSubmit} id='upload'>
+            <Button
+              variant="outlined"
+              component="label"
+            >
+            <FileNameDisplay/>
+            <input
+              type="file"
+              hidden
+              accept="image/*" multiple={false} onChange={handleImageChange} 
+            />
+          </Button>
+            <Button
+              variant="outlined"
+              component="label"
+            >
+            Uploadify it
+            <input
+              type="submit"
+              value="Submit"
+              hidden
+            />
+          </Button>
+          </form>
+        </Grid>
+      </Grid>
     </Box>
   )
 }

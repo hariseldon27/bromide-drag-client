@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux"
 
 function UserDetails() {
     const currentUser = useSelector(state => state.user)
-
     const userDetailsStyle = {
         // border: "black dotted 1px",
         padding: ".7em",
@@ -31,7 +30,11 @@ function UserDetails() {
 
     }
     const lookOverlayLook = {
-      backgroundColor: "rgba(168,229,255,.3)",      
+      backgroundColor: "rgba(254,192,202,.3)",      
+    }
+
+    const userDeetzHolderStyle ={
+      padding: '1em'
     }
 
   return (
@@ -43,16 +46,17 @@ function UserDetails() {
               direction="column"
               justifyContent="center"
               alignItems="center"
+              style={userDeetzHolderStyle}
               >
-                <Grid item>
+                {/* <Grid item>
                   <Typography variant="h4" component="p" align="center">User Details</Typography>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Avatar sx={{height: 125, width: 125}} alt={currentUser.email} src={currentUser.avatar} />
                 </Grid>
                 <Grid item>
                   <Divider textAlign="right"><span style={{color: "red"}}>{currentUser.email}</span></Divider>
-                  <Typography component="p" align="right"><b>Galleries:</b> </Typography>
+                  {/* <Typography component="p" align="right"><b>Galleries:</b> </Typography> */}
                   <Button disabled variant="contained">Reset Password</Button>
                   <Button disabled variant="contained">Delete Account</Button>
                 </Grid>

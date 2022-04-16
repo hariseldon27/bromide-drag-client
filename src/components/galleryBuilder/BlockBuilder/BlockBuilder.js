@@ -200,9 +200,11 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
             </Grid >
         </Collapse>
         <Grid item xs={12}>
+          
           <Link 
           onClick={handleCompactModeToggle} 
-          underline="hover">{compactMode ? "pro opts..." : "coming soon..."}</Link>  
+          underline="hover"
+          color="secondary">{compactMode ? "pro opts..." : "coming soon..."}</Link>  
         </Grid>
 
 

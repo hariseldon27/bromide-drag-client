@@ -89,7 +89,7 @@ function handleResetList(){
  const BlockBuilderInset = () => {
    return (
         <Box >
-          <Button onClick={handleCloseBlockBuilder} ><CancelPresentationOutlinedIcon /></Button>
+          <Button onClick={handleCloseBlockBuilder} color="lightblue" ><CancelPresentationOutlinedIcon /></Button>
           <BlockBuilder handleCloseBlockBuilder={handleCloseBlockBuilder} handleResetList={handleResetList} />
         </Box>
  )}
@@ -111,8 +111,7 @@ function refreshTimer(){
     justifyContent="center"
     alignItems="center"
   >
-      <Button id="refresh" onClick={handleRefresh}><CachedIcon className={rotaterStyle} color="lightblue" /> <CollectionsIcon color="pink" />
-</Button>
+      <Button id="refresh" onClick={handleRefresh}><CachedIcon className={rotaterStyle} color="lightblue" /> <CollectionsIcon color="pink" /></Button>
         {blockListCards}
         <Button color="pink" onClick={handleAddNewBlock}><AddPhotoAlternateIcon /></Button>
         <Collapse in={blockBuilderShowing} > <BlockBuilderInset /> </Collapse>

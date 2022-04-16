@@ -84,9 +84,12 @@ const appMode = createTheme({
           main: "#666"
         },
         secondary: {
-          main: '#6868ac',
+          main: '#B3D7FC',
         },
         lightblue: {
+          main: '#B3D7FC',
+        },
+        grey: {
           main: '#aed8e6',
         },
         pink: {

@@ -39,7 +39,7 @@ function App( ) {
 
     const currentToken = localStorage.getItem("token")
     
-    console.log("local storage token: ", currentToken)
+    // console.log("local storage token: ", currentToken)
 
     fetch('http://127.0.0.1:3000/member-data', {
             method: "GET",
@@ -64,14 +64,14 @@ function App( ) {
           dispatch(showSpinner());
         })
         .catch((error) => {
-          console.log(error)
+          // console.log(error)
           renderUserError(error)
           dispatch(showSpinner())
         })
   }, [])
 
 function renderUserError(error) {
-  console.log("error render", error)
+  // console.log("error render", error)
   const newError = {
     text: error.statusText,
     occurred: true, 

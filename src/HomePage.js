@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import { flexbox } from '@mui/system';
 import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
 import HomeFeatures from './components/homepage/HomeFeatures';
 
 
@@ -24,10 +25,32 @@ function toggleSignUpClick(){
     setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)
   }
 
-  function LoginText(){
-    return currentUser.loggedIn ? "You're already logged in! - log out first" : "You need to login" 
+  const VarTextAlreadyLoggedIn = () => {
+     return <Box>"You're already logged in! - log out first"</Box>
+  }
+  const VarTextLoginPlz = () => {
+    return "You need to login"
+  }
+  
+  const FadingLoginPlzText = () => {
+    return (
+    <Fade in={!isSignUpShowing}>
+      <Box>
+        <VarTextLoginPlz />
+      </Box>
+    </Fade>
+    )
   }
 
+  const FadingAlreadyLoggedInText = () => {
+    return (
+    <Fade in={isSignUpShowing}>
+      <Box>
+        <VarTextAlreadyLoggedIn />
+      </Box>
+  </Fade>
+  )
+  }
 const homeComponents = {
   padding: "1em",
   // backgroundColor: "pink"
@@ -51,10 +74,11 @@ const homeElevation = 0
         direction="row"
         justifyContent="center">
           <Grid item xs={4}>
-            <Paper style={homeComponents} elevation={homeElevation}>
-              {isSignUpShowing ? null : <LoginText /> }
+              <Paper style={homeComponents} elevation={homeElevation}>
+
+              {isSignUpShowing ? <FadingAlreadyLoggedInText /> : <FadingLoginPlzText />}
               {isSignUpShowing ? <SignUp/> : <Login/> }
-              <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
+              <Button onClick={toggleSignUpClick} id="sign_up_toggle" color="pink"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
             </Paper>
           </Grid>
           

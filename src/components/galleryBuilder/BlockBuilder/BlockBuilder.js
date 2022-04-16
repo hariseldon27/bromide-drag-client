@@ -137,7 +137,6 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
                 onChange={handleFormChange}
                 variant="standard"
               />
-
         </Grid> 
         <Grid style={compactComponent} item xs={3}>
               <TextField id="new-block-bgcolor" 

@@ -7,8 +7,9 @@ import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import { useDispatch, useSelector } from "react-redux"
-import { setStep } from "../reducers/gallerySlice"
+import { setStep, setGalleryInEdit } from "../reducers/gallerySlice"
 
 function NavButtons() {
   const dispatch = useDispatch()
@@ -37,8 +38,11 @@ function NavButtons() {
     textDecoration: "none",
     color: "pink",
   }
-
+  const newGal = {
+    
+  }
   function handleNewGalClick(){
+    dispatch(setGalleryInEdit(newGal))
     dispatch(setStep("start"))
   }
 
@@ -78,7 +82,7 @@ function NavButtons() {
         isActive ? activeStyle : inActiveStyle
         } >
         <Button onClick={handleNewGalClick} disabled={!currentUser.loggedIn} variant="outline">
-          <AddPhotoAlternateIcon />
+          <AddPhotoAlternateOutlinedIcon />
         </Button>
       </NavLink>
       <NavLink to="/gallery-presentation" 

@@ -21,7 +21,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
   
     return (
     
-    <Card sx={{ display: 'flex', border: "1px solid red", padding: "10px", margin: "0 15px 0 15px" }}>
+    <Card sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
       {/* main grid start */}
       <Grid 
       container

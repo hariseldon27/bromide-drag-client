@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
@@ -48,11 +49,21 @@ function GalleryFinish() {
   }
 
   return (
-    <Box sx={{margin: "0 auto"}}>
+    <Box>
         <Paper style={{margin: "0 auto", textAlign: "center"}} >
-            <TextField helperText="last words?" label="add a coda" onChange={handleCodaChange} variant="standard" name="coda"/>
-            <Button onClick={handleFinishClick}>publish...<SaveOutlinedIcon/></Button>
-            
+          <Grid container
+                gap={2}
+                spacing={1}
+                direction="column"
+                justifyContent="flex-start"
+                alignItems="center">
+            <Grid item>
+              <TextField helperText="last words?" label="add a coda" onChange={handleCodaChange} variant="standard" name="coda"/>
+            </Grid>
+            <Grid item>
+              <Button onClick={handleFinishClick}>publish...<SaveOutlinedIcon/></Button>
+            </Grid>
+          </Grid>
         </Paper>
     </Box>
   )

@@ -87,8 +87,6 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
         console.log("block came back as ", data); 
         dispatch(setStep("manage"))
         dispatch(showSpinner())
-        
-
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {

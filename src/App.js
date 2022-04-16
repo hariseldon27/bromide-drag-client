@@ -86,6 +86,9 @@ const appMode = createTheme({
         secondary: {
           main: '#6868ac',
         },
+        lightblue: {
+          main: '#aed8e6',
+        },
         pink: {
           main : '#fec0ca'
         }

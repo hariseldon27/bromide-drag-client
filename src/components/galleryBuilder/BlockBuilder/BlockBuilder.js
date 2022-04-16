@@ -15,7 +15,7 @@ import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 
-function BlockBuilder( { userError, setUserError, setRefresh } ) {
+function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBuilder, handleResetList } ) {
   const [blockImage, setBlockImage] = useState("")
   const [compactMode, setCompactMode] = useState(true)
   const [newBlock, setNewBlock] = useState ({
@@ -87,6 +87,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
         console.log("block came back as ", data); 
         dispatch(setStep("manage"))
         dispatch(showSpinner())
+        resetForm()
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {
@@ -99,7 +100,11 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
       // setUserError(true)
       console.log('Oops... ', error.statusText)
     }
-
+    function resetForm(){
+      setBlockImage("")
+      handleCloseBlockBuilder()
+      handleResetList()
+    }
     function handleCompactModeToggle(e){
       e.preventDefault()
       setCompactMode((compactMode) => compactMode = !compactMode)

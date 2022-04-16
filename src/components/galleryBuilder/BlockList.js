@@ -9,8 +9,13 @@ import Typography from '@mui/material/Typography';
 import BlockBuilder from './BlockBuilder/BlockBuilder';
 import CancelPresentationOutlinedIcon from '@mui/icons-material/CancelPresentationOutlined';
 import { useDispatch, useSelector } from "react-redux"
+import CachedIcon from '@mui/icons-material/Cached';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
-
+import Collapse from '@mui/material/Collapse';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import RefreshRotater from './refreshRotater/RefreshRotater';
+import './refreshRotater/refresh_rotate.css'
 
 
 //fake dataset for dev
@@ -19,6 +24,7 @@ import dummyDataBlocks from './dummyDataBlocks.json'
 function BlockList( {  } ) {
   const [blockListInEdit, setBlockListInEdit] = useState([])
   const [blockBuilderShowing, setBlockBuilderShowing] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const gallery = useSelector(state => state.gallery)
@@ -44,6 +50,7 @@ function BlockList( {  } ) {
   }, [])
 
   function handleRefresh(){
+    setRefreshing(true)
     fetch(`http://localhost:3000/gallery/${gallery.id}/blocks`,{
       method: 'GET',
       headers: {
@@ -55,6 +62,7 @@ function BlockList( {  } ) {
       console.log(`fetch r:`, d)
       // debugger
       setBlockListInEdit(d)
+      refreshTimer()
     }) 
   }
 
@@ -66,25 +74,35 @@ function BlockList( {  } ) {
    console.log("closebb")
    setBlockBuilderShowing(false)
  }
+function handleResetList(){
+  handleRefresh()
+
+}
+
  const blockListStyle = {
   padding: "15px",
   width: "100%",
   minWidth: "250px"
  }
 
-//  Need to keep "current gallery in edit" in state?  or drill it down from top?
- function BlockBuilderInset() {
-      return (
-        <Box>
+//  Put our cute little bb in a basket
+ const BlockBuilderInset = () => {
+   return (
+        <Box >
           <Button onClick={handleCloseBlockBuilder} ><CancelPresentationOutlinedIcon /></Button>
-          <BlockBuilder />
+          <BlockBuilder handleCloseBlockBuilder={handleCloseBlockBuilder} handleResetList={handleResetList} />
         </Box>
-        )
-  }
+ )}
 
- 
+function refreshTimer(){
+  setTimeout(() => {setRefreshing(false)}, 1000)
+}
+ const rotaterStyle = refreshing ? "rotateMe" : ""
 
- const blockListCards = gallery.id === 1 ? null : blockListInEdit.map(block => <BlockListCard block={block} /> )
+
+
+
+ const blockListCards = gallery.id === 0 ? null : blockListInEdit.map(block => <BlockListCard block={block} /> )
   return (
     <Stack 
     spacing={2} 
@@ -93,12 +111,12 @@ function BlockList( {  } ) {
     justifyContent="center"
     alignItems="center"
   >
-      <Button id="refresh" onClick={handleRefresh}>refresh</Button>
-      <Typography variant="body1" component="h3">your gallery so far</Typography>
+      <Button id="refresh" onClick={handleRefresh}><CachedIcon className={rotaterStyle} color="lightblue" /> <CollectionsIcon color="pink" />
+</Button>
         {blockListCards}
-        <Button onClick={handleAddNewBlock}>Add Block</Button>
-        
-        {blockBuilderShowing ? <BlockBuilderInset /> : null }
+        <Button color="pink" onClick={handleAddNewBlock}><AddPhotoAlternateIcon /></Button>
+        <Collapse in={blockBuilderShowing} > <BlockBuilderInset /> </Collapse>
+        {/* {blockBuilderShowing ? <BlockBuilderInset /> : null } */}
     </Stack>
 
   )

@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 
 function BlockListCard( { block } ) {
     console.log(block)
+    // text col needs to be renamed or the block type needs to be renamed
     const {
         bg_color,
         block_id,
@@ -36,7 +37,7 @@ function BlockListCard( { block } ) {
     //create block card that can be either full or boxed - start full?
     // start with getting text and image, then settings
 
-    const blockValsArry = Object.values(block)
+    const notApplicableStyle = {color: block_type === "text" ? "black" : "grey"}
 
     function BlockRender() {
         //make a basic card rendering each field
@@ -53,7 +54,7 @@ function BlockListCard( { block } ) {
                     <Typography variant="body2"><strong>id:</strong> {id}</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                    <Typography variant="body2"><strong>Text:</strong> {text ? text : "empty"}</Typography>
+                    <Typography style={notApplicableStyle} variant="body2"><strong>Text:</strong> {block_type === "text" ? text : null}</Typography>
                 </Grid>
             </Grid>
         <CardMedia

@@ -17,7 +17,7 @@ function toggleSignUpClick(){
   }
 
   const VarTextAlreadyLoggedIn = () => {
-     return <Box>"You're already logged in! - log out first"</Box>
+     return "You're already logged in! - log out first"
   }
   const VarTextLoginPlz = () => {
     return "You need to login"
@@ -67,7 +67,7 @@ const homeElevation = 0
           <Grid item xs={4}>
               <Paper style={homeComponents} elevation={homeElevation}>
 
-              {isSignUpShowing ? <FadingAlreadyLoggedInText /> : <FadingLoginPlzText />}
+              {isSignUpShowing ? <FadingLoginPlzText /> : <FadingAlreadyLoggedInText /> }
               {isSignUpShowing ? <SignUp/> : <Login/> }
               <Button onClick={toggleSignUpClick} id="sign_up_toggle" color="pink"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
             </Paper>

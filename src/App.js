@@ -1,10 +1,7 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from "react-redux"
 import Header from './components/Header'

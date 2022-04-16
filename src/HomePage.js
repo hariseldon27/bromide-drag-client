@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { useSelector } from "react-redux"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
-import LogOut from './components/LogOut';
-import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
-import { flexbox } from '@mui/system';
 import Grid from '@mui/material/Grid';
 import Fade from '@mui/material/Fade';
-import HomeFeatures from './components/homepage/HomeFeatures';
 
 
 function HomePage() {
 const [isSignUpShowing, setIsSignUpShowing] = useState(true)
-const currentUser = useSelector(state => state.user)
 
 function toggleSignUpClick(){
     setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)

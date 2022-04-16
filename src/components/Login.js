@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -6,14 +6,13 @@ import { FormControl } from '@mui/material';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
 import { showSpinner } from "../reducers/spinnerSlice"
 import { setError } from '../reducers/errorSlice'
 
 function Login(e) {
     const dispatch = useDispatch()
-    const currentUser = useSelector(state => state.user)
     const navigate = useNavigate();
     const [formError, setFormError] = useState(false)
 
@@ -30,7 +29,7 @@ function Login(e) {
 
          // validations for a good time
         //use a regex 
-        const regex = new RegExp('[^0-9A-Za-z\@\.]')
+        const regex = new RegExp('[^0-9A-Za-z@.]')
         //make a new array to hold matches from the regex  
         const foundBaddy = value.match(regex)
         //if the array exists then set error to true, else false

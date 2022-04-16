@@ -1,12 +1,9 @@
 import React from 'react'
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
-import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from "../reducers/gallerySlice"

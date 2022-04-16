@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,7 +6,7 @@ import GalleryShow from './galleryPresentation/GalleryShow';
 import Loading from '../components/socialLinkGenerator/Loading'
 import Typography from '@mui/material/Typography';
 import { setError } from '../reducers/errorSlice'
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 
 
 

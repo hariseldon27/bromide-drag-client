@@ -14,7 +14,7 @@ import { setStep, setGalleryInEdit } from "../reducers/gallerySlice"
 function NavButtons() {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
-  console.log(currentUser.loggedIn)
+  // console.log(currentUser.loggedIn)
 
   let activeStyle = {
     textDecoration: "none",

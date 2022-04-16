@@ -9,19 +9,13 @@ import TextField from '@mui/material/TextField';
 import { useDispatch, useSelector } from "react-redux"
 import { setCurrentUser } from "../reducers/userSlice"
 import { showSpinner } from "../reducers/spinnerSlice"
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import { setError } from '../reducers/errorSlice'
 
 function Login(e) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const navigate = useNavigate();
-    const [error, setError] = useState("")
-    const [showError, setShowError] = useState(false)
 
-    const Alert = React.forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-      });
 
     const [loginFormData, setLoginFormData] = useState({
         email: "",
@@ -36,45 +30,6 @@ function Login(e) {
         ...loginFormData, 
         [name]: value})
     }
-
-    // console.log("curUser in state: ", currentUser)
-
-//   async function login() {
-//         dispatch(showSpinner());
-
-//         // format form data to send
-//         const userToLogIn = {
-//             user: {
-//                 email: loginFormData.email,
-//                 password: loginFormData.password
-//             }
-//         }
-//         const response = await fetch('http://localhost:3000/users/sign_in', {
-//             method: "POST",
-//             headers: {
-//             "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify(userToLogIn),
-//         })
-        
-//         const authUser = await response.json() 
-        
-//         console.log(authUser)
-//        //send the new user to state
-//         dispatch(setCurrentUser({
-//             email: loginFormData.email,
-//             token: authUser.token,
-//             loggedIn: true,
-//             id: authUser.id,
-//             avatar: authUser.avatar
-//         }))
-//         //set the token in local storage
-//         localStorage.setItem("token", authUser.token)
-//         resetForm()
-//         moveMe()
-//         dispatch(showSpinner());
-
-//     }  
 
     function login2(){
         dispatch(showSpinner())
@@ -112,7 +67,6 @@ function Login(e) {
         .catch((error) => {
             console.log(error)
             renderUserError(error)
-            setError(error)
             dispatch(showSpinner())
         })
     }
@@ -133,15 +87,15 @@ function Login(e) {
 
     function renderUserError(error) {
         console.log("error render", error)
-        setShowError(true)
+        const newError = {
+          text: error.statusText,
+          occurred: true, 
+          code: error.status
+        }
+        dispatch(setError(newError))
       }
 
-      const handleClose = (e, reason) => {
-        if (reason === 'clickaway') {
-          return;
-        }
-        setShowError(false);
-      } 
+
 
   return (
     <Box>
@@ -167,13 +121,6 @@ function Login(e) {
                 onClick={login2}>Log In</Button>
             </FormControl>
         </Stack>
-        <Snackbar
-                open={showError}
-                autoHideDuration={2000}
-                onClose={handleClose}
-                >
-                  <Alert severity="error">Oops {error.statusText}</Alert>
-        </Snackbar>
     </Box>
   )
 }

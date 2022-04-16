@@ -4,6 +4,7 @@ import themeToggleReducer from "./reducers/themeToggleSlice"
 import userReducer from "./reducers/userSlice"
 import spinnerReducer from "./reducers/spinnerSlice";
 import galleryReducer from "./reducers/gallerySlice";
+import errorReducer from "./reducers/errorSlice"
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         'themeToggle': themeToggleReducer,
         'user': userReducer,
         'spinner': spinnerReducer,
-        'gallery': galleryReducer
+        'gallery': galleryReducer,
+        'error': errorReducer
     }
 })
 

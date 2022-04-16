@@ -5,6 +5,10 @@ import Button from '@mui/material/Button';
 import GalleryShow from './galleryPresentation/GalleryShow';
 import Loading from '../components/socialLinkGenerator/Loading'
 import Typography from '@mui/material/Typography';
+import { setError } from '../reducers/errorSlice'
+import { useSelector, useDispatch } from "react-redux"
+
+
 
 
 function ShareViewer() {
@@ -12,9 +16,10 @@ function ShareViewer() {
     const [blocksToShow, setBlocksToShow] = useState([])
     const [galleryToShow, setGalleryToShow] = useState([])
     const [showLoading, setShowLoading] = useState(false)
+    const dispatch = useDispatch()
     
     const params = useParams()
-    console.log(params)
+    // console.log(params)
 
     function showGallery(){
         console.log(params.id)
@@ -45,9 +50,15 @@ function ShareViewer() {
               renderUserError(error)
             });
           }
-          //this sets our user error - currently inactive - then logs an error
-          function renderUserError(error){
-            console.log('Oops... ', error.statusText)
+          //this sets our user error
+          function renderUserError(error) {
+            console.log("error render", error)
+            const newError = {
+              text: error.statusText,
+              occurred: true, 
+              code: error.status
+            }
+            dispatch(setError(newError))
           }
           function comicalLoading() {
             setShowLoading(true)

@@ -15,6 +15,7 @@ function Login(e) {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.user)
     const navigate = useNavigate();
+    const [formError, setFormError] = useState(false)
 
 
     const [loginFormData, setLoginFormData] = useState({
@@ -26,6 +27,15 @@ function Login(e) {
         //set form data
         const name = e.target.name
         let value = e.target.value
+
+         // validations for a good time
+        //use a regex 
+        const regex = new RegExp('[^0-9A-Za-z\@\.]')
+        //make a new array to hold matches from the regex  
+        const foundBaddy = value.match(regex)
+        //if the array exists then set error to true, else false
+        foundBaddy ? setFormError(true) : setFormError(false)
+
         setLoginFormData({
         ...loginFormData, 
         [name]: value})
@@ -106,6 +116,7 @@ function Login(e) {
                 value={loginFormData.email} 
                 name="email"
                 onChange={handleLoginFormChange}
+                error={formError}
                 />
                 <TextField id="login-password" 
                 type="password" 
@@ -118,6 +129,7 @@ function Login(e) {
                 <Button id="login-submit" 
                 type="submit" 
                 name="submit"
+                disabled={formError}
                 onClick={login2}>Log In</Button>
         </Stack>
             </FormControl>

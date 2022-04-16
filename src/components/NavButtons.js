@@ -85,7 +85,7 @@ function NavButtons() {
           <AddPhotoAlternateOutlinedIcon />
         </Button>
       </NavLink>
-      <NavLink to="/gallery-presentation" 
+      {/* <NavLink to="/gallery-presentation" 
         className="nav"
         style={({ isActive }) =>
         isActive ? activeStyle : inActiveStyle
@@ -93,7 +93,7 @@ function NavButtons() {
         <Button disabled={!currentUser.loggedIn} variant="outline">
           <PlayCircleFilledWhiteOutlinedIcon />
         </Button>
-      </NavLink>
+      </NavLink> */}
       </Stack>
     </div>
   )

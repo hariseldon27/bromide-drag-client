@@ -65,7 +65,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
 
   function ShareableReturn(){
     return (
-      <><Typography variant="overline">{newShareLink}</Typography> </>
+      <><Typography variant="caption">{newShareLink}</Typography> </>
     )
   }
   function GetLinkReturn(){

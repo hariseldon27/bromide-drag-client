@@ -32,8 +32,11 @@ const bromideMainTheme = {
               info: {
                 main: '#85a0ac',
               },
+              grey: {
+                main: '#777',
+              },
               success: {
-                main: '#9be0a3',
+                main: '#fff',
                   }
               }
             } 

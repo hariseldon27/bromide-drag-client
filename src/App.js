@@ -109,6 +109,12 @@ function renderUserError(error) {
   const appMode = createTheme({
       palette: {
         mode: isDarkMode ? 'light' : 'dark',
+        grey: {
+          main: "#666"
+        },
+        secondary: {
+          main: '#6868ac',
+        },
       },
     });
     
@@ -131,8 +137,7 @@ const wrapperStyle = {
 const appPaper = {
   padding: "2em"
 }
-// const match = useMatch()
-// console.log(match)
+
   return (
     <div id="app">
       <Container style={wrapperStyle} id="app-wrapper">

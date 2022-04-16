@@ -5,6 +5,8 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import FeaturedImageUpload from './FeaturedImageUpload';
+import Typography from '@mui/material/Typography';
+
 
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
@@ -89,23 +91,29 @@ function GalleryStart( { userError, setUserError  } ) {
     } 
 
   return (
-    <Box sx={{flexGrow: 1}}>
+    <Box sx={{flexGrow: 1, padding: '2vh'}}>
         <Grid container
         gap={2}
-        direction="row"
+        direction="column"
         justifyContent="space-around"
         alignItems="stretch">
-        <Grid item xs={4}>
+          <Grid item xs={8}>
+            <Typography variant="overline">new gallery</Typography>
+          </Grid>
+        <Grid item xs={8}>
                 <TextField id="gallery-start-title" 
                 value={newGalleryEstablish.title} 
                 name="title"
                 onChange={handleGalleryStartChange}
                 variant="outlined"
                 label="gallery title"
+                color="secondary"
+                fullWidth
                 />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={8}>
                 <TextField id="gallery-start-title" 
+                fullWidth
                 value={newGalleryEstablish.description} 
                 name="description"
                 onChange={handleGalleryStartChange}
@@ -113,16 +121,17 @@ function GalleryStart( { userError, setUserError  } ) {
                 label="give it a description"
                 multiline
                 maxRows={4}
+                color="secondary"
                 />
           </Grid>
         </Grid> 
-        <Grid item xs={4}>
+        <Grid item xs={12} >
                 <FeaturedImageUpload onGalleryStartChange={handleGalleryStartChange} />
         </Grid>
         <Grid item xs={4}>
                 <Button
                 variant="outlined" 
-                color="error"
+                color="secondary"
                 component="label"
                 onClick={handleSubmit}>
                     Start it

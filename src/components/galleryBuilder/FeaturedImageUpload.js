@@ -84,12 +84,20 @@ function FileNameDisplay() {
         return "Choose File"
     }
 }
+const featuredImageBoxStyle = {
+  // backgroundColor: "pink",
+  border: "1px #cbcbcb solid",
+  padding: ".5em .7em .7em .7em",
+  borderRadius: "3px",
+  margin: "5px 0 5px 0"
+}
   return (
-    <Box>
+    <Box style={featuredImageBoxStyle}>
         <Typography variant="overline">featured image</Typography>
         <form onSubmit={handleSubmit} id='upload'>
             <Button
             variant="outlined"
+            color="grey"
             component="label">
                 <FileNameDisplay/>
                 <input

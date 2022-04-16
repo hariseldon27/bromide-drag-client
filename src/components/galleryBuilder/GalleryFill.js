@@ -50,8 +50,6 @@ function GalleryFill( ) {
 
     </Box>
 
-      <Button onClick={ handleBack }>back</Button>
-      <Button onClick={ handleManage }>manage</Button>
     </Box>
   )
 }

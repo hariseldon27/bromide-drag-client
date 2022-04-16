@@ -50,9 +50,7 @@ function StepsIndicator(){
   )
 }
 function Crummy(){
-  
-  return (
-    
+  return (  
     <Stack 
     direction="column"
     justifyContent="flex-end"
@@ -62,7 +60,7 @@ function Crummy(){
     padding='1em'
     >
       {gallery.featured_image_url ? <Avatar alt="new gallery image" src={gallery.featured_image_url} /> : null}
-      <Typography variant="overline">gallery id: {gallery.id} title: {gallery.title}</Typography>
+      {gallery.id ? <Typography variant="overline">id: {gallery.id} {<br></br>} title: {gallery.title}</Typography> : null }
       <StepsIndicator />
     </Stack>
   );

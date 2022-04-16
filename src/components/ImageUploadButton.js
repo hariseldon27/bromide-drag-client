@@ -64,7 +64,8 @@ function PreviewBox(){
                 <Button
                 label="upload image"
                 variant="outlined"
-                component="label">
+                component="label"
+                color="secondary">
                     <FileNameDisplay/>
                     <input
                     type="file"

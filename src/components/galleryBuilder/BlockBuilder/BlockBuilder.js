@@ -53,6 +53,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
 
   const handleSubmit = e => {
     dispatch(showSpinner())
+    console.log('hello')
     e.preventDefault();
     console.log("clicked add block")
     const formData = new FormData()
@@ -198,7 +199,7 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
           <Grid item xs={1}>
-          <Button variant="contained" onClick={handleSubmit}>Add Block to Gallery</Button>
+          <Button variant="contained" color="secondary" onClick={handleSubmit}>Add Block to Gallery</Button>
 
           </Grid>
         </Grid>

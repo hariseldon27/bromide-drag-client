@@ -28,28 +28,17 @@ function GalleryFill( ) {
   }
 
   return (
-    <Box>
+
       <Box sx={{flexGrow: 1}}>
         <Grid container
         gap={2}
         direction="row"
         justifyContent="space-around"
         alignItems="stretch">
-        <Grid item sm={3}>
-
-
-        </Grid> 
-        <Grid item lg={6}>
+        <Grid item xs={12}>
             <BlockBuilder  />
         </Grid>
-
-        <Grid item sm={3}>
-          
-        </Grid>
       </Grid>
-
-    </Box>
-
     </Box>
   )
 }

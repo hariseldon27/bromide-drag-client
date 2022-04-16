@@ -107,7 +107,7 @@ function GalleryStart( { userError, setUserError  } ) {
                 onChange={handleGalleryStartChange}
                 variant="outlined"
                 label="gallery title"
-                color="secondary"
+                color="pink"
                 fullWidth
                 />
           </Grid>
@@ -121,7 +121,7 @@ function GalleryStart( { userError, setUserError  } ) {
                 label="give it a description"
                 multiline
                 maxRows={4}
-                color="secondary"
+                color="pink"
                 />
           </Grid>
         </Grid> 
@@ -130,8 +130,8 @@ function GalleryStart( { userError, setUserError  } ) {
         </Grid>
         <Grid item xs={4}>
                 <Button
-                variant="outlined" 
-                color="secondary"
+                variant="contained" 
+                color="pink"
                 component="label"
                 onClick={handleSubmit}>
                     Start it

@@ -5,10 +5,11 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
+import Link from '@mui/material/Link';
 import ImageUploadButton from '../../ImageUploadButton';
 import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
-
+import Collapse from '@mui/material/Collapse';
 import { showSpinner } from '../../../reducers/spinnerSlice'
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
@@ -101,105 +102,117 @@ function BlockBuilder( { userError, setUserError, setRefresh } ) {
       console.log('Oops... ', error.statusText)
     }
 
-    function handleCompactModeToggle(){
-      setCompactMode(compactMode => compactMode = !compactMode)
+    function handleCompactModeToggle(e){
+      e.preventDefault()
+      setCompactMode((compactMode) => compactMode = !compactMode)
     }
     const compactComponent = {
-      display: compactMode ? 'none' : 'block'
+      // display: compactMode ? 'none' : 'block'
     }
   return (
   
 
-<Box sx={{flexGrow: 1}}>
-        <Grid container
+<Box sx={{flexGrow: 1, padding: "1em"}}>
+      <Grid container
         gap={2}
         direction="row"
-        justifyContent="space-around"
-        alignItems="stretch">
-            <Grid  item xs={3}>
-              <TextField id="new-block-type" 
-                label="block type"
-                helperText="image, text, imgText"
-                required
-                value={newBlock.type} 
-                name="type"
-                onChange={handleFormChange}
-                variant="standard"
-              />
+        justifyContent="space-evenly"
+        alignItems="center">
+          <Grid item>
+            <Grid   container
+              direction="row"
+              justifyContent="center"
+              alignItems="center">
+                <Grid  item xs={12}  >
+                    <TextField id="new-block-type" 
+                      label="block type"
+                      helperText="image, text"
+                      required
+                      value={newBlock.type} 
+                      name="type"
+                      onChange={handleFormChange}
+                      variant="standard"
+                    />
+                </Grid>
+                <Grid item sm={12} >
+                    <TextField id="new-block-text" 
+                      helperText="optional"
+                      label="block text"
+                      value={newBlock.text} 
+                      name="text"
+                      onChange={handleFormChange}
+                      variant="standard"
+                    />
+                  </Grid>
+                </Grid> 
+            </Grid>
+        <Collapse in={!compactMode}>
+          <Grid item>
+            <Grid container>
+              <Grid style={compactComponent} item xs={6} >
+                    <TextField id="new-block-bgcolor" 
+                      helperText="hex code plz"
+                      label="bgColor"
+                      value={newBlock.bgColor} 
+                      name="bgColor"
+                      onChange={handleFormChange}
+                      variant="standard"
+                      disabled
+                    />
+              </Grid>
+              <Grid style={compactComponent} item xs={6}>
+                    <TextField id="new-block-fontcolor" 
+                      label="fontColor"
+                      helperText="hex code plz"
+                      value={newBlock.fontColor} 
+                      name="fontColor"
+                      onChange={handleFormChange}
+                      variant="standard"
+                      disabled
+                    />
+              </Grid>
+              <Grid style={compactComponent} item xs={6}>
+                    <TextField id="new-block-width" 
+                      label="block width"
+                      helperText="sm md full"
+                      value={newBlock.width} 
+                      name="width"
+                      onChange={handleFormChange}
+                      variant="standard"
+                      disabled
+                    />
+              </Grid>
+              <Grid style={compactComponent} item xs={6}>
+                    <TextField id="new-block-textalign" 
+                      label="text align"
+                      helperText="left right center"
+                      value={newBlock.textAlign} 
+                      name="textAlign"
+                      onChange={handleFormChange}
+                      variant="standard"
+                      disabled
+                    />
+                </Grid>
+            </Grid>
+            </Grid >
+        </Collapse>
+        <Grid item xs={12}>
+          <Link 
+          onClick={handleCompactModeToggle} 
+          underline="hover">{compactMode ? "pro opts..." : "coming soon..."}</Link>  
         </Grid>
-        <Grid item sm={3}>
-
-              <TextField id="new-block-text" 
-                helperText="optional"
-                label="block text"
-                value={newBlock.text} 
-                name="text"
-                onChange={handleFormChange}
-                variant="standard"
-              />
-        </Grid> 
-        <Grid style={compactComponent} item xs={3}>
-              <TextField id="new-block-bgcolor" 
-                helperText="hex code plz"
-                label="bgColor"
-                value={newBlock.bgColor} 
-                name="bgColor"
-                onChange={handleFormChange}
-                variant="standard"
-                disabled
-              />
-        </Grid>
-
-        <Grid style={compactComponent} item xs={3}>
-              <TextField id="new-block-fontcolor" 
-                label="fontColor"
-                helperText="hex code plz"
-                value={newBlock.fontColor} 
-                name="fontColor"
-                onChange={handleFormChange}
-                variant="standard"
-                disabled
-              />
-        </Grid>
-        <Grid style={compactComponent} item xs={3}>
-              <TextField id="new-block-width" 
-                label="block width"
-                helperText="sm md full"
-                value={newBlock.width} 
-                name="width"
-                onChange={handleFormChange}
-                variant="standard"
-                disabled
-              />
-        </Grid>
-        <Grid style={compactComponent} item xs={3}>
-              <TextField id="new-block-textalign" 
-                label="text align"
-                helperText="left right center"
-                value={newBlock.textAlign} 
-                name="textAlign"
-                onChange={handleFormChange}
-                variant="standard"
-                disabled
-              />
-        </Grid>
-        <Button sx={{color: "pink", backgroundColor: "darkgrey"}} 
-        onClick={handleCompactModeToggle} 
-        >{compactMode ?  <OpenInFullIcon/> : <CloseFullscreenIcon/>} </Button>
 
 
         <Grid container
         gap={2}
-        direction="row"
-        justifyContent="space-around"
-        alignItems="stretch">
-
-          <Grid item sm={4}>
+        direction="column"
+        justifyContent="space-between"
+        alignItems="flex-start">
+          <Grid item xs={6}>
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
-          <Grid item xs={1}>
-          <Button variant="contained" color="secondary" onClick={handleSubmit}>Add Block to Gallery</Button>
-
+          <Grid item xs={6}>
+            <Button variant="contained" color="pink" onClick={handleSubmit}>Add Block to Gallery</Button>
           </Grid>
         </Grid>
       </Grid>

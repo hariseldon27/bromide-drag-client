@@ -89,7 +89,7 @@ const featuredImageBoxStyle = {
   border: "1px #cbcbcb solid",
   padding: ".5em .7em .7em .7em",
   borderRadius: "3px",
-  margin: "5px 0 5px 0"
+  margin: "10px 0 5px 0"
 }
   return (
     <Box style={featuredImageBoxStyle}>
@@ -105,7 +105,6 @@ const featuredImageBoxStyle = {
                 hidden
                 accept="image/*" multiple={false} onChange={handleImageChange} />
             </Button>
-            
         </form>
     </Box>
   )

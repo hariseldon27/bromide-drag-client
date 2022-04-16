@@ -18,13 +18,14 @@ function GalleryManage( { userError, setUserError } ) {
       <Box sx={{flexGrow: 1}}>
         <Grid container
         gap={2}
-        direction="row"
-        justifyContent="space-around"
+        direction="column"
+        justifyContent="center"
         alignItems="stretch">
-          <Grid item sm={8}>
+          <Grid item sm={12}>
               <BlockList />
+          </Grid>
+          <Grid item sm={12} >
               <Button onClick={handleFinish}>Add Coda and Finish</Button>
-
           </Grid>
         </Grid>
     </Box>

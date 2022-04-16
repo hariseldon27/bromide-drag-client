@@ -115,6 +115,9 @@ function renderUserError(error) {
         secondary: {
           main: '#6868ac',
         },
+        pink: {
+          main : '#fec0ca'
+        }
       },
     });
     

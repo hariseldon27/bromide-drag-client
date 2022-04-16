@@ -17,11 +17,15 @@ import HomeFeatures from './components/homepage/HomeFeatures';
 
 
 function HomePage() {
-const [isSignUpShowing, setIsSignUpShowing] = useState(false)
+const [isSignUpShowing, setIsSignUpShowing] = useState(true)
 const currentUser = useSelector(state => state.user)
 
 function toggleSignUpClick(){
     setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)
+  }
+
+  function LoginText(){
+    return currentUser.loggedIn ? "You're already logged in! - log out first" : "You need to login" 
   }
 
 const homeComponents = {
@@ -32,7 +36,6 @@ const homeComponents = {
 
 const homeElevation = 0
   return (
-     
     <Box sx={{flexGrow: 1}}>
       <Grid container
       gap={3}
@@ -47,14 +50,9 @@ const homeElevation = 0
         spacing={1}
         direction="row"
         justifyContent="center">
-          {/* <Grid item xs={8}>
-            <Paper style={homeComponents} elevation={homeElevation}>
-              <HomeFeatures/>
-            </Paper>
-          </Grid> */}
           <Grid item xs={4}>
             <Paper style={homeComponents} elevation={homeElevation}>
-              {currentUser.loggedIn ? "You're already logged in! - log out first" : "You need to login" }
+              {isSignUpShowing ? null : <LoginText /> }
               {isSignUpShowing ? <SignUp/> : <Login/> }
               <Button onClick={toggleSignUpClick} id="sign_up_toggle"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
             </Paper>

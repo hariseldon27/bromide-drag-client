@@ -99,8 +99,8 @@ function Login(e) {
 
   return (
     <Box>
-        <Stack>
             <FormControl id="login-form">
+        <Stack>
                 <Input id="login-email" 
                 placeholder="email" 
                 value={loginFormData.email} 
@@ -119,8 +119,8 @@ function Login(e) {
                 type="submit" 
                 name="submit"
                 onClick={login2}>Log In</Button>
-            </FormControl>
         </Stack>
+            </FormControl>
     </Box>
   )
 }

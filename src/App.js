@@ -22,7 +22,7 @@ import GalleryBuilder from './components/galleryBuilder/GalleryBuilder'
 import GalleryPresentation from './components/galleryPresentation/GalleryPresentation'
 import { showSpinner } from './reducers/spinnerSlice'
 import { setError } from './reducers/errorSlice'
-import ErrorHandler from './errorHandler/ErrorHandler';
+import ErrorHandler from './components/errorHandler/ErrorHandler';
 // import GalleryShow from './components/galleryPresentation/GalleryShow';
 import ShareViewer from './components/ShareViewer';
 import NotFound from './components/NotFound';

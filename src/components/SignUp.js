@@ -17,6 +17,7 @@ function SignUp() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const currentUser = useSelector(state => state.user)
+    const [formError, setFormError] = useState(false)
     const [signUpFormData, setSignUpFormData] = useState({
         email: "",
         password: ""
@@ -26,48 +27,30 @@ function SignUp() {
         //set form data
         const name = e.target.name
         let value = e.target.value
+        // validations for a good time
+        //use a regex 
+        const regex = new RegExp('[^0-9A-Za-z\@\.]')
+        //make a new array to hold matches from the regex  
+        const foundBaddy = value.match(regex)
+        //if the array exists then set error to true, else false
+        foundBaddy ? setFormError(true) : setFormError(false)
+        // console.log(foundBaddy)
         setSignUpFormData({
             ...signUpFormData, 
             [name]: value})
     }
 
-    console.log("curUser in state: ", currentUser)
+    // console.log("curUser in state: ", currentUser)
 
-    async function handleSubmitSignUp(){
-        dispatch(showSpinner());
-
-        const userToSignUp = {
-            user: {
-                email: signUpFormData.email,
-                password: signUpFormData.password
-            }
-        }
-        console.log("sending this to server", JSON.stringify(userToSignUp))
-        const response = await fetch('http://localhost:3000/users', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userToSignUp)
-        })
-        const authUser = await response.json()
-        console.log(authUser.user.email)
-
-        dispatch(setCurrentUser({
-            email: authUser.user.email,
-            password: signUpFormData.password,
-            token: authUser.token,
-            loggedIn: true
-        }))
-        localStorage.setItem("token", authUser.token)
-        console.log(authUser.token)
-        resetForm()
-        moveMe()
-
-        dispatch(showSpinner());
-        
+    function handleSubmitValidation(){
+        // const regex = new RegExp('[^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$]')
+        const regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        const emailOk = signUpFormData.email.toLowerCase().match(regex)
+        !emailOk ? setFormError(true) : setFormError(false)
+        if (emailOk) signMeUp()
     }
-    async function handleSubmitSignUp2(){
+
+    async function signMeUp(){
         dispatch(showSpinner());
 
         const userToSignUp = {
@@ -105,20 +88,12 @@ function SignUp() {
             dispatch(showSpinner());
           })
           .catch((error) => {
-              console.log(error)
-
+            //   console.log(error)
             renderUserError(error)
             // dispatch(showSpinner())
             resetForm()
           })
-
-        // const authUser = await response.json()
-        // console.log(authUser.user.email)
-
-        // console.log(authUser.token)
-
-        dispatch(showSpinner());
-        
+    //    dispatch(showSpinner());
     }
 
     function renderUserError(error) {
@@ -148,13 +123,15 @@ function SignUp() {
 
   return (
     <Box>
-        <Stack>
-            <FormControl>
+        <FormControl>
+            <Stack spacing={1}>
                 <Input id="signup-email" 
                 placeholder="email" 
                 value={signUpFormData.email} 
                 name="email"
                 onChange={handlesignUpFormChange}
+                error={formError}
+                color="pink"
                 />
                 <TextField id="signup-password" 
                 type="password" 
@@ -163,15 +140,17 @@ function SignUp() {
                 name="password"
                 onChange={handlesignUpFormChange}
                 variant="standard"
+                color="pink"
                 />
                 <Button id="signup-submit" 
                 type="submit" 
                 name="submit"
                 variant="contained"
                 color="secondary"
-                onClick={handleSubmitSignUp2}>Sign Up</Button>
-            </FormControl>
-        </Stack>
+                disabled={formError}
+                onClick={handleSubmitValidation}>Sign Up</Button>
+            </Stack>
+        </FormControl>
     </Box>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { useSelector, useDispatch } from "react-redux"
-import { cancelError, setError } from "../reducers/errorSlice"
+import { cancelError, setError } from "../../reducers/errorSlice"
 
 function ErrorHandler() {
     const currentUser = useSelector(state => state.user)

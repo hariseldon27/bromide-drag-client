@@ -50,7 +50,7 @@ function GalleryFinish() {
         moveMe()
       }
       function moveMe(){
-        navigate("/gallery-presentation", {replace: true})
+        navigate("/profile", {replace: true})
       }
 
   function handleCodaChange(e){

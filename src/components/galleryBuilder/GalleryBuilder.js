@@ -20,6 +20,7 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
 
 import GalleryFinish from './GalleryFinish'
+import StepIndicator from './StepIndicator'
 import { setStep } from '../../reducers/gallerySlice'
 
 
@@ -38,22 +39,12 @@ console.log("gallery build step: ", step)
 function handleChangeStep(e){
   dispatch(setStep(e.target.name))
 }
-console.log(gallery)
-function StepsIndicator(){
-  return (
-    <>
-      <Button disabled onClick={handleChangeStep} name="start" variant={step === "start" ? "outlined" : null}>start<CameraRollOutlinedIcon /></Button>
-      <Button disabled  onClick={handleChangeStep} name="fill" variant={step === "fill" ? "outlined" : null} >first block <AutoAwesomeOutlinedIcon /></Button>
-      <Button disabled onClick={handleChangeStep} name="manage" variant={step === "manage" ? "outlined" : null} >add to it <AddPhotoAlternateOutlinedIcon /></Button>
-      <Button disabled onClick={handleChangeStep} name="finish" variant={step === "finish" ? "outlined" : null} >finish <SaveOutlinedIcon /></Button>
-    </>
-  )
-}
+
 function Crummy(){
   return (  
-    <Stack 
+    <Grid 
     direction="column"
-    justifyContent="flex-end"
+    justifyContent="space-around"
     alignItems="center"
     spacing={2}
     className="header" 
@@ -61,8 +52,8 @@ function Crummy(){
     >
       {gallery.featured_image_url ? <Avatar alt="new gallery image" src={gallery.featured_image_url} /> : null}
       {gallery.id ? <Typography variant="overline">id: {gallery.id} {<br></br>} title: {gallery.title}</Typography> : null }
-      <StepsIndicator />
-    </Stack>
+      <StepIndicator />
+    </Grid>
   );
 }
   //  ok - we need to keep track of where we are in the process...

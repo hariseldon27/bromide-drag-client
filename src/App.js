@@ -94,6 +94,9 @@ const appMode = createTheme({
         },
         pink: {
           main : '#fec0ca'
+        },
+        absurd: {
+          main : '#fec0ca'
         }
       },
     });

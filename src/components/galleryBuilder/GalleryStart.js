@@ -130,7 +130,7 @@ function GalleryStart( { userError, setUserError  } ) {
         </Grid>
         <Grid item xs={4}>
                 <Button
-                variant="contained" 
+                variant="outlined" 
                 color="pink"
                 component="label"
                 onClick={handleSubmit}>

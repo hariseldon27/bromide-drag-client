@@ -32,6 +32,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const gallery = useSelector(state => state.gallery)
+  const [formError, setFormError] = useState(false)
 
   // useEffect(() => {
   //   console.log(Object.entries(newBlock))
@@ -40,6 +41,14 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
   function handleFormChange(e){
     const name = e.target.name;
     let value = e.target.value;
+    // validations for a good time
+    //use a regex 
+    const regex = new RegExp('[^0-9A-Za-z\@\.]')
+    //make a new array to hold matches from the regex  
+    const foundBaddy = value.match(regex)
+    //if the array exists then set error to true, else false
+    foundBaddy ? setFormError(true) : setFormError(false)
+    // console.log(foundBaddy)
     setNewBlock({...newBlock, [name]: value})
   }
 
@@ -121,12 +130,13 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
         direction="row"
         justifyContent="space-evenly"
         alignItems="center">
-          <Grid item>
+          <Grid item xs={12}>
             <Grid   container
-              direction="row"
-              justifyContent="center"
-              alignItems="center">
-                <Grid  item xs={12}  >
+              direction="column"
+              justifyContent="flex-start"
+              alignItems="flex-start"
+              gap={2}>
+                <Grid  item sm={12}  >
                     <TextField id="new-block-type" 
                       label="block type"
                       helperText="image, text"
@@ -134,7 +144,9 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
                       value={newBlock.type} 
                       name="type"
                       onChange={handleFormChange}
-                      variant="standard"
+                      variant="outlined"
+                      color="pink"
+                      error={formError}
                     />
                 </Grid>
                 <Grid item sm={12} >
@@ -144,7 +156,10 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
                       value={newBlock.text} 
                       name="text"
                       onChange={handleFormChange}
-                      variant="standard"
+                      variant="outlined"
+                      color="pink"
+                      multiline="true"
+                      error={formError}
                     />
                   </Grid>
                 </Grid> 
@@ -217,7 +232,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
             <ImageUploadButton onImageChange={handleImageAdd} />
           </Grid>
           <Grid item xs={6}>
-            <Button variant="contained" color="pink" onClick={handleSubmit}>Add Block to Gallery</Button>
+            <Button disabled={formError} variant="outlined" color="pink" onClick={handleSubmit}>Add Block to Gallery</Button>
           </Grid>
         </Grid>
       </Grid>

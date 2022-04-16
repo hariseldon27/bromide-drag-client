@@ -10,14 +10,23 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from 'react-router-dom'
 
 import { showSpinner } from "../../reducers/spinnerSlice"
+import Loading from '../socialLinkGenerator/Loading';
+import '../socialLinkGenerator/loading.css'
 
 function GalleryFinish() {
   const [coda, setCoda] = useState("")
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const currentUser = useSelector(state => state.user)
   const gallery = useSelector(state => state.gallery)
 
+
+  function handleAbsurdFinishClick(){
+    setLoading(true)
+    setTimeout(() => {setLoading(false)}, 981)
+    setTimeout(() => {handleFinishClick()}, 1032)
+  }
   function handleFinishClick(){
     dispatch(showSpinner())
     const publishData = {
@@ -48,6 +57,11 @@ function GalleryFinish() {
     setCoda(e.target.value)
   }
 
+  function LoadingAbsurdity() {
+    return loading ? <Loading /> : ""
+  }
+
+  
   return (
     <Box>
         <Paper style={{margin: "0 auto", textAlign: "center"}} >
@@ -58,10 +72,10 @@ function GalleryFinish() {
                 justifyContent="flex-start"
                 alignItems="center">
             <Grid item>
-              <TextField helperText="last words?" label="add a coda" onChange={handleCodaChange} variant="standard" name="coda"/>
+              <TextField color="pink" helperText="share some final words" label="add a coda" required multiline="true" onChange={handleCodaChange} variant="standard" name="coda"/>
             </Grid>
             <Grid item>
-              <Button onClick={handleFinishClick}>publish...<SaveOutlinedIcon/></Button>
+              <Button disabled={coda ? false : true} onClick={handleAbsurdFinishClick} color="pink"><LoadingAbsurdity /><SaveOutlinedIcon/></Button>
             </Grid>
           </Grid>
         </Paper>

@@ -3,6 +3,8 @@ import BlockList from './BlockList'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutlined';
+import Tooltip from '@mui/material/Tooltip';
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 
@@ -25,7 +27,9 @@ function GalleryManage( { userError, setUserError } ) {
               <BlockList />
           </Grid>
           <Grid item sm={12} >
-              <Button onClick={handleFinish}>Add Coda and Finish</Button>
+            <Tooltip title="ensure your positive, in life no turning back">
+                <Button color="lightblue" onClick={handleFinish}>Add Coda and Finish <LibraryAddCheckOutlinedIcon /></Button>
+            </Tooltip>
           </Grid>
         </Grid>
     </Box>

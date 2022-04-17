@@ -8,6 +8,7 @@ import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternate
 import FingerprintOutlinedIcon from '@mui/icons-material/FingerprintOutlined';
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from "../reducers/gallerySlice"
+import Tooltip from '@mui/material/Tooltip';
 
 function NavButtons() {
   const dispatch = useDispatch()
@@ -29,12 +30,14 @@ function NavButtons() {
     textDecoration: "none",
     backgroundColor: "primary.main",
     color: currentUser.loggedIn ? "lightgreen" : "orange",
-    pointerEvents: currentUser.loggedIn ? "none" : "auto",
+    disabled: true
+    // pointerEvents: currentUser.loggedIn ? "none" : "auto",
   };
   const homeInActiveStyle = {
     textDecoration: "none",
     color: currentUser.loggedIn ? "lightgreen" : "orange",
-    pointerEvents: currentUser.loggedIn ? "none" : "auto"
+    disabled: true
+    // pointerEvents: currentUser.loggedIn ? "none" : "auto"
   }
   const newGal = {
     
@@ -56,15 +59,18 @@ function NavButtons() {
       className="header" 
       id="navStack"
       >
+        
+      <Tooltip title="Logged in: hi">
       <NavLink to="/" 
         className="nav"
         style={({ isActive }) =>
               isActive ? homeActiveStyle : homeInActiveStyle
             } >
-        <Button variant="outline">
-            <FingerprintOutlinedIcon/>
-        </Button>
+          <Button variant="outline">
+              <FingerprintOutlinedIcon/>
+          </Button>
       </NavLink>
+      </Tooltip>
       <NavLink to="/profile" 
         className="nav"
         style={({ isActive }) =>
@@ -93,6 +99,7 @@ function NavButtons() {
         </Button>
       </NavLink> */}
       </Stack>
+
     </div>
   )
 }

@@ -108,7 +108,11 @@ function GalleryPresentation() {
       return json.then(Promise.reject.bind(Promise))
       // return Promise.reject(response)
   })
-  .then((blocks) => setBlocksToShow(blocks))
+  .then((blocks) => {
+    setBlocksToShow(blocks)
+    dispatch(showSpinner());
+
+  })
   .catch((error) => {
     console.log(error)
     renderUserError(error)

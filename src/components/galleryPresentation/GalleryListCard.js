@@ -16,6 +16,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
     const handlePlayClick = (e) => {
         onGalleryPlay(e)
     }
+    
     const placeholderImage = "https://blog.greendot.org/wp-content/uploads/sites/13/2021/09/placeholder-image.png"
   
     const cardImage = {
@@ -28,6 +29,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
       backgroundBlendMode: "darken",
       filter: "grayscale(40%)",
       borderRadius: "3px"
+
     }
   
     return (
@@ -40,24 +42,27 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
       alignItems="stretch"
       gap={1}
       spacing={0}
-      
+      backgroundColor="#E6E6E6"
     >
 
-        <Grid item xs={12}>
-          <Typography marginX=".8em" marginY=".2em" textAlign="right" color="#FEC0CA" component="h4" variant="h5">
-            {title}
-          </Typography>
-        </Grid>
+
 
         <Grid  item xs={12} >
           <Grid container spacing={1}>
-            <Grid paddingX=".8em" item xs={12} sm={8}>
+            <Grid  item xs={12} sm={8}>
               <Grid 
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="flex-end"
+                paddingX=".8rem"
+                paddingY=".4rem"
                 >
+                  <Grid item xs={12}>
+                    <Typography textAlign="right" color="#FEC0CA" component="h4" variant="h5">
+                      {title}
+                    </Typography>
+                  </Grid>
                 <Grid item xs={12} sm={12} >
                   <Typography  variant="subtitle1" textAlign="right" color="text.secondary" component="div">
                     {description}

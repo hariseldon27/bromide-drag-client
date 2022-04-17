@@ -10,13 +10,14 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Button from '@mui/material/Button';
 import GallerySocialShareLink from '../socialLinkGenerator/GallerySocialShareLink';
 import Link from '@mui/material/Link';
+import { grey } from '@mui/material/colors';
 
 function GalleryListCard( { gallery, onGalleryPlay } ) {
     const { description, title, id, featured_image_url, share_url  } = gallery
     const handlePlayClick = (e) => {
         onGalleryPlay(e)
     }
-    
+    const cardBgColor = grey[500]
     const placeholderImage = "https://blog.greendot.org/wp-content/uploads/sites/13/2021/09/placeholder-image.png"
   
     const cardImage = {
@@ -42,7 +43,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
       alignItems="stretch"
       gap={1}
       spacing={0}
-      backgroundColor="#E6E6E6"
+      backgroundColor={cardBgColor}
     >
 
 

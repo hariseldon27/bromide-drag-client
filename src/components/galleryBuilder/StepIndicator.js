@@ -33,12 +33,14 @@ function StepIndicator() {
         direction="column"
         justifyContent="flex-end"
         alignItems="stretch"
-        gap={2}>
+        gap={2}
+        // border="solid"
+        >
     
           <Grid item xs={12} >
             <Grid container 
               direction="row"
-              justifyContent="space-between"
+              justifyContent="flex-end"
               alignItems="center"
               >
                 <Grid item xs={8}>
@@ -54,7 +56,7 @@ function StepIndicator() {
           <Grid item xs={12} >
             <Grid container 
                   direction="row"
-                  justifyContent="space-between"
+                  justifyContent="flex-end"
                   alignItems="center">
               <Grid item xs={8}>
                 <Typography variant="overline" color={step === "fill" ? "#fec0ca" : "#cccccc"}>first block</Typography>
@@ -68,7 +70,7 @@ function StepIndicator() {
           <Grid item xs={12} >
             <Grid container 
                   direction="row"
-                  justifyContent="space-between"
+                  justifyContent="flex-end"
                   alignItems="center">
                 <Grid item xs={8}>
                   <Typography color={step === "manage" ? "#fec0ca" : "#cccccc"} variant="overline" >add to it</Typography>
@@ -82,7 +84,7 @@ function StepIndicator() {
           <Grid  item xs={12} >
             <Grid container 
               direction="row"
-              justifyContent="space-between"
+              justifyContent="flex-end"
               alignItems="center">
                 <Grid item xs={8}>
                   <Typography color={step === "finish" ? "#fec0ca" : "#cccccc"} variant="overline" >finish</Typography>

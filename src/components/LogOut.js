@@ -50,7 +50,7 @@ function LogOut() {
     }
 // console.log(currentUser.token)
     const logOutIconStyle = {
-      color: loggedIn ? "pink" : "grey"
+      color: loggedIn ? "pink" : "#4c4c4c"
     }  
 
   return (

@@ -22,7 +22,7 @@ function ModeSwitch( { onModeChange } ) {
   return (
     <Box>
         <Button onClick={handleDarkmodeToggle} variant='outline'>
-        {isDarkMode? <LightIcon sx={{ color: "pink" }}/> : <LightOutlinedIcon sx={{ color: "pink" }}/>}
+        {isDarkMode ? <LightIcon sx={{ color: "#FEC0CA" }}/> : <LightOutlinedIcon sx={{ color: "#FEC0CA" }}/>}
         </Button>
     </Box>
   )

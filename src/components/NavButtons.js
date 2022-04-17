@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BalconyOutlinedIcon from '@mui/icons-material/BalconyOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
+import FingerprintOutlinedIcon from '@mui/icons-material/FingerprintOutlined';
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from "../reducers/gallerySlice"
 
@@ -27,12 +28,13 @@ function NavButtons() {
   let homeActiveStyle = {
     textDecoration: "none",
     backgroundColor: "primary.main",
-    color: "lightblue",
-    // border: "solid 1px lightblue",
+    color: currentUser.loggedIn ? "lightgreen" : "orange",
+    pointerEvents: currentUser.loggedIn ? "none" : "auto",
   };
   const homeInActiveStyle = {
     textDecoration: "none",
-    color: "pink",
+    color: currentUser.loggedIn ? "lightgreen" : "orange",
+    pointerEvents: currentUser.loggedIn ? "none" : "auto"
   }
   const newGal = {
     
@@ -60,7 +62,7 @@ function NavButtons() {
               isActive ? homeActiveStyle : homeInActiveStyle
             } >
         <Button variant="outline">
-            <BalconyOutlinedIcon/>
+            <FingerprintOutlinedIcon/>
         </Button>
       </NavLink>
       <NavLink to="/profile" 

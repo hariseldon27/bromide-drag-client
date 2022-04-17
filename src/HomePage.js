@@ -10,7 +10,7 @@ import Fade from '@mui/material/Fade';
 
 
 function HomePage() {
-const [isSignUpShowing, setIsSignUpShowing] = useState(true)
+const [isSignUpShowing, setIsSignUpShowing] = useState(false)
 
 function toggleSignUpClick(){
     setIsSignUpShowing((isSignUpShowing) => isSignUpShowing = !isSignUpShowing)

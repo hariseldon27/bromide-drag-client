@@ -94,12 +94,12 @@ function Crummy(){
       justifyContent="flex-start"
       alignItems="center">
         <Grid item xs={3}>
-          <Paper elevation={1}>
+          <Paper elevation={0}>
             <Crummy />
           </Paper>
         </Grid>
         <Grid item xs={8}>
-          <Paper elevation={1}>
+          <Paper elevation={0}>
             <ToolBox />
           </Paper>
           </Grid>

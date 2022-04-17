@@ -43,7 +43,7 @@ function UserProfile() {
         justifyContent="center"
         >
           
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={12} md={2}>
             <Grid container 
             direction="row"
             justifyContent="center"
@@ -54,11 +54,11 @@ function UserProfile() {
                 </Paper>
               </Grid>
               <Grid item xs={12}>
-                <Paper sx={{padding: "1em", color: "pink"}}>
+                <Paper sx={{padding: "1em", color: "pink"}} elevation={0}>
                   {/* has avatar: hide upload boxes, show link to  expand upload button to patch*/}
                   {/* no avatar: show upload boxes */}
                   {currentUser.avatar ? <Link color="secondary" underline="hover" onClick={handleToggleUploader}>{uploaderShowing ?  "collapse..." : "upload new image?"}</Link> : "Upload a profile photo"}
-                  <Collapse in={uploaderShowing}>
+                  <Collapse in={uploaderShowing} >
                     <UserAvatarUpload/>
                   </Collapse>
                 </Paper>
@@ -66,7 +66,7 @@ function UserProfile() {
             </Grid>
           </Grid>
           <Grid item xs={12} sm={12} md={8}>
-            <Paper>
+            <Paper elevation={0}>
               <GalleryPresentation />
             </Paper>
           </Grid>

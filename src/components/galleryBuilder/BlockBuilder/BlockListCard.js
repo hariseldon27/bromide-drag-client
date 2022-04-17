@@ -67,8 +67,8 @@ function BlockListCard( { block } ) {
       )
     }
   return (
-    <Box sx={{width: "100%"}}>
-            <BlockRender />
+    <Box  sx={{width: "100%"}}>
+            <BlockRender/>
     </Box>
   )
 }

@@ -101,7 +101,7 @@ function refreshTimer(){
 
 
 
- const blockListCards = gallery.id === 0 ? null : blockListInEdit.map(block => <BlockListCard block={block} /> )
+ const blockListCards = gallery.id === 0 ? null : blockListInEdit.map(block => <BlockListCard key={gallery.id} block={block} /> )
   return (
     <Stack 
     spacing={2} 

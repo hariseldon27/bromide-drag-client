@@ -19,6 +19,15 @@ function StepIndicator() {
   const inactive = {
     color:"#cccccc"
   }
+
+  // const colorSwitch = () => {
+  //   const active = {text: "#fec0ca", icon: "pink"}
+  //   const inactive = {text: "#fec0ca", icon: "pink"}
+  //   switch (step) {
+  //     case "start":
+  //       return colors
+  //       break;
+  // }
     return (
         <Grid container
         direction="column"
@@ -75,7 +84,7 @@ function StepIndicator() {
               direction="row"
               justifyContent="space-between"
               alignItems="center">
-                <Grid item sx={8}>
+                <Grid item xs={8}>
                   <Typography color={step === "finish" ? "#fec0ca" : "#cccccc"} variant="overline" >finish</Typography>
                 </Grid>
                 <Grid item xs={2}>

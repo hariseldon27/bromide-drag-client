@@ -26,15 +26,20 @@ function UserDetails() {
         backgroundBlendMode: "darken",
         textAlign: "center",
         display: "flex",
-        
 
     }
     const lookOverlayLook = {
-      backgroundColor: "rgba(254,192,202,.3)",      
+      backgroundColor: "rgba(254,192,202,.3)",    
+        backdropFilter: "blur(2px)",
+        filter: "grayscale(60%)",
+        // boxShadow: "0px 0px 10px 10px rgba(150,150,150,0.6)",
+
+        
     }
 
     const userDeetzHolderStyle ={
-      padding: '1em'
+      padding: '1em',
+      
     }
 
   return (
@@ -42,24 +47,26 @@ function UserDetails() {
           <Box style={userDetailsStyle}>
             <Box style={lookOverlayLook}>
               <Grid container
-              spacing={1}
+              spacing={.5}
+              gap={1}
               direction="column"
               justifyContent="center"
               alignItems="center"
               style={userDeetzHolderStyle}
               >
-                {/* <Grid item>
-                  <Typography variant="h4" component="p" align="center">User Details</Typography>
-                </Grid> */}
-                <Grid item>
-                  <Avatar sx={{height: 125, width: 125}} alt={currentUser.email} src={currentUser.avatar} />
-                </Grid>
-                <Grid item>
-                  <Divider textAlign="right"><span style={{color: "red"}}>{currentUser.email}</span></Divider>
+                  <Grid item xs>
+                    <Avatar sx={{height: 125, width: 125}} alt={currentUser.email} src={currentUser.avatar} />
+                  </Grid>
+                  <Grid item xs>
+                    <Divider textAlign="right"><span style={{color: "secondary", backgroundColor: "rgba(100,100,100,.5)", padding: ".2em",}}>{currentUser.email}</span></Divider>
+                  </Grid>
                   {/* <Typography component="p" align="right"><b>Galleries:</b> </Typography> */}
-                  <Button disabled variant="contained">Reset Password</Button>
-                  <Button disabled variant="contained">Delete Account</Button>
-                </Grid>
+                    <Grid item xs>
+                    <Button disabled variant="contained">Reset Password</Button>
+                    </Grid>
+                    <Grid item xs>
+                      <Button disabled variant="contained">Delete Account</Button>
+                    </Grid>
               </Grid>
             </Box>
           </Box>

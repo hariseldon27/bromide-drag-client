@@ -158,7 +158,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
                       onChange={handleFormChange}
                       variant="outlined"
                       color="pink"
-                      multiline="true"
+                      multiline
                       error={formError}
                     />
                   </Grid>

@@ -14,7 +14,6 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import Collapse from '@mui/material/Collapse';
 import CollectionsIcon from '@mui/icons-material/Collections';
-import RefreshRotater from './refreshRotater/RefreshRotater';
 import './refreshRotater/refresh_rotate.css'
 
 

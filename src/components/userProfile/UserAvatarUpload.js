@@ -105,6 +105,7 @@ const Input = styled('input')({
             <Button
               variant="outlined"
               component="label"
+              color="lightblue"
             >
             <FileNameDisplay/>
             <input
@@ -116,6 +117,7 @@ const Input = styled('input')({
             <Button
               variant="outlined"
               component="label"
+              color="lightblue"
             >
             Uploadify it
             <input

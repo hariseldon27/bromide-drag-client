@@ -26,60 +26,60 @@ function StepIndicator() {
         alignItems="stretch"
         gap={2}>
     
-          <Grid item xs={12} sx={step === "start" ? active : inactive}>
+          <Grid item xs={12} >
             <Grid container 
               direction="row"
               justifyContent="space-between"
               alignItems="center"
-              sx={{py:2}}>
+              >
                 <Grid item xs={8}>
-                  <Typography variant="overline">start</Typography>
+                  <Typography color={step === "start" ? "#fec0ca" : "#cccccc"} variant="overline">start</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <CameraRollOutlinedIcon />
+                  <CameraRollOutlinedIcon color={step === "start" ? "pink" : "grey"}/>
                 </Grid>
               </Grid>
           </Grid>
     
     
-          <Grid item xs={12} sx={step === "fill" ? active : inactive}>
+          <Grid item xs={12} >
             <Grid container 
                   direction="row"
                   justifyContent="space-between"
                   alignItems="center">
               <Grid item xs={8}>
-                <Typography variant="overline">first block</Typography>
+                <Typography variant="overline" color={step === "fill" ? "#fec0ca" : "#cccccc"}>first block</Typography>
               </Grid>
               <Grid item xs={2}>
-                <AutoAwesomeOutlinedIcon />
+                <AutoAwesomeOutlinedIcon color={step === "fill" ? "pink" : "grey"}/>
               </Grid>
             </Grid>
           </Grid>
     
-          <Grid item xs={12} sx={step === "manage" ? active : inactive}>
+          <Grid item xs={12} >
             <Grid container 
                   direction="row"
                   justifyContent="space-between"
                   alignItems="center">
                 <Grid item xs={8}>
-                  <Typography variant="overline" >add to it</Typography>
+                  <Typography color={step === "manage" ? "#fec0ca" : "#cccccc"} variant="overline" >add to it</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <AddPhotoAlternateOutlinedIcon />
+                  <AddPhotoAlternateOutlinedIcon color={step === "manage" ? "pink" : "grey"}/>
                 </Grid>
             </Grid>
           </Grid>
     
-          <Grid  item xs={12} sx={step === "finish" ? active : inactive}>
+          <Grid  item xs={12} >
             <Grid container 
               direction="row"
               justifyContent="space-between"
               alignItems="center">
                 <Grid item sx={8}>
-                  <Typography variant="overline" >finish</Typography>
+                  <Typography color={step === "finish" ? "#fec0ca" : "#cccccc"} variant="overline" >finish</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                  <SaveOutlinedIcon />
+                  <SaveOutlinedIcon color={step === "finish" ? "pink" : "grey"}/>
                 </Grid>
             </Grid>
           </Grid>

@@ -109,7 +109,7 @@ const appMode = createTheme({
           main: '#B3D7FC',
         },
         grey: {
-          main: '#AEd8E6',
+          main: '#cccccc',
         },
         pink: {
           main: '#FEC0CA',

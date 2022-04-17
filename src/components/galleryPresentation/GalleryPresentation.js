@@ -100,9 +100,6 @@ function GalleryPresentation() {
         "Authorization": `Bearer ${currentToken}`
       }
     })
-    // .then(r => r.json())
-    // .then((data) => setBlocksToShow(data))
-    // dispatch(showSpinner())
     .then((response) => {
       let json = response.json()
       if (response.status >= 200 && response.status < 300) {
@@ -129,8 +126,6 @@ function GalleryPresentation() {
 
     dispatch(setError(newError))
   }
-
-  // console.log("is open", open)
 
   return (
     

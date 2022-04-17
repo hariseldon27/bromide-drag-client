@@ -47,9 +47,6 @@ function BlockListCard( { block } ) {
                 <Grid item xs={2}>
                     <Typography variant="body2"><strong>Type:</strong> {block_type}</Typography>
                 </Grid>
-                {/* <Grid item xs={3}>
-                    <Typography variant="body2"><strong>block_id:</strong> {block_id}</Typography>
-                </Grid> */}
                 <Grid item xs={3}>
                     <Typography variant="body2"><strong>id:</strong> {id}</Typography>
                 </Grid>

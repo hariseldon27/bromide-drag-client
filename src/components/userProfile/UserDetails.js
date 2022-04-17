@@ -18,23 +18,19 @@ function UserDetails() {
         // border: "black dotted 1px",
         padding: ".7em",
         margin: "0 auto",
-        position: "relative",
         backgroundImage: `url(${currentUser.avatar})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundBlendMode: "darken",
-        textAlign: "center",
         display: "flex",
+        filter: "grayscale(40%)",
 
     }
     const lookOverlayLook = {
       backgroundColor: "rgba(254,192,202,.3)",    
-        backdropFilter: "blur(2px)",
-        filter: "grayscale(60%)",
-        // boxShadow: "0px 0px 10px 10px rgba(150,150,150,0.6)",
-
-        
+      backdropFilter: "blur(2px)",
+        filter: "saturate(160%)",
     }
 
     const userDeetzHolderStyle ={
@@ -54,17 +50,17 @@ function UserDetails() {
               alignItems="center"
               style={userDeetzHolderStyle}
               >
-                  <Grid item xs>
+                  <Grid item >
                     <Avatar sx={{height: 125, width: 125}} alt={currentUser.email} src={currentUser.avatar} />
                   </Grid>
-                  <Grid item xs>
+                  <Grid item >
                     <Divider textAlign="right"><span style={{color: "secondary", backgroundColor: "rgba(100,100,100,.5)", padding: ".2em",}}>{currentUser.email}</span></Divider>
                   </Grid>
                   {/* <Typography component="p" align="right"><b>Galleries:</b> </Typography> */}
-                    <Grid item xs>
+                    <Grid item >
                     <Button disabled variant="contained">Reset Password</Button>
                     </Grid>
-                    <Grid item xs>
+                    <Grid item >
                       <Button disabled variant="contained">Delete Account</Button>
                     </Grid>
               </Grid>

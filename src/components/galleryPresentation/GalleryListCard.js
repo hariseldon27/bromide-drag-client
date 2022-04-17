@@ -21,7 +21,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
   
     return (
     
-  <Card sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
+  <Card item sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
     <Grid 
       container
       justifyContent="center"

@@ -43,6 +43,7 @@ function handleChangeStep(e){
 function Crummy(){
   return (  
     <Grid 
+    container
     direction="column"
     justifyContent="space-around"
     alignItems="center"

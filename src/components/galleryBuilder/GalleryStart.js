@@ -6,8 +6,8 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import FeaturedImageUpload from './FeaturedImageUpload';
 import Typography from '@mui/material/Typography';
-
-
+import { setCurrentUser } from '../../reducers/userSlice';
+import { setError } from '../../reducers/errorSlice';
 import { useDispatch, useSelector } from "react-redux"
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import { showSpinner } from '../../reducers/spinnerSlice'
@@ -85,10 +85,31 @@ function GalleryStart( { userError, setUserError  } ) {
       });
     }
     //this sets our user error - currently inactive - then logs an error
-    function renderUserError(error){
-      setUserError(true)
-      console.log('Oops... ', error.statusText)
-    } 
+    function renderUserError(error) {
+      // console.log("error render", error)
+      const newError = {
+        text: error.statusText,
+        occurred: true, 
+        code: error.status
+      }
+      dispatch(setError(newError))
+    
+    }
+//this is reused AGAIN because JP is too lazy to figure out the custom hook
+    function revoke(){
+      console.log("revoking token and redirecting")
+      localStorage.removeItem("token")
+      dispatch(setCurrentUser({
+        email: "",
+        token: "",
+        loggedIn: false
+      }))
+      dispatch(setError({
+        text: "Please Login",
+        occurred: true, 
+        code: 401
+      }))
+    }
 
   return (
     <Box sx={{flexGrow: 1, padding: '2vh'}}>

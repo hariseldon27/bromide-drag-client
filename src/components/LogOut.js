@@ -56,11 +56,6 @@ function LogOut() {
   return (
     <Box>
       <Button variant="outline" disabled={!loggedIn} onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon style={logOutIconStyle} /></Button>
-        {/* {loggedIn ? 
-        <Button variant="outline" onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "pink" }} /></Button>
-        :
-        <Button variant="outline" disabled onClick={handleLogOut} id="logout-button" name="logout"><ExitToAppOutlinedIcon sx={{ color: "grey" }} /></Button>
-        } */}
     </Box>
   )
 }

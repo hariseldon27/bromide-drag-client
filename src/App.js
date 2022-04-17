@@ -6,6 +6,8 @@ import Container from '@mui/material/Container';
 import { useSelector, useDispatch } from "react-redux"
 import Header from './components/Header'
 import HomePage from './HomePage';
+import { useNavigate } from 'react-router-dom'
+
 import {
   BrowserRouter,
   Routes,
@@ -29,7 +31,6 @@ function App( ) {
   const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
   // const currentUser = useSelector(state => state.user)
   // const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
-
 
   useEffect(()=>{
     dispatch(showSpinner());
@@ -64,8 +65,25 @@ function App( ) {
           // console.log(error)
           renderUserError(error)
           dispatch(showSpinner())
+          revoke()
         })
   }, [])
+
+  function revoke(){
+    console.log("revoking token and redirecting")
+    localStorage.removeItem("token")
+    dispatch(setCurrentUser({
+      email: "",
+      token: "",
+      loggedIn: false
+    }))
+    dispatch(setError({
+      text: "Please Login",
+      occurred: true, 
+      code: 401
+    }))
+  }
+  
 
 function renderUserError(error) {
   // console.log("error render", error)
@@ -75,6 +93,7 @@ function renderUserError(error) {
     code: error.status
   }
   dispatch(setError(newError))
+
 }
 
 const appMode = createTheme({

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -9,6 +10,10 @@ import Button from '@mui/material/Button';
 import GalleryShow from './GalleryShow';
 import GalleryListing from './GalleryListing';
 import { showSpinner } from '../../reducers/spinnerSlice'
+import { setError } from "../../reducers/errorSlice"
+import { setCurrentUser } from '../../reducers/userSlice';
+import LogOut from '../LogOut'
+
 
 function GalleryPresentation() {
   const [open, setOpen] = useState(false);
@@ -17,6 +22,8 @@ function GalleryPresentation() {
   const [blocksToShow, setBlocksToShow] = useState([])
   const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
   const dispatch = useDispatch()
+  let navigate = useNavigate()
+
   
 
   const handleClose = () => {
@@ -48,14 +55,40 @@ function GalleryPresentation() {
         "Authorization": `Bearer ${currentToken}`
       }
     })
-    .then(r => r.json())
-    .then((data) => {
-      // console.log(data)
-      setGalleryList(data)
-      dispatch(showSpinner());
-
+    .then((response) => {
+      console.log(response)
+      if (response.ok) {
+        return response.json()
+    }
+      return Promise.reject(response)
+    })
+    .then((galleries) => {
+      console.log(galleries)
+      setGalleryList(galleries)
+      dispatch(showSpinner())
+    })
+    .catch((error) => {
+      console.log(error)
+      revoke()
     })
   }, [])
+
+  function revoke(){
+    console.log("revoking token and redirecting")
+    localStorage.removeItem("token")
+    dispatch(setCurrentUser({
+      email: "",
+      token: "",
+      loggedIn: false
+    }))
+    navigate("/", {replace: true})
+    setTimeout(() => {dispatch(showSpinner())}, 900)
+    dispatch(setError({
+      text: "Please Login",
+      occurred: true, 
+      code: 401
+    }))
+  }
 
   function fetchBlocksToShow(e){
     // console.log(e.target.name)
@@ -67,10 +100,34 @@ function GalleryPresentation() {
         "Authorization": `Bearer ${currentToken}`
       }
     })
-    .then(r => r.json())
-    .then((data) => setBlocksToShow(data))
-    dispatch(showSpinner())
+    // .then(r => r.json())
+    // .then((data) => setBlocksToShow(data))
+    // dispatch(showSpinner())
+    .then((response) => {
+      let json = response.json()
+      if (response.status >= 200 && response.status < 300) {
+        return json;
+      }
+      return json.then(Promise.reject.bind(Promise))
+      // return Promise.reject(response)
+  })
+  .then((blocks) => setBlocksToShow(blocks))
+  .catch((error) => {
+    console.log(error)
+    renderUserError(error)
     
+  })
+  }
+  function renderUserError(error) {
+    console.log(error.error.statusText)
+    console.log(error.error.status)
+    const newError = {
+      text: error.statusText || error.error.statusText,
+      occurred: true, 
+      code: error.error.status || error.status
+    }
+
+    dispatch(setError(newError))
   }
 
   // console.log("is open", open)

@@ -33,6 +33,7 @@ function UserProfile() {
       currentUser.avatar ? setUploaderShowing(false) : setUploaderShowing(true)
      }, [])
 
+     
   return (
     <Box sx={{flexGrow: 1}}>
         <Grid 
@@ -52,11 +53,11 @@ function UserProfile() {
                   <UserDetails/>
                 </Paper>
               </Grid>
-              <Grid item >
-                <Paper>
+              <Grid item xs={12}>
+                <Paper sx={{padding: "1em", color: "pink"}}>
                   {/* has avatar: hide upload boxes, show link to  expand upload button to patch*/}
                   {/* no avatar: show upload boxes */}
-                  <Link sx={{color:"lightblue"}} underline="hover" onClick={handleToggleUploader}>{currentUser.avatar ? "upload new image?" : "collapse..."}</Link>
+                  {currentUser.avatar ? <Link color="secondary" underline="hover" onClick={handleToggleUploader}>{uploaderShowing ?  "collapse..." : "upload new image?"}</Link> : "Upload a profile photo"}
                   <Collapse in={uploaderShowing}>
                     <UserAvatarUpload/>
                   </Collapse>

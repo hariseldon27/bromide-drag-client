@@ -27,7 +27,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
       backgroundPosition: "center",
       backgroundBlendMode: "darken",
       filter: "grayscale(40%)",
-
+      borderRadius: "3px"
     }
   
     return (

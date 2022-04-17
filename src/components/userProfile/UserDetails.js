@@ -24,12 +24,13 @@ function UserDetails() {
         backgroundPosition: "center",
         backgroundBlendMode: "darken",
         filter: "grayscale(40%)",
-
+        borderRadius: "3px"
     }
     const lookOverlayLook = {
       backgroundColor: "rgba(254,192,202,.3)",    
       backdropFilter: "blur(2px)",
         filter: "saturate(160%)",
+        borderRadius: "3px"
     }
 
     const userDeetzHolderStyle ={
@@ -53,7 +54,7 @@ function UserDetails() {
                     <Avatar sx={{height: 125, width: 125}} alt={currentUser.email} src={currentUser.avatar} />
                   </Grid>
                   <Grid item >
-                    <Divider textAlign="right"><span style={{color: "secondary", backgroundColor: "rgba(100,100,100,.5)", padding: ".2em",}}>{currentUser.email}</span></Divider>
+                    <Divider textAlign="right"><span style={{backgroundColor: "rgba(100,100,100,.5)", padding: ".3em", borderRadius: "3px", color: "pink"}}>{currentUser.email}</span></Divider>
                   </Grid>
                   {/* <Typography component="p" align="right"><b>Galleries:</b> </Typography> */}
                     <Grid item >

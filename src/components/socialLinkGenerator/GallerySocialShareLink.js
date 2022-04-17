@@ -70,7 +70,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   }
   function GetLinkReturn(){
     return (
-      <><Button onClick={handleGenerateClick}>Get Sharable Link</Button></>
+      <><Button color="secondary" onClick={handleGenerateClick}>Get Sharable Link</Button></>
     )
   }
 

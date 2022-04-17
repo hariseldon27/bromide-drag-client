@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Button from '@mui/material/Button';
 import GallerySocialShareLink from '../socialLinkGenerator/GallerySocialShareLink';
-
+import Link from '@mui/material/Link';
 
 function GalleryListCard( { gallery, onGalleryPlay } ) {
     const { description, title, id, featured_image_url, share_url  } = gallery
@@ -18,69 +18,63 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
     }
     const placeholderImage = "https://blog.greendot.org/wp-content/uploads/sites/13/2021/09/placeholder-image.png"
   
+    const cardImage = {
+      padding: ".7em",
+      margin: "0 auto",
+      backgroundImage: `url(${featured_image_url ? featured_image_url : placeholderImage})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundBlendMode: "darken",
+      filter: "grayscale(40%)",
+
+    }
   
     return (
     
-  <Card item sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
-    <Grid 
+  <Card elevation={0}  >
+    <Grid
       container
-      justifyContent="center"
-      flexDirection="row"
-      columns={{ xs: 6, sm: 8 }}> 
-        <Grid item xs={12}> 
-          <Grid 
-          flexDirection="column"
-          container 
-          alignContent="flex-end"
-          sx={{backgroundColor: "pink", padding: ".5em"}}
-          >
-            <Grid item xs={12} >
-              <Typography color="pink" component="div" variant="h5">
-                {title}
-              </Typography>
-            </Grid>
+      direction="row"
+      justifyContent="flex-end"
+      alignItems="stretch"
+      gap={1}
+      spacing={0}
+      
+    >
 
-          </Grid>
+        <Grid item xs={12}>
+          <Typography marginX=".8em" marginY=".2em" textAlign="right" color="#FEC0CA" component="h4" variant="h5">
+            {title}
+          </Typography>
         </Grid>
-        <Grid item xs={12} >
-          <Grid container columns={16} spacing={1}>
-            <Grid item xs={16} sm={10}>
+
+        <Grid  item xs={12} >
+          <Grid container spacing={1}>
+            <Grid paddingX=".8em" item xs={12} sm={8}>
               <Grid 
                 container
                 direction="column"
-                justifyContent="flex-end"
+                justifyContent="center"
                 alignItems="flex-end"
                 >
-                <Grid item >
-                  <Typography variant="subtitle1" textAlign="right" color="text.secondary" component="div">
+                <Grid item xs={12} sm={12} >
+                  <Typography  variant="subtitle1" textAlign="right" color="text.secondary" component="div">
                     {description}
                   </Typography>
                 </Grid>
-                <Grid item >
-                    <Button color="pink" name={gallery.id} id={`play_${gallery.id}`} onClick={handlePlayClick} aria-label="show">
+                <Grid item xs={12} sm={12}>
+                    <Link underline="hover" variant="overline" color="secondary" name={gallery.id} id={`play_${gallery.id}`} onClick={handlePlayClick} >
                         View Gallery 
-                    </Button>
+                    </Link>
                 </Grid>
-                <Grid item >
+                <Grid item xs={12} sm={12}>
                       <GallerySocialShareLink share_url={share_url} gallery_id={id} />
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={16} sm={6}>
-                <Grid 
-                container
-                direction="column"
-                justifyContent="flex-end"
-                alignItems="flex-end"
-                >
-                <Grid item>
-                  <CardMedia
-                    component="img"
-                    image={featured_image_url ? featured_image_url : placeholderImage}
-                    alt={title}
-                    />
-                </Grid>
-              </Grid>
+            <Grid style={cardImage} item xs={12} sm={4} >
+                
             </Grid>
           </Grid>
         </Grid>

@@ -23,7 +23,6 @@ function UserDetails() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundBlendMode: "darken",
-        display: "flex",
         filter: "grayscale(40%)",
 
     }

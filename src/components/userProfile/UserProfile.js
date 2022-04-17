@@ -41,21 +41,21 @@ function UserProfile() {
         style={mainContainerStyle}
         direction="row-reverse"
         justifyContent="center"
-        border="solid 1px black"
+        
         >
           
-          <Grid item xs={4}>
+          <Grid item xs={10} sm={10} md={4}>
             <Grid container 
             direction="row"
             justifyContent="center"
             gap={2}
-            border="solid 1px red">
-              <Grid item xs={12}>
+            >
+              <Grid item xs={12} >
                 <Paper elevation={0}>
                   <UserDetails/>
                 </Paper>
               </Grid>
-              <Grid item >
+              <Grid item xs={12}>
                 <Paper sx={{padding: "1em", color: "pink"}} elevation={0}>
                   {/* has avatar: hide upload boxes, show link to  expand upload button to patch*/}
                   {/* no avatar: show upload boxes */}
@@ -67,7 +67,7 @@ function UserProfile() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={10} sm={10} md={8} border="solid 1px orange">
+          <Grid item xs={10} sm={10} md={8} >
             <Paper elevation={0}>
               <GalleryPresentation />
             </Paper>

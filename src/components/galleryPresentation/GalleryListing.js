@@ -17,13 +17,13 @@ function GalleryListing( { galleryList, onGalleryPlay } ) {
   const coda = publishedGalleries.length > 0 ? <Typography variant="overline" component="p">Looking for the rest of your galleries? Alas our whims are but that...</Typography> : null
   
   const cards = publishedGalleries.map(gallery => {
-    return <Grid item><GalleryListCard key={gallery.id} gallery={gallery} onGalleryPlay={onGalleryPlay}/></Grid>
+    return <Grid key={gallery.id} item xs={12}  ><GalleryListCard  gallery={gallery} onGalleryPlay={onGalleryPlay}/></Grid>
   } )
 // console.log(galleryList)
   return (
     <Box sx={{padding: "1em"}}>
       <Typography variant="overline" component="h1" >{title}</Typography>
-        <Grid gap={2} elevation={0}>
+        <Grid container gap={2} spacing={2} >
 
           {cards.slice(-5).reverse()}
 

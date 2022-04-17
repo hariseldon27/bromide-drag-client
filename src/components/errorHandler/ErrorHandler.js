@@ -4,7 +4,7 @@ import MuiAlert from '@mui/material/Alert';
 import { useSelector, useDispatch } from "react-redux"
 import { cancelError } from "../../reducers/errorSlice"
 import { useParams } from 'react-router-dom'
-
+import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
 function ErrorHandler() {
     const currentUser = useSelector(state => state.user)
@@ -23,7 +23,7 @@ function ErrorHandler() {
         if (error.code === 401) {
             //color with red for unauthorized unless logged in?
             console.log("401 in severity signal")
-            return currentUser.loggedIn ? "error" : "success"
+            return currentUser.loggedIn ? "error" : "pink"
         } else if (error.code > 400) {
             // color with red
             return "error"
@@ -38,7 +38,7 @@ function ErrorHandler() {
       const alertText = () => {
         if (error.code === 401) {
             //color with red for unauthorized unless logged in?
-            return currentUser.loggedIn ? "Oops - logout and try again" : "Welcome - login"
+            return currentUser.loggedIn ? "Oops - logout and try again" : "Welcome...login?"
         } else if (error.code > 400) {
             // color with red
             return error.text
@@ -50,7 +50,11 @@ function ErrorHandler() {
         }
       }
       const Alert = React.forwardRef(function Alert(props, ref) {
-        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} severity={severitySignal()}/>;
+        return <MuiAlert elevation={6}
+         ref={ref} variant="filled" 
+         {...props} 
+         icon={currentUser.loggedIn ? "" : <AutoAwesomeOutlinedIcon/>} 
+         severity={severitySignal()}/>;
       });
 
       

@@ -24,7 +24,7 @@ function ShareViewer() {
     const [showLoading, setShowLoading] = useState(false)
     const [isModalShowing, setIsModalShowing] = useState(false)
     const dispatch = useDispatch()
-    
+    const navigate = useNavigate()
     const params = useParams()
     // console.log(params)
 
@@ -68,13 +68,13 @@ function ShareViewer() {
         dispatch(setError(newError))
       }
 
-        function comicalLoading() {
-          setShowLoading(true)
-          setTimeout(() => {
-            setShowLoading(false)
-            setOpen(true)
-          }, 1500)
-        }
+      function comicalLoading() {
+        setShowLoading(true)
+        setTimeout(() => {
+          setShowLoading(false)
+          setOpen(true)
+        }, 1900)
+      }
 
       function showAboutModal(){
         console.log("hello")
@@ -82,7 +82,12 @@ function ShareViewer() {
       }
 
       const handleModalClose = () => setIsModalShowing(false);
-          
+        
+      function handleSignUpClick(){
+        console.log("boo")
+          navigate("/")
+      }
+
       console.log(galleryToShow)
 
       const modalStyle = {
@@ -127,13 +132,14 @@ function ShareViewer() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={modalStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              tidings are something you share
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              give someone something to smile about, share a tiding.  
+            </Typography>
+            <Button color="pink" onClick={handleSignUpClick}>sign up</Button>
+          </Box>
         </Modal>
     </Grid>
   )

@@ -43,7 +43,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
     let value = e.target.value;
     // validations for a good time
     //use a regex 
-    const regex = new RegExp('[^0-9A-Za-z\@\.]')
+    const regex = new RegExp('[^0-9A-Za-z\@\._ ]')
     //make a new array to hold matches from the regex  
     const foundBaddy = value.match(regex)
     //if the array exists then set error to true, else false

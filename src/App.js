@@ -100,7 +100,7 @@ const appMode = createTheme({
       palette: {
         mode: isDarkMode ? 'light' : 'dark',
         grey: {
-          main: "#666"
+          main: '#666',
         },
         secondary: {
           main: '#B3D7FC',
@@ -109,13 +109,13 @@ const appMode = createTheme({
           main: '#B3D7FC',
         },
         grey: {
-          main: '#aed8e6',
+          main: '#AEd8E6',
         },
         pink: {
-          main : '#fec0ca'
+          main: '#FEC0CA',
         },
-        absurd: {
-          main : '#fec0ca'
+        info: {
+          main: '#FEC0CA'
         }
       },
     });

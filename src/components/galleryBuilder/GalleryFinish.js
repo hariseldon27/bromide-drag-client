@@ -72,7 +72,7 @@ function GalleryFinish() {
                 justifyContent="flex-start"
                 alignItems="center">
             <Grid item>
-              <TextField color="pink" helperText="share some final words" label="add a coda" required multiline="true" onChange={handleCodaChange} variant="standard" name="coda"/>
+              <TextField color="pink" helperText="share some final words" label="add a coda" required multiline onChange={handleCodaChange} variant="standard" name="coda"/>
             </Grid>
             <Grid item>
               <Button disabled={coda ? false : true} onClick={handleAbsurdFinishClick} color="pink"><LoadingAbsurdity /><SaveOutlinedIcon/></Button>

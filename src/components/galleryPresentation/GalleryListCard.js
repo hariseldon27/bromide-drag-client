@@ -21,54 +21,67 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
   
     return (
     
-    <Card sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
-      {/* main grid start */}
-      <Grid 
+  <Card sx={{ display: 'flex', padding: "10px", margin: "0 15px 0 15px" }}>
+    <Grid 
       container
       justifyContent="center"
       flexDirection="row"
       columns={{ xs: 6, sm: 8 }}> 
-        <Grid item xs={12}>
+        <Grid item xs={12}> 
           <Grid 
           flexDirection="column"
           container 
-          sx={{ flex: '1 0 auto', backgroundColor: "pink", textAlign: "center" }}
+          alignContent="flex-end"
+          sx={{backgroundColor: "pink", padding: ".5em"}}
           >
-            <Grid item xs={12}>
-              <Typography component="div" variant="h5">
+            <Grid item xs={12} >
+              <Typography color="pink" component="div" variant="h5">
                 {title}
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1" color="text.secondary" component="div">
-                {description}
-              </Typography>
-            </Grid>
+
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Grid 
-            container
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            >
-            <Grid item xs={12} sm={8} sx={{margin: '0 auto'}}>
-                      <Button name={gallery.id} id={`play_${gallery.id}`} onClick={handlePlayClick} aria-label="show">
-                          View Gallery 
-                      </Button>
-            </Grid>
-    
-            <Grid item xs={8} sm={4} sx={{margin: '0 auto'}} >
-              <CardMedia
-                component="img"
-                image={featured_image_url ? featured_image_url : placeholderImage}
-                alt={title}
-                />
-            </Grid>
-            <Grid item xs={12}>
+        <Grid item xs={12} >
+          <Grid container columns={16} spacing={1}>
+            <Grid item xs={16} sm={10}>
+              <Grid 
+                container
+                direction="column"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+                >
+                <Grid item >
+                  <Typography variant="subtitle1" textAlign="right" color="text.secondary" component="div">
+                    {description}
+                  </Typography>
+                </Grid>
+                <Grid item >
+                    <Button color="pink" name={gallery.id} id={`play_${gallery.id}`} onClick={handlePlayClick} aria-label="show">
+                        View Gallery 
+                    </Button>
+                </Grid>
+                <Grid item >
                       <GallerySocialShareLink share_url={share_url} gallery_id={id} />
                 </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={16} sm={6}>
+                <Grid 
+                container
+                direction="column"
+                justifyContent="flex-end"
+                alignItems="flex-end"
+                >
+                <Grid item>
+                  <CardMedia
+                    component="img"
+                    image={featured_image_url ? featured_image_url : placeholderImage}
+                    alt={title}
+                    />
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

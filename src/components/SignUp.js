@@ -47,6 +47,7 @@ function SignUp() {
         const regex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
         const emailOk = signUpFormData.email.toLowerCase().match(regex)
         !emailOk ? setFormError(true) : setFormError(false)
+        setTimeout(() => {setFormError(false)}, 1500)
         if (emailOk) signMeUp()
     }
 
@@ -125,13 +126,14 @@ function SignUp() {
     <Box>
         <FormControl>
             <Stack spacing={1}>
-                <Input id="signup-email" 
+                <TextField id="signup-email" 
                 placeholder="email" 
                 value={signUpFormData.email} 
                 name="email"
                 onChange={handlesignUpFormChange}
                 error={formError}
-                color="pink"
+                color="lightblue"
+                variant="outlined"
                 />
                 <TextField id="signup-password" 
                 type="password" 
@@ -139,13 +141,13 @@ function SignUp() {
                 value={signUpFormData.password} 
                 name="password"
                 onChange={handlesignUpFormChange}
-                variant="standard"
-                color="pink"
+                variant="outlined"
+                color="lightblue"
                 />
                 <Button id="signup-submit" 
                 type="submit" 
                 name="submit"
-                variant="contained"
+                variant="outlined"
                 color="secondary"
                 disabled={formError}
                 onClick={handleSubmitValidation}>Sign Up</Button>

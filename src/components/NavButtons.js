@@ -17,7 +17,6 @@ function NavButtons() {
     textDecoration: "none",
     backgroundColor: "primary.main",
     color: "lightblue",
-    border: "solid 1px lightblue",
     pointerEvents: currentUser.loggedIn ? "auto" : "none"
   };
   const inActiveStyle = {
@@ -29,7 +28,7 @@ function NavButtons() {
     textDecoration: "none",
     backgroundColor: "primary.main",
     color: "lightblue",
-    border: "solid 1px lightblue",
+    // border: "solid 1px lightblue",
   };
   const homeInActiveStyle = {
     textDecoration: "none",

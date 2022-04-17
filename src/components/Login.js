@@ -109,13 +109,15 @@ function Login(e) {
   return (
     <Box>
         <FormControl id="login-form">
-            <Stack>
-                <Input id="login-email" 
+            <Stack gap={1}>
+                <TextField id="login-email" 
                 placeholder="email" 
                 value={loginFormData.email} 
                 name="email"
                 onChange={handleLoginFormChange}
                 error={formError}
+                color="pink"
+                variant="outlined"
                 />
                 <TextField id="login-password" 
                 type="password" 
@@ -123,11 +125,14 @@ function Login(e) {
                 value={loginFormData.password} 
                 name="password"
                 onChange={handleLoginFormChange}
-                variant="standard"
+                variant="outlined"
+                color="pink"
                 />
                 <Button id="login-submit" 
                 type="submit" 
                 name="submit"
+                color="pink"
+                variant="outlined"
                 disabled={formError}
                 onClick={login2}>Log In</Button>
             </Stack>

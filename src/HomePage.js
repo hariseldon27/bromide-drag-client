@@ -39,7 +39,7 @@ function toggleSignUpClick(){
       <Box>
         <VarTextAlreadyLoggedIn />
       </Box>
-  </Fade>
+    </Fade>
   )
   }
 const homeComponents = {
@@ -60,20 +60,22 @@ const homeElevation = 0
             <Typography variant="overline" component="h1">welcome to bromide drag</Typography>
             </Paper>
         </Grid>
+        <Paper style={homeComponents} elevation={homeElevation}>
         <Grid container
-        spacing={1}
-        direction="row"
-        justifyContent="center">
-          <Grid item xs={4}>
-              <Paper style={homeComponents} elevation={homeElevation}>
-
-              {isSignUpShowing ? <FadingLoginPlzText /> : <FadingAlreadyLoggedInText /> }
-              {isSignUpShowing ? <SignUp/> : <Login/> }
-              <Button onClick={toggleSignUpClick} id="sign_up_toggle" color="pink"> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
-            </Paper>
-          </Grid>
+          spacing={1}
+          gap={1}
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center">
+            <Grid item xs={12}>
+                {isSignUpShowing ? <SignUp/> : <Login/> }
+            </Grid>
+            <Grid item xs={12} sx={{color: "white"}} >
+              <Button fullWidth variant="contained" onClick={toggleSignUpClick} id="sign_up_toggle" color={isSignUpShowing ? "lightblue" : "pink"}> {isSignUpShowing ? "Log in instead" : "Sign up instead"}</Button>
+            </Grid>
           
         </Grid>
+          </Paper>
       </Grid>
     </Box>
   )

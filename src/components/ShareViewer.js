@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import GalleryShow from './galleryPresentation/GalleryShow';
 import Loading from '../components/socialLinkGenerator/Loading'
 import Typography from '@mui/material/Typography';
+import GradientOutlinedIcon from '@mui/icons-material/GradientOutlined';
 import { setError } from '../reducers/errorSlice'
 import { useDispatch } from "react-redux"
+import Fade from '@mui/material/Fade';
+import { useNavigate } from 'react-router-dom'
 
+
+import Modal from '@mui/material/Modal';
 
 
 
@@ -16,13 +22,14 @@ function ShareViewer() {
     const [blocksToShow, setBlocksToShow] = useState([])
     const [galleryToShow, setGalleryToShow] = useState([])
     const [showLoading, setShowLoading] = useState(false)
+    const [isModalShowing, setIsModalShowing] = useState(false)
     const dispatch = useDispatch()
     
     const params = useParams()
     // console.log(params)
 
     function showGallery(){
-        console.log(params.id)
+        console.log(params)
         goFetch()
     }
 
@@ -34,46 +41,101 @@ function ShareViewer() {
              return response.json();
             }
             return Promise.reject(response); 
-          })
+        })
             // if resp.ok then we proceed to set onLogin
             // reset the field text, and setUserError to false
-            .then((data) => { 
-              console.log("came back as ", data); 
-              setGalleryToShow([data])
-              setBlocksToShow(data.blocks)
-              comicalLoading()
+        .then((data) => { 
+          console.log("came back as ", data); 
+          setGalleryToShow([data])
+          setBlocksToShow(data.blocks)
+          comicalLoading()
 
-            })
+        })
             // if there is an error then send the error info to a handler
-            .catch((error) => {
-              console.log(error)
-              renderUserError(error)
-            });
-          }
+        .catch((error) => {
+          console.log(error)
+          renderUserError(error)
+        });
+      }
           //this sets our user error
-          function renderUserError(error) {
-            console.log("error render", error)
-            const newError = {
-              text: error.statusText,
-              occurred: true, 
-              code: error.status
-            }
-            dispatch(setError(newError))
-          }
-          function comicalLoading() {
-            setShowLoading(true)
-            setTimeout(() => {setShowLoading(false)}, 1500)
-            setOpen(true)
-          }
+      function renderUserError(error) {
+        console.log("error render", error)
+        const newError = {
+          text: error.statusText,
+          occurred: true, 
+          code: error.status
+        }
+        dispatch(setError(newError))
+      }
 
-          console.log(galleryToShow)
+        function comicalLoading() {
+          setShowLoading(true)
+          setTimeout(() => {
+            setShowLoading(false)
+            setOpen(true)
+          }, 1500)
+        }
+
+      function showAboutModal(){
+        console.log("hello")
+        setIsModalShowing(true)
+      }
+
+      const handleModalClose = () => setIsModalShowing(false);
+          
+      console.log(galleryToShow)
+
+      const modalStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'rgba(80,80,80,.5)',
+        border: '2px solid pink',
+        boxShadow: 10,
+        p: 4,
+        color: "white",
+        borderRadius: "3px"
+      };
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, justifyContent: 'center' }}>
-        <Box item sx={{display: 'flex',  }}  ><Button onClick={showGallery}>View your gallery</Button></Box>
-        {showLoading ? <Typography variant="body1"><Loading /></Typography> : null}
+    <Grid  container
+    direction="column"
+    justifyContent="center"
+    alignItems="center"
+    height="40vh"
+    >
+      <Grid item xs={4}>
+        <Fade in={!showLoading}><Button color="pink" onClick={showGallery}>View your gallery <GradientOutlinedIcon /></Button></Fade>
+      </Grid>
+      <Grid item xs={4}>
+        {showLoading ? <Typography variant="body1" color="#FEC0CA"><Loading /></Typography> : null}
+      </Grid>
+      <Grid item xs={4}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Button onClick={showAboutModal} color="pink">new here?  learn about tidings</Button>
+          </Grid>
+        </Grid>
+      </Grid>
         <GalleryShow open={open} setOpen={setOpen} blocksToShow={blocksToShow} galleryToShow={galleryToShow}/>
-    </Box>
+          <Modal
+          open={isModalShowing}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+        </Modal>
+    </Grid>
   )
 }
 

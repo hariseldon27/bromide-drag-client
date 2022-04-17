@@ -57,7 +57,7 @@ const homeElevation = 0
       justifyContent="center">
         <Grid item xs={12}>
           <Paper style={homeComponents} elevation={homeElevation}>
-            <Typography variant="overline" component="h1">welcome to bromide drag</Typography>
+            <Typography variant="overline" component="h1">welcome to tidings</Typography>
             </Paper>
         </Grid>
         <Paper style={homeComponents} elevation={homeElevation}>

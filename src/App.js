@@ -25,12 +25,17 @@ import ErrorHandler from './components/errorHandler/ErrorHandler';
 // import GalleryShow from './components/galleryPresentation/GalleryShow';
 import ShareViewer from './components/ShareViewer';
 import NotFound from './components/NotFound';
+import { useParams } from 'react-router-dom'
+
 
 function App( ) {
   const dispatch = useDispatch()
   const isDarkMode = useSelector(state => state.themeToggle.isDarkMode)
   // const currentUser = useSelector(state => state.user)
   // const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
+
+  const params = useParams()
+  console.log(params)
 
   useEffect(()=>{
     dispatch(showSpinner());
@@ -124,7 +129,6 @@ const appMode = createTheme({
 
 const wrapperStyle = {
   background: isDarkMode ? "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)" : "linear-gradient(25deg, #2A2B2B 70%, #C28686 290%)",
-  // background: "linear-gradient(25deg, #2A2B2B 0%, #C28686 290%)",
   minWidth: "100%",
   minHeight: "100vh",
   display: "flex",
@@ -146,7 +150,7 @@ const appPaper = {
               <Header/>
               <Paper style={appPaper}>
                 <Routes>
-                  <Route  path="/" element={<HomePage/>}/>
+                  <Route path="/" element={<HomePage/>}/>
                   <Route path="/share/:id" element={<ShareViewer />}/>
                   <Route path="/profile" element={<UserProfile/>} />
                   <Route path="/gallery-builder" element={<GalleryBuilder/>} />

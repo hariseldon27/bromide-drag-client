@@ -12,64 +12,62 @@ import { useDispatch, useSelector } from "react-redux"
 
 
 
-function FeaturedImageUpload( { onGalleryStartChange } ) {
+function FeaturedImageUpload( { formError, setFormError, onGalleryStartChange } ) {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
   const [userError, setUserError] = useState(false)
   const [uploadImage, setUploadImage] = useState()
 
+
   
 function handleImageChange(e){
-    // console.log(e.target.files[0].name)
+    setFormError(false)
     setUploadImage(e.target.files[0])
     onGalleryStartChange(e.target.files[0])
 }
 
-// console.log(currentUser)
-// console.log(currentUser.avatar)
-// console.log(avatarImageUpload)
+const handleSubmit = () =>{}
 
-const handleSubmit = e => {
-  e.preventDefault();
-  const formData = new FormData()
-  formData.append("featuredImage", uploadImage)
-  fetch(`http://localhost:3000/new-photo/${currentUser.id}`, {
-    method: 'POST',
-    headers: {
-      "Authorization": `Bearer ${currentUser.token}`
-      },
-    body: formData
-  })
-    // .then(res => res.json())
-  .then((response) => {
-    if (response.ok) { 
-     return response.json();
-    }
-    return Promise.reject(response); 
-  })
-    // if resp.ok then we proceed to set onLogin
-    // reset the field text, and setUserError to false
-    .then((data) => { 
-      // console.log("came back as ", data); 
-      // console.log(data.user)
-      // console.log(data.avatar)
-    //   dispatch(setUserAvatar({
-    //     avatar: data.avatar
-    // }))
-    })
-    // if there is an error then send the error info to a handler
-    .catch((error) => {
-      console.log(error)
-      renderUserError(error)
-    });
-  }
-  //this sets our user error - currently inactive - then logs an error
-  function renderUserError(error){
-    setUserError(true)
-    console.log('Oops... ', error.statusText)
-  }
 
-  // plz refactor the uploader to be a drag and drop based on this: https://codepen.io/beljems/pen/LYNZYNy
+// const handleSubmit = e => {
+//   e.preventDefault();
+//   const formData = new FormData()
+//   formData.append("featuredImage", uploadImage)
+//   fetch(`http://localhost:3000/new-photo/${currentUser.id}`, {
+//     method: 'POST',
+//     headers: {
+//       "Authorization": `Bearer ${currentUser.token}`
+//       },
+//     body: formData
+//   })
+//     // .then(res => res.json())
+//   .then((response) => {
+//     if (response.ok) { 
+//      return response.json();
+//     }
+//     return Promise.reject(response); 
+//   })
+//     // if resp.ok then we proceed to set onLogin
+//     // reset the field text, and setUserError to false
+//     .then((data) => { 
+//       console.log("featured image came back as ", data); 
+//       // console.log(data.user)
+//       // console.log(data.avatar)
+
+//     })
+//     // if there is an error then send the error info to a handler
+//     .catch((error) => {
+//       console.log(error)
+//       renderUserError(error)
+//     });
+//   }
+//   //this sets our user error - currently inactive - then logs an error
+//   function renderUserError(error){
+//     setUserError(true)
+//     console.log('Oops... ', error.statusText)
+//   }
+
+  // plz refactor the uploader to be a drag and drop, maybe based on this: https://codepen.io/beljems/pen/LYNZYNy
 
 function FileNameDisplay() {
     if (uploadImage) {
@@ -84,8 +82,9 @@ function FileNameDisplay() {
         return "Choose File"
     }
 }
+
+
 const featuredImageBoxStyle = {
-  // backgroundColor: "pink",
   border: "1px #cbcbcb solid",
   padding: ".5em .7em .7em .7em",
   borderRadius: "3px",
@@ -93,11 +92,11 @@ const featuredImageBoxStyle = {
 }
   return (
     <Box style={featuredImageBoxStyle}>
-        <Typography variant="overline">featured image</Typography>
+        <Typography variant="overline">featured image <span className="overline">*</span></Typography>
         <form onSubmit={handleSubmit} id='upload'>
             <Button
             variant="outlined"
-            color="grey"
+            color={formError ? "error" : "lightblue"}
             component="label">
                 <FileNameDisplay/>
                 <input

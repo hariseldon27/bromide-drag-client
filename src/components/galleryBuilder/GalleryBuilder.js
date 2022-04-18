@@ -33,7 +33,7 @@ function handleChangeStep(e){
   dispatch(setStep(e.target.name))
 }
 
-console.log('gallerybuilder refresh')
+// console.log('gallerybuilder refresh')
 
 //this was originally for breadcrumbs, so I left it as crummy
 function Crummy(){

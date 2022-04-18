@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux"
 import Header from './components/Header'
 import HomePage from './HomePage';
 import { useNavigate } from 'react-router-dom'
+import Grid from '@mui/material/Grid';
 
 import {
   BrowserRouter,
@@ -25,7 +26,6 @@ import ErrorHandler from './components/errorHandler/ErrorHandler';
 // import GalleryShow from './components/galleryPresentation/GalleryShow';
 import ShareViewer from './components/ShareViewer';
 import NotFound from './components/NotFound';
-import { useParams } from 'react-router-dom'
 
 
 function App( ) {
@@ -34,8 +34,6 @@ function App( ) {
   // const currentUser = useSelector(state => state.user)
   // const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
 
-  const params = useParams()
-  console.log(params)
 
   useEffect(()=>{
     dispatch(showSpinner());
@@ -75,7 +73,7 @@ function App( ) {
   }, [])
 
   function revoke(){
-    console.log("revoking token and redirecting")
+    // console.log("revoking token and redirecting")
     localStorage.removeItem("token")
     dispatch(setCurrentUser({
       email: "",
@@ -136,7 +134,10 @@ const wrapperStyle = {
   justifyContent: "center"
 }
 const appPaper = {
-  padding: "2em"
+  padding: "2em",
+}
+const appStyle = {
+  margin: "6em"
 }
 
   return (
@@ -145,20 +146,30 @@ const appPaper = {
         <BrowserRouter>
           <CssBaseline />
           <ThemeProvider theme={appMode} >
-            <Paper elevation={24}>
-              <Spinner/>
-              <Header/>
-              <Paper style={appPaper}>
-                <Routes>
-                  <Route path="/" element={<HomePage/>}/>
-                  <Route path="/share/:id" element={<ShareViewer />}/>
-                  <Route path="/profile" element={<UserProfile/>} />
-                  <Route path="/gallery-builder" element={<GalleryBuilder/>} />
-                  <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Paper>
-            </Paper>
+              <Grid container 
+              justifyContent="center"
+              alignContent="center">
+                <Grid item xs={10}>
+                  <Paper style={appStyle}  elevation={0} >
+                      <Spinner/>
+                        <Grid item xs={12}>
+                          <Header/>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Paper style={appPaper}>
+                            <Routes>
+                              <Route path="/" element={<HomePage/>}/>
+                              <Route path="/share/:id" element={<ShareViewer />}/>
+                              <Route path="/profile" element={<UserProfile/>} />
+                              <Route path="/gallery-builder" element={<GalleryBuilder/>} />
+                              <Route path="/gallery-presentation" element={<GalleryPresentation/>} />
+                              <Route path="*" element={<NotFound />} />
+                            </Routes>
+                          </Paper>
+                      </Grid>
+                  </Paper>
+                  </Grid>
+              </Grid>
             <ErrorHandler />
             </ThemeProvider>
         </BrowserRouter>

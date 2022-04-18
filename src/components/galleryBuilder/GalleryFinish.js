@@ -34,8 +34,8 @@ function GalleryFinish() {
       published_on: new Date().toUTCString(),
       coda: coda
     }
-    console.log("clickfini")
-    console.log(publishData)
+    // console.log("clickfini")
+    // console.log(publishData)
     fetch(`http://127.0.0.1:3000/gallery/${gallery.id}`, {
       method: 'PATCH',
       headers: {
@@ -45,7 +45,7 @@ function GalleryFinish() {
         body: JSON.stringify(publishData),
         })
         .then(r => r.json())
-        .then(d => console.log("finished gal back as: ", d))
+        // .then(d => console.log("finished gal back as: ", d))
         dispatch(showSpinner())
         moveMe()
       }

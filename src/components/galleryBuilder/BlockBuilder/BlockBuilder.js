@@ -7,11 +7,11 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import Link from '@mui/material/Link';
 import ImageUploadButton from '../../ImageUploadButton';
-import { setStep, setShowMessage } from '../../../reducers/gallerySlice'
+import { setShowMessage  } from '../../../reducers/blockMessageSlice';
+import { setStep } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 import Collapse from '@mui/material/Collapse';
 import { showSpinner } from '../../../reducers/spinnerSlice'
-
 
 function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBuilder, handleResetList } ) {
   const [blockImage, setBlockImage] = useState("")
@@ -62,9 +62,9 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
 
   const handleSubmit = e => {
     dispatch(showSpinner())
-    console.log('hello')
+    // console.log('hello')
     e.preventDefault();
-    console.log("clicked add block")
+    // console.log("clicked add block")
     const formData = new FormData()
     formData.append("gallery_id", id)
     if (blockImage) formData.append("image", blockImage)
@@ -92,15 +92,19 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
       // if resp.ok then we proceed to set onLogin
       // reset the field text, and setUserError to false
       .then((data) => { 
-        console.log("block came back as ", data); 
+        // console.log("block came back as ", data); 
         dispatch(setStep("manage"))
         dispatch(showSpinner())
+        dispatch(setShowMessage({
+          show: true, 
+          message: `added block ${data.id} to gallery ${id}`}))
         resetForm()
       })
       // if there is an error then send the error info to a handler
       .catch((error) => {
-        console.log(error)
+        // console.log(error)
         renderUserError(error)
+        
       });
     }
     //this sets our user error - currently inactive - then logs an error
@@ -112,9 +116,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
       setBlockImage("")
       handleCloseBlockBuilder()
       handleResetList()
-      dispatch(setShowMessage({
-        showMessage: true, 
-        message: `added bl stuff`}))
+
     }
     function handleCompactModeToggle(e){
       e.preventDefault()
@@ -240,7 +242,6 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
           </Grid>
         </Grid>
       </Grid>
-
     </Box>
   
   )

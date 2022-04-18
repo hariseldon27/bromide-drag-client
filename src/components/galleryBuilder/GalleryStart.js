@@ -19,10 +19,11 @@ function GalleryStart( { userError, setUserError  } ) {
     const isSpinnerShowing = useSelector(state => state.spinner.isSpinnerShowing)
     //this is the gallery we'll start and send to the db
     const [newGalleryEstablish, setNewGalleryEstablish] = useState({
-        title: "new gallery", 
-        description: "description",
-      })
+      title: "new gallery", 
+      description: "description",
+    })
     const [featuredImage, setFeaturedImage] = useState()
+    const [formError, setFormError] = useState(false)
   
       // handle the text and file inputs
     function handleGalleryStartChange(e) {
@@ -34,6 +35,12 @@ function GalleryStart( { userError, setUserError  } ) {
           setNewGalleryEstablish({...newGalleryEstablish, [name]: value})
         }
       }
+
+      const handleValidate = e => {
+        featuredImage ? handleSubmit(e) : setFormError(true)
+        
+      }
+
 
   // create new record in db 
   const handleSubmit = e => {
@@ -61,7 +68,7 @@ function GalleryStart( { userError, setUserError  } ) {
     })
       // if resp.ok then we proceed - logs for dev and sanity checks
       .then((data) => { 
-        // console.log("new gal came back as ", data); 
+        console.log("new gal came back as ", data); 
         // console.log("desc: ", data.description)
         // console.log("title: ", data.title)
         // console.log("id: ", data.id)
@@ -93,7 +100,7 @@ function GalleryStart( { userError, setUserError  } ) {
         code: error.status
       }
       dispatch(setError(newError))
-    
+      setFormError(true)
     }
 //this is reused AGAIN because JP is too lazy to figure out the custom hook
     function revoke(){
@@ -110,6 +117,7 @@ function GalleryStart( { userError, setUserError  } ) {
         code: 401
       }))
     }
+
 
   return (
     <Box sx={{flexGrow: 1, padding: '2vh'}}>
@@ -147,16 +155,18 @@ function GalleryStart( { userError, setUserError  } ) {
           </Grid>
         </Grid> 
         <Grid item xs={12} >
-                <FeaturedImageUpload onGalleryStartChange={handleGalleryStartChange} />
+                <FeaturedImageUpload formError={formError} setFormError={setFormError} onGalleryStartChange={handleGalleryStartChange} />
         </Grid>
         <Grid item xs={4}>
                 <Button
                 variant="outlined" 
                 color="pink"
                 component="label"
-                onClick={handleSubmit}>
+                disabled={formError}
+                onClick={handleValidate}>
                     Start it
                 </Button>
+                
         </Grid>
     </Box>
   )

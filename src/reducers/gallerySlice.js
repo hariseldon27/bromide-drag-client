@@ -28,18 +28,14 @@ const slice = createSlice( {
             state.featured_image_url = action.payload.featured_image_url
             state.published = action.payload.published
             state.published_on = action.payload.published_on
-        },
-        setShowMessage: (state, action) => {
-            state.showMessage = action.payload.showMessage
-            state.message = action.payload.message
         }
         
     }
 } )
 
 // actions
-const { setStep, setGalleryInEdit, setShowMessage } = slice.actions
+const { setStep, setGalleryInEdit } = slice.actions
 
 // exports
-export { setStep, setGalleryInEdit, setShowMessage } 
+export { setStep, setGalleryInEdit } 
 export default slice.reducer

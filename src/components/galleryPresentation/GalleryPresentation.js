@@ -56,25 +56,25 @@ function GalleryPresentation() {
       }
     })
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       if (response.ok) {
         return response.json()
     }
       return Promise.reject(response)
     })
     .then((galleries) => {
-      console.log(galleries)
+      // console.log(galleries)
       setGalleryList(galleries)
       dispatch(showSpinner())
     })
     .catch((error) => {
-      console.log(error)
+      // console.log(error)
       revoke()
     })
   }, [])
 
   function revoke(){
-    console.log("revoking token and redirecting")
+    // console.log("revoking token and redirecting")
     localStorage.removeItem("token")
     dispatch(setCurrentUser({
       email: "",
@@ -114,14 +114,14 @@ function GalleryPresentation() {
 
   })
   .catch((error) => {
-    console.log(error)
+    // console.log(error)
     renderUserError(error)
     
   })
   }
   function renderUserError(error) {
-    console.log(error.error.statusText)
-    console.log(error.error.status)
+    // console.log(error.error.statusText)
+    // console.log(error.error.status)
     const newError = {
       text: error.statusText || error.error.statusText,
       occurred: true, 

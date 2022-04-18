@@ -66,11 +66,11 @@ function BlockList( {  } ) {
   }
 
  function handleExpandNewBlock() {
-   console.log("click")
+  //  console.log("click")
     setBlockBuilderShowing(true)
  }
  function handleCloseBlockBuilder() {
-   console.log("closebb")
+  //  console.log("closebb")
    setBlockBuilderShowing(false)
  }
 function handleResetList(){

@@ -60,7 +60,7 @@ function SignUp() {
                 password: signUpFormData.password
             }
         }
-        console.log("sending this to server", JSON.stringify(userToSignUp))
+        // console.log("sending this to server", JSON.stringify(userToSignUp))
         await fetch('http://localhost:3000/users', {
             method: "POST",
             headers: {

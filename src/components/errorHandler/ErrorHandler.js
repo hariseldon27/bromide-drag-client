@@ -27,7 +27,7 @@ function ErrorHandler() {
       const severitySignal = () => {
         if (error.code === 401) {
             //color with red for unauthorized unless logged in?
-            console.log("401 in severity signal")
+            // console.log("401 in severity signal")
             return currentUser.loggedIn ? "error" : "pink"
         } else if (error.code > 400) {
             // color with red
@@ -83,7 +83,7 @@ function ErrorHandler() {
       //   }))
       // }
 
-      console.log(error)
+      // console.log(error)
   return (
     <>
         

@@ -13,8 +13,8 @@ function GalleryListing( { galleryList, onGalleryPlay } ) {
   const publishedGalleries = galleryList.filter(gallery => gallery.published_on < now)
   const galleryCount = publishedGalleries.length
   const recentFiveText = publishedGalleries.length >= 5 ? "- here are your 5 most recent" : ""
-  const title = publishedGalleries.length > 0 ? `Your Galleries, total: ${galleryCount} ${recentFiveText}` : "You don't have any galleries yet, click the plus above and make one!"
-  const coda = publishedGalleries.length > 0 ? <Typography variant="overline" component="p">Looking for the rest of your galleries? Alas our whims are but that...</Typography> : null
+  const title = publishedGalleries.length > 0 ? `Your Galleries, lifetime total: ${galleryCount} ${recentFiveText}` : "You don't have any galleries yet, click the plus above and make one!"
+  const coda = publishedGalleries.length > 5 ? <Typography variant="overline" component="p">Looking for the rest of your galleries? Alas our whims are but that...</Typography> : null
   
   const cards = publishedGalleries.map(gallery => {
     return <Grid key={gallery.id} item xs={12}  ><GalleryListCard  gallery={gallery} onGalleryPlay={onGalleryPlay}/></Grid>

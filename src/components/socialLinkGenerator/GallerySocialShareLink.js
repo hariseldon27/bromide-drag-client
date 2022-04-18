@@ -8,9 +8,11 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import Chance from 'chance'
 import Collapse from '@mui/material/Collapse';
 import Grid from '@mui/material/Grid';
+import Snackbar from '@mui/material/Snackbar';
 
 
 import RandomLinkStringGenerator from './RandomLinkStringGenerator'
+import CopiedNote from './CopiedNote';
  
 function GallerySocialShareLink( { share_url, gallery_id } ) {
   const chance = new Chance()
@@ -18,6 +20,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   const [newShareLink, setNewShareLink] = useState("")
   const [isShareable, setIsShareable] = useState(false)
   const [showShare, setShowShare] = useState(false)
+  const [copied, setCopied] = useState(false)
   
   useEffect(() => {
     setNewShareLink(share_url || `http://localhost:3006/share/${makeRandomStr()}`)
@@ -61,11 +64,17 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
           setTimeout(() => {setShowLoading(false)}, 1500)
         })
   }
-
+  function handleCopy(){
+    console.log("Copied")
+    navigator.clipboard.writeText(newShareLink)
+    setCopied(true)
+  }
 
   function ShareableReturn(){
+    const copyIcon = <FileCopyIcon color={copied ? "lightgreen" : "black"} fontSize="small"/>
+    const linkToRender = `...${newShareLink.substring(27)}`
     return (
-      <><Typography variant="caption">{newShareLink}</Typography> </>
+      <><Typography onClick={handleCopy} variant="caption">{copyIcon}{linkToRender}</Typography> </>
     )
   }
   function GetLinkReturn(){
@@ -79,22 +88,23 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   }
 
   function LoadingOrLinkGen(){
-    return <Box sx={{ display: 'flex', alignItems: 'center', pr: 1, }}>{showLoading ? <Loading/> : <LinkOrGenerateButton /> } </Box>
-
+    return <Box >{showLoading ? <Loading/> : <LinkOrGenerateButton /> } </Box>
   }
 
 
-  // pasting the genreate code in here because I'm too lazy to crete a custom constructor hook
+  // pasting the generate code in here because I'm too lazy to crete a custom constructor hook
   const generators = [chance.syllable(),chance.animal(),chance.city(),chance.coin(),chance.word(),chance.cc_type(),chance.weekday(),chance.company(),chance.suffix()]
     function makeRandomStr(){
-        const randomNumber = () => { return Math.floor(Math.random() * generators.length)}
+        const randomGenerator = () => { return Math.floor(Math.random() * generators.length)}
         // hold our randomness in this array
         const randomStrArr = []
         for (let i = 0; i < 4; i++  ){
-            randomStrArr[i] = generators[randomNumber()]
+            randomStrArr[i] = generators[randomGenerator()]
         }
         // smash strings together, remove characters and spaces, limit to 20, and return it
-        const string = randomStrArr.join("").replace(/\s/g, '').replace(/[^a-z0-9]/gi, '').substring(0, 20);
+        const randomStringMinLength = Math.floor(Math.random() * (6 - 1) + 1)
+        const randomStringMaxLength = Math.floor(Math.random() * (27 - 20) + 20)
+        const string = randomStrArr.join("").replace(/\s/g, '').replace(/[^a-z0-9]/gi, '').substring(randomStringMinLength, randomStringMaxLength);
         return string
     }
 
@@ -111,6 +121,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
   // loading...
   // after click on generate button set state to "generating"
   // third state is "newly_sharable" ?? 
+
   return (
   <Box sx={{flexGrow: 1}}>
         <Grid container
@@ -127,6 +138,7 @@ function GallerySocialShareLink( { share_url, gallery_id } ) {
             <Button onClick={handleShowShare}><ShareIcon className="shareIcon" style={shareIconStyle} fontSize='small'/></Button>
           </Grid>
     </Grid>
+    <CopiedNote copied={copied} setCopied={setCopied}/>
   </Box>
   )
 }

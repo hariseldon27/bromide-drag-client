@@ -58,6 +58,7 @@ function GalleryListCard( { gallery, onGalleryPlay } ) {
                 alignItems="flex-end"
                 paddingX=".8rem"
                 paddingY=".4rem"
+                
                 >
                   <Grid item xs={12}>
                     <Typography textAlign="right" color="#FEC0CA" component="h4" variant="h5">

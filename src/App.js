@@ -117,6 +117,9 @@ const appMode = createTheme({
         pink: {
           main: '#FEC0CA',
         },
+        lightgreen: {
+          main: '#90ee90',
+        },
         info: {
           main: '#FEC0CA'
         }
@@ -149,7 +152,7 @@ const appStyle = {
               <Grid container 
               justifyContent="center"
               alignContent="center">
-                <Grid item xs={10}>
+                <Grid item xs={12}>
                   <Paper style={appStyle}  elevation={0} >
                       <Spinner/>
                         <Grid item xs={12}>

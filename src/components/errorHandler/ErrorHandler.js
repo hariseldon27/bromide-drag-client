@@ -54,13 +54,15 @@ function ErrorHandler() {
             return "Oops - earth imploded...try again l8r"
         }
       }
+
       //use Alert for this because of the forwarding refs
       const Alert = React.forwardRef(function Alert(props, ref) {
         return <MuiAlert elevation={6}
          ref={ref} variant="filled" 
          {...props} 
+         color={severitySignal()}
          icon={currentUser.loggedIn ? "" : <AutoAwesomeOutlinedIcon/>} 
-         severity={severitySignal()}/>;
+         />;
       });
 
       // this Revoke function should probably either be here, or in another global user-management component

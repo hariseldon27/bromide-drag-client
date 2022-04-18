@@ -15,7 +15,7 @@ import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import Collapse from '@mui/material/Collapse';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import './refreshRotater/refresh_rotate.css'
-
+import { v4 as uuidv4 } from 'uuid';
 
 //fake dataset for dev
 import dummyDataBlocks from './dummyDataBlocks.json'
@@ -28,7 +28,7 @@ function BlockList( {  } ) {
   const currentUser = useSelector(state => state.user)
   const gallery = useSelector(state => state.gallery)
   const step = useSelector(state => state.step)
-  console.log(gallery)
+  // console.log(gallery)
 
  //
   
@@ -42,7 +42,7 @@ function BlockList( {  } ) {
     })
     .then((r) => r.json())
     .then((d) => {
-      console.log(`fetch r:`, d)
+      // console.log(`fetch r:`, d)
       // debugger
       setBlockListInEdit(d)
     }) 
@@ -58,14 +58,14 @@ function BlockList( {  } ) {
     })
     .then((r) => r.json())
     .then((d) => {
-      console.log(`fetch r:`, d)
+      // console.log(`fetch r:`, d)
       // debugger
       setBlockListInEdit(d)
       refreshTimer()
     }) 
   }
 
- function handleAddNewBlock() {
+ function handleExpandNewBlock() {
    console.log("click")
     setBlockBuilderShowing(true)
  }
@@ -99,9 +99,7 @@ function refreshTimer(){
  const rotaterStyle = refreshing ? "rotateMe" : ""
 
 
-
-
- const blockListCards = gallery.id === 0 ? null : blockListInEdit.map(block => <BlockListCard key={gallery.id} block={block} /> )
+ const blockListCards = gallery.id === 0 ? null : blockListInEdit.map(block => <BlockListCard key={uuidv4()} block={block} /> )
   return (
     <Stack 
     spacing={2} 
@@ -112,7 +110,7 @@ function refreshTimer(){
   >
       <Button id="refresh" onClick={handleRefresh}><CachedIcon className={rotaterStyle} color="lightblue" /> <CollectionsIcon color="pink" /></Button>
         {blockListCards}
-        <Button color="pink" onClick={handleAddNewBlock}><AddPhotoAlternateIcon /></Button>
+        <Button color="pink" onClick={handleExpandNewBlock}><AddPhotoAlternateIcon /></Button>
         <Collapse in={blockBuilderShowing} > <BlockBuilderInset /> </Collapse>
         {/* {blockBuilderShowing ? <BlockBuilderInset /> : null } */}
     </Stack>

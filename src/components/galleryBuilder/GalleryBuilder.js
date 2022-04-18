@@ -13,22 +13,16 @@ import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 
-import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
-import CameraRollOutlinedIcon from '@mui/icons-material/CameraRollOutlined';
-import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-
-
 import GalleryFinish from './GalleryFinish'
 import StepIndicator from './StepIndicator'
 import { setStep } from '../../reducers/gallerySlice'
-
+import BlockBuilderMessages from './BlockBuilder/BlockBuilderMessages'
 
 function GalleryBuilder() {
 
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
-  const gallery = useSelector(state => state.gallery)
+  const {id, title, featured_image_url} = useSelector(state => state.gallery)
   const [userError, setUserError] = useState(false)
   const step = useSelector( state => state.gallery.step )
   
@@ -39,6 +33,8 @@ console.log("gallery build step: ", step)
 function handleChangeStep(e){
   dispatch(setStep(e.target.name))
 }
+
+console.log('gallerybuilder refresh')
 
 function Crummy(){
   return (  
@@ -51,8 +47,8 @@ function Crummy(){
     className="header" 
     padding='1em'
     >
-      {gallery.featured_image_url ? <Avatar alt="new gallery image" src={gallery.featured_image_url} /> : null}
-      {gallery.id ? <Typography variant="overline">id: {gallery.id} {<br></br>} title: {gallery.title}</Typography> : null }
+      {featured_image_url ? <Avatar alt="new gallery image" src={featured_image_url} /> : null}
+      {id ? <Typography variant="overline">id: {id} {<br></br>} title: {title}</Typography> : null }
       <StepIndicator />
     </Grid>
   );
@@ -104,6 +100,7 @@ function Crummy(){
           </Paper>
           </Grid>
       </Grid>
+      <BlockBuilderMessages />
     </Box>
   )
 }

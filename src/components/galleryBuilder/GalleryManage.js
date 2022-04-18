@@ -7,11 +7,10 @@ import LibraryAddCheckOutlinedIcon from '@mui/icons-material/LibraryAddCheckOutl
 import Tooltip from '@mui/material/Tooltip';
 import { setStep, setGalleryInEdit } from '../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
-
+import BlockBuilderMessages from './BlockBuilder/BlockBuilderMessages';
 
 function GalleryManage( { userError, setUserError } ) {
   const dispatch = useDispatch()
-
   function handleFinish(){
     dispatch(setStep("finish"))
   }

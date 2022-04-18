@@ -7,17 +7,17 @@ import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import Link from '@mui/material/Link';
 import ImageUploadButton from '../../ImageUploadButton';
-import { setStep } from '../../../reducers/gallerySlice'
+import { setStep, setShowMessage } from '../../../reducers/gallerySlice'
 import { useDispatch, useSelector } from "react-redux"
 import Collapse from '@mui/material/Collapse';
 import { showSpinner } from '../../../reducers/spinnerSlice'
-import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
-import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 
 
 function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBuilder, handleResetList } ) {
   const [blockImage, setBlockImage] = useState("")
   const [compactMode, setCompactMode] = useState(true)
+  const [formError, setFormError] = useState(false)
+
   const [newBlock, setNewBlock] = useState ({
     // does this need gallery id or image?
     text: "Enter block text",
@@ -31,8 +31,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
 
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.user)
-  const gallery = useSelector(state => state.gallery)
-  const [formError, setFormError] = useState(false)
+  const id = useSelector(state => state.gallery.id)
 
   // useEffect(() => {
   //   console.log(Object.entries(newBlock))
@@ -67,7 +66,7 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
     e.preventDefault();
     console.log("clicked add block")
     const formData = new FormData()
-    formData.append("gallery_id", gallery.id)
+    formData.append("gallery_id", id)
     if (blockImage) formData.append("image", blockImage)
     formData.append("text", newBlock.text)
     formData.append("bg_color", newBlock.bgColor)
@@ -113,6 +112,9 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
       setBlockImage("")
       handleCloseBlockBuilder()
       handleResetList()
+      dispatch(setShowMessage({
+        showMessage: true, 
+        message: `added bl stuff`}))
     }
     function handleCompactModeToggle(e){
       e.preventDefault()
@@ -121,6 +123,8 @@ function BlockBuilder( { userError, setUserError, setRefresh, handleCloseBlockBu
     const compactComponent = {
       // display: compactMode ? 'none' : 'block'
     }
+
+
   return (
   
 

@@ -11,7 +11,9 @@ const slice = createSlice( {
             blocks: [],
             featured_image_url: "",
             published: false,
-            published_on: ""
+            published_on: "",
+            showMessage: false,
+            message: ""
     },
     reducers : {
 
@@ -26,13 +28,18 @@ const slice = createSlice( {
             state.featured_image_url = action.payload.featured_image_url
             state.published = action.payload.published
             state.published_on = action.payload.published_on
+        },
+        setShowMessage: (state, action) => {
+            state.showMessage = action.payload.showMessage
+            state.message = action.payload.message
         }
+        
     }
 } )
 
 // actions
-const { setStep, setGalleryInEdit } = slice.actions
+const { setStep, setGalleryInEdit, setShowMessage } = slice.actions
 
 // exports
-export { setStep, setGalleryInEdit } 
+export { setStep, setGalleryInEdit, setShowMessage } 
 export default slice.reducer

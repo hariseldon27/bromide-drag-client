@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 
 
 function BlockListCard( { block } ) {
-    console.log(block)
+    // console.log(block)
     // text col needs to be renamed or the block type needs to be renamed
     const {
         bg_color,
@@ -25,7 +25,7 @@ function BlockListCard( { block } ) {
         text_align,
         block_type,
         width } = block
-        console.log(block_type)
+        // console.log(block_type)
 
     const blockImgStyle = {
         width: "100%",

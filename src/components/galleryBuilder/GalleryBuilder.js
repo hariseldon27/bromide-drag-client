@@ -26,8 +26,7 @@ function GalleryBuilder() {
   const [userError, setUserError] = useState(false)
   const step = useSelector( state => state.gallery.step )
   
-// console.log(dummyData)
-
+//where are we in the gallery process
 console.log("gallery build step: ", step)
 
 function handleChangeStep(e){
@@ -36,6 +35,7 @@ function handleChangeStep(e){
 
 console.log('gallerybuilder refresh')
 
+//this was originally for breadcrumbs, so I left it as crummy
 function Crummy(){
   return (  
     <Grid 
@@ -53,15 +53,7 @@ function Crummy(){
     </Grid>
   );
 }
-  //  ok - we need to keep track of where we are in the process...
-  //  GalleryStart => gets gallery name and featured_image for 
-  //  new_gallery = {name:, featured_image:} 
-  //  GalleryDescribe => gets gallery text description 
-  //  new_callery = {name:, featured_image:, description:}
-  //  write to database and get ID
-  //  move to GalleryFill with ID returned from database
-  //  then to manage, and finally to coda and publish
-
+//return only the part of the gallery builder that we need - sync with gallery step in state
   function ToolBox() {
     switch (step) {
       case "start":
@@ -81,6 +73,7 @@ function Crummy(){
     }
   }
   //single item in return that is swapped out based on what 'step' we are in in the process
+  // biggest annoyance now is why do we re-render when message clears/gallery.showMessage updates
   return (
     <Box>
       <Grid container
